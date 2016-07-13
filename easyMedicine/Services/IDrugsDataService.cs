@@ -15,6 +15,8 @@ namespace easyMedicine.Services
 		Task<IEnumerable<Drug>> SearchDrug(string searchStr);
 
 		Task<IEnumerable<Drug>> GetDrugsByCategory(string categoryId, string subCategoryId);
+
+		Task<IEnumerable<Drug>> GetFavourites();
 	}
 }
 

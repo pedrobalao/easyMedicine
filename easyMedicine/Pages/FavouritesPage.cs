@@ -18,18 +18,28 @@ namespace easyMedicine.Pages
 			Title = "Favoritos";
 			Icon = "ic_favorite_36pt.png";
 
-			var layout = new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				VerticalOptions = LayoutOptions.FillAndExpand,
-			};
-			var label = new Label () {
-				Text = "Favourites",
-				TextColor = Color.Red,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
+			var cell = new DataTemplate(typeof(TextCell));
+			cell.SetBinding(TextCell.TextProperty, "Name");
+
+			var list = new ListView()
+			{
+				BindingContext = Model,
+				ItemTemplate = cell
 
 			};
-			layout.Children.Add (label);
-			this.Content = layout;
+			list.SetBinding(ListView.ItemsSourceProperty, FavouritesPageModel.DrugsPropertyName);
+
+			list.ItemTapped += OnItemTapped;
+
+			this.Content = list;
+		}
+
+		private void OnItemTapped(object sender, ItemTappedEventArgs e)
+		{
+			if (e.Item != null && this.Model.DrugSelectedCommand != null && this.Model.DrugSelectedCommand.CanExecute(e))
+			{
+				Model.DrugSelectedCommand.Execute(e.Item);
+			}
 		}
 	}
 }

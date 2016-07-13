@@ -113,8 +113,8 @@ namespace easyMedicine.Models
 		public string Takes { get; set; }
 
 		public string Presentation { get; set; }
-
-		public string CommercialBrand { get; set; }*/
+*/
+		public string CommercialBrand { get; set; }
 
 		
 

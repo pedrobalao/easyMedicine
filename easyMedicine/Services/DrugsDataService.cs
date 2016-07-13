@@ -92,6 +92,17 @@ namespace easyMedicine.Services
 		}
 
 
+		public async Task<IEnumerable<Drug>> GetFavourites()
+		{
+			var favs = Settings.FavouriteSettings.Select(x=> Int32.Parse(x));
+
+			 
+			var drugs = await database.Table<Drug>().Where(x => favs.Contains(x.Id)).OrderBy(x => x.Name).ToListAsync().ConfigureAwait(false);
+
+			return drugs;
+		}
+
+
 
 	}
 }

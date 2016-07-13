@@ -13,6 +13,7 @@
 		{
 
 			public static string Style_LabelSmallStyle = "LabelSmallStyle";
+			public static string Style_LabelMediumStyle = "LabelMediumStyle";
 
 			//Preto esbatido
 			public static Color BASE_COLOR = Color.FromHex("252628");
@@ -26,40 +27,10 @@
 			public static string Style_LabelContrastStyle = "LabelContrastStyle";
 
 
-			public static string Style_LabelSmallContrastStyleCenter = "LabelSmallContrastStyleCenter";
-			public static string Style_LabelSmallBaseStyleCenter = "LabelSmallBaseStyleCenter";
-
-			public static string Style_LabelMediumLargeContrastStyleRight = "LabelMediumLargeContrastStyleRight";
-			public static string Style_LabelMediumLargeContrastStyleCenter = "LabelMediumLargeContrastStyleCenter";
-			public static string Style_LabelMediumLargeContrastStyleLeft = "LabelMediumLargeContrastStyleLeft";
-
-			public static string Style_LabelMediumContrastStyleRight = "LabelMediumContrastStyleRight";
-			public static string Style_LabelMediumContrastStyleCenter = "LabelMediumContrastStyleCenter";
-			public static string Style_LabelMediumContrastStyleLeft = "LabelMediumContrastStyleLeft";
-
-			public static string Style_LabelMediumBaseStyleRight = "LabelMediumBaseStyleRight";
-			public static string Style_LabelMediumBaseStyleCenter = "LabelMediumBaseStyleCenter";
-			public static string Style_LabelMediumBaseStyleLeft = "LabelMediumBaseStyleLeft";
-
-			
-			public static string Style_LabelLargeBaseStyleLeft = "LabelLargeBaseStyleLeft";
-
-			public static string Style_LabelLargeBaseStyleCenter = "LabelLargeBaseStyleCenter";
-
-			public static string Style_BoxSplitLineStyle = "BoxSplitLineStyle";
-
-			public static string Style_ButtonMediumStyle = "ButtonMediumStyle";
-
-			public static string Style_ButtonSmallWhiteStyle = "ButtonSmallWhiteStyle";
-			public static string Style_ButtonSmallWhiteTransparentStyle = "ButtonSmallWhiteTransparentStyle";
-
-			public static string Style_FrameContrastColor = "FrameContrastColor";
-			public static string Style_FrameLetterColor = "FrameLetterColor";
 
 
 
-
-			public const int SmallFontSize = 14;
+			public const int SmallFontSize = 10;
 			public const int MediumFontSize = 18;
 			public const int MediumLargeFontSize = 25;
 			public const int LargeFontSize = 35;
@@ -113,11 +84,32 @@
 						Property = Label.HorizontalTextAlignmentProperty, Value = TextAlignment.Start
 					},
 					new Setter {
+						Property = Label.VerticalTextAlignmentProperty, Value = TextAlignment.End
+					},
+					new Setter {
 						Property = Label.FontSizeProperty, Value = SmallFontSize
 					},
 				}
 				};
 
+			var labelMediumStyle = new Style(typeof(Label))
+			{
+				BasedOn = labelContrastBaseStyle,
+				Setters = {
+					new Setter {
+						Property = Label.TextColorProperty, Value = LETTER_COLOR,
+					},
+					new Setter {
+						Property = Label.HorizontalTextAlignmentProperty, Value = TextAlignment.Start
+					},
+					new Setter {
+						Property = Label.VerticalTextAlignmentProperty, Value = TextAlignment.Start
+					},
+					new Setter {
+						Property = Label.FontSizeProperty, Value = MediumFontSize
+					},
+				}
+			};
 				
 
 				var baseLayoutStyle = new Style(typeof(Layout))
@@ -204,6 +196,8 @@
 				//Specific Styles
 				
 				Application.Current.Resources.Add(Style_LabelSmallStyle, labelSmallStyle);
+				Application.Current.Resources.Add(Style_LabelMediumStyle, labelMediumStyle);
+
 				
 
 				
