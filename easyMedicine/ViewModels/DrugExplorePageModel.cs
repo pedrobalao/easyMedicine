@@ -116,7 +116,7 @@ namespace easyMedicine
 			Drugs.Clear();
 
 
-			var data = await _drugsDataServ.GetDrugsByCategory(ClinicalCategoryId, SubCategoryId);
+			var data = await _drugsDataServ.GetDrugsByCategory(SubCategoryId);
 			foreach (var clicat in data
 			        )
 			{
@@ -149,7 +149,7 @@ namespace easyMedicine
 
 			await _navigator.PushAsync<DrugPageModel>("Drug", (model) =>
 			{
-				model.Drug = tappedItem;
+				model.DrugId = tappedItem.Id;
 			});
 		}
 

@@ -31,117 +31,65 @@ namespace easyMedicine
 
 			this.Padding = new Thickness(5);
 
-			var grid = new Grid();
 
-			grid.ColumnDefinitions.Add(new ColumnDefinition(){
-				Width = new GridLength(1, GridUnitType.Auto)
+			var layout = new StackLayout()
+			{
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
+			};
+
+
+			var lbtname = new LabelValue("Nome", "Drug.Name");
+			layout.Children.Add(lbtname);
+			var lbtbrand = new LabelValue("Marca Comercial", "Drug.CommercialBrand");
+			layout.Children.Add(lbtbrand);
+			var lbtConterIndications = new LabelValue("Contra-Indicações", "Drug.ConterIndications");
+			layout.Children.Add(lbtConterIndications);
+			var lbtSecEffects = new LabelValue("Efeitos Secundários", "Drug.SecondaryEffects");
+			layout.Children.Add(lbtSecEffects);
+
+
+			var lstView = new ListView()
+			{
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
+			};
+			lstView.HasUnevenRows = true;
+			lstView.IsGroupingEnabled = true;
+			//lstView.GroupDisplayBinding = new Binding("Description");
+			//lstView.GroupShortNameBinding = new Binding("ShortName");
+			lstView.SetBinding(ListView.ItemsSourceProperty, DrugPageModel.IndicationsPropertyName);
+			lstView.SeparatorColor = Styles.BLUE_COLOR;
+			lstView.ItemTemplate = new DataTemplate(typeof(DoseCell));
+			lstView.ItemTemplate.SetBinding(DoseCell.ViaProperty, "IdVia");
+			lstView.ItemTemplate.SetBinding(DoseCell.PedDoseProperty, "PediatricDose");
+			lstView.ItemTemplate.SetBinding(DoseCell.PedDoseUnityProperty, "IdUnityPediatricDose");
+			lstView.ItemTemplate.SetBinding(DoseCell.AdultDoseProperty, "AdultDose");
+			lstView.ItemTemplate.SetBinding(DoseCell.AdultDoseUnityProperty, "IdUnityAdultDose");
+
+			lstView.ItemTemplate.SetBinding(DoseCell.TakesPerDayProperty, "TakesPerDay");
+			lstView.ItemTemplate.SetBinding(DoseCell.MaxDosePerDayProperty, "MaxDosePerDay");
+			lstView.ItemTemplate.SetBinding(DoseCell.MaxDosePerDayUnityProperty, "IdUnityMaxDosePerDay");
+			lstView.ItemTemplate.SetBinding(DoseCell.ObsProperty, "Obs");
+
+			lstView.GroupHeaderTemplate = new DataTemplate(() =>
+			{
+				var hdrLayout = new Label()
+				{
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+					LineBreakMode = LineBreakMode.WordWrap,
+					Style = (Style)Application.Current.Resources[Styles.Style_LabelMediumBackgroundStyle],
+					                           
+				};
+				hdrLayout.SetBinding(Label.TextProperty, "Description");
+
+				return new ViewCell() { View = hdrLayout };
 			});
 
-			var titleRowDefinition = new RowDefinition() { Height = new GridLength(10, GridUnitType.Absolute) };
-			var descriptionRowDefinition = new RowDefinition() { Height = new GridLength(30, GridUnitType.Absolute) };
+			layout.Children.Add(lstView);
 
-
-			grid.RowDefinitions.Add(titleRowDefinition);
-			grid.RowDefinitions.Add(descriptionRowDefinition);
-
-			grid.RowDefinitions.Add(titleRowDefinition);
-			grid.RowDefinitions.Add(descriptionRowDefinition);
-
-			grid.RowDefinitions.Add(titleRowDefinition);
-			grid.RowDefinitions.Add(descriptionRowDefinition);
-
-			grid.RowDefinitions.Add(titleRowDefinition);
-			grid.RowDefinitions.Add(descriptionRowDefinition);
-
-			grid.RowDefinitions.Add(titleRowDefinition);
-			grid.RowDefinitions.Add(descriptionRowDefinition);
-
-			grid.RowDefinitions.Add(titleRowDefinition);
-			grid.RowDefinitions.Add(descriptionRowDefinition);
-
-			grid.RowDefinitions.Add(titleRowDefinition);
-			grid.RowDefinitions.Add(descriptionRowDefinition);
-
-			//nome
-			var lbtName = new Label()
-			{
-				Text = "Nome",
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
-			};
-
-			var lbdDrugName = new Label() 
-			{
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelMediumStyle],
-			};
-			lbdDrugName.SetBinding(Label.TextProperty, "Drug.Name");
-
-			grid.Children.Add(lbtName, 0, 0);
-			grid.Children.Add(lbdDrugName, 0, 1);
-
-			//marca comercial
-			var lbtCommercialBrand = new Label()
-			{
-				Text = "Marca Comercial",
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
-			};
-
-			var lbdCommercialBrand = new Label()
-			{
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelMediumStyle],
-			};
-			lbdCommercialBrand.SetBinding(Label.TextProperty, "Drug.CommercialBrand");
-
-			grid.Children.Add(lbtCommercialBrand, 0, 2);
-			grid.Children.Add(lbdCommercialBrand, 0, 3);
-
-			//indicação
-			var lbtIndication = new Label()
-			{
-				Text = "Indicação",
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
-			};
-
-			var lbdIndication = new Label()
-			{
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelMediumStyle],
-			};
-			lbdIndication.SetBinding(Label.TextProperty, "Drug.Indication");
-
-			grid.Children.Add(lbtIndication, 0, 4);
-			grid.Children.Add(lbdIndication, 0, 5);
-
-			//indicação
-			var lbtConterIndication = new Label()
-			{
-				Text = "Contra-Indicações",
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
-			};
-
-			var lbdConterIndication = new Label()
-			{
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelMediumStyle],
-			};
-			lbdConterIndication.SetBinding(Label.TextProperty, "Drug.ConterIndications");
-
-			grid.Children.Add(lbtConterIndication, 0, 6);
-			grid.Children.Add(lbdConterIndication, 0, 7);
-
-			//Efeitos Secundários
-			var lbtSecondaryEffects = new Label()
-			{
-				Text = "Efeitos Secundários",
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
-			};
-
-			var lbdSecondaryEffects = new Label()
-			{
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelMediumStyle],
-			};
-			lbdSecondaryEffects.SetBinding(Label.TextProperty, "Drug.SecondaryEffects");
-
-			grid.Children.Add(lbtSecondaryEffects, 0, 8);
-			grid.Children.Add(lbdSecondaryEffects, 0, 9);
-
+			/*
 			//Via
 			var lbtVia = new Label()
 			{
@@ -158,10 +106,75 @@ namespace easyMedicine
 			grid.Children.Add(lbtVia, 0, 10);
 			grid.Children.Add(lbdVia, 0, 11);
 
+			*/
+
+			/*/
+			var carousel = new CarouselView()
+			{
+				BackgroundColor = Color.Aqua,
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
+				ItemTemplate = new DataTemplate(() => {
+					var gridtemp = new Grid() { 
+						HorizontalOptions = LayoutOptions.FillAndExpand,
+						VerticalOptions = LayoutOptions.FillAndExpand,
+					};
+					gridtemp.ColumnDefinitions.Add(new ColumnDefinition()
+					{
+						Width = new GridLength(1, GridUnitType.Auto)
+					});
+
+					gridtemp.RowDefinitions.Add(titleRowDefinition);
+					gridtemp.RowDefinitions.Add(descriptionRowDefinition);
+					gridtemp.RowDefinitions.Add(descriptionRowDefinition);
+
+					var lbtInd = new Label()
+					{
+						Text = "Indicação",
+						Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
+					};
+
+					var lbdInd = new Label()
+					{
+						Style = (Style)Application.Current.Resources[Styles.Style_LabelMediumStyle],
+					};
+					lbdInd.SetBinding(Label.TextProperty, "Indication.IndicationText");
+
+					gridtemp.Children.Add(lbtInd, 0, 0);
+					gridtemp.Children.Add(lbdInd, 0, 1);
+
+					var doses = new ListView { 
+						HorizontalOptions = LayoutOptions.FillAndExpand,
+						VerticalOptions = LayoutOptions.FillAndExpand,
+						ItemTemplate = new DataTemplate(() =>{
+							var lay = new StackLayout()
+							{
+								HorizontalOptions = LayoutOptions.FillAndExpand,
+								VerticalOptions = LayoutOptions.FillAndExpand,
+							};
+
+							var lbtpedDose = new LabelValue("Dose Pediátrica", "PediatricDose");
+
+						
+							lay.Children.Add(lbtpedDose);
+
+							return new ViewCell { View = lay };
+						})
+					};
+					doses.SetBinding(ListView.ItemsSourceProperty, "Doses");
+
+					gridtemp.Children.Add(doses, 0, 2);
+
+					return gridtemp; //new ViewCell { View = gridtemp };
+				})
+			};
+			carousel.SetBinding(CarouselView.ItemsSourceProperty, "Drug.Indications"); 
+			grid.Children.Add(carousel, 0, 11);
+
+			*/
 
 
-
-			Content = grid;
+			Content = layout;
 
 		}
 	}

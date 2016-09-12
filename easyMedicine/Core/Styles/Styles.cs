@@ -1,13 +1,14 @@
 ﻿
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
-	using Xamarin.Forms;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using easyMedicine.Pages;
+using Xamarin.Forms;
 
 
-	namespace easyMedicine
+namespace easyMedicine
 	{
 		public class Styles
 		{
@@ -22,15 +23,23 @@
 			//Verde
 			public static Color CONTRAST_LETTER_COLOR = Color.FromHex("698335");
 
+			public static Color BLUE_COLOR = Color.FromHex("0078D7");
+			public static Color LIGHT_BLUE_COLOR = Color.FromHex("3393DE");
+			public static Color WHITE_COLOR = Color.White;
+			
+			
+
 			public static string Style_MenuCellLabelStyle = "MenuCellLabelStyle";
 
 			public static string Style_LabelContrastStyle = "LabelContrastStyle";
 
+			public static string Style_LabelMediumBackgroundStyle = "LabelMediumBackgroundStyle";
 
 
 
 
 			public const int SmallFontSize = 10;
+			public const int SmallMediumFontSize = 14;
 			public const int MediumFontSize = 18;
 			public const int MediumLargeFontSize = 25;
 			public const int LargeFontSize = 35;
@@ -78,7 +87,7 @@
 					BasedOn = labelContrastBaseStyle,
 					Setters = {
 					new Setter {
-						Property = Label.TextColorProperty, Value = LETTER_COLOR,
+						Property = Label.TextColorProperty, Value = LIGHT_BLUE_COLOR,
 					},
 					new Setter {
 						Property = Label.HorizontalTextAlignmentProperty, Value = TextAlignment.Start
@@ -110,6 +119,30 @@
 					},
 				}
 			};
+
+
+			var labelMediumBackgroundStyle = new Style(typeof(Label))
+			{
+				BasedOn = labelContrastBaseStyle,
+				Setters = {
+					new Setter {
+						Property = Label.TextColorProperty, Value = WHITE_COLOR,
+					},
+					new Setter {
+						Property = Label.HorizontalTextAlignmentProperty, Value = TextAlignment.Start
+					},
+					new Setter {
+						Property = Label.VerticalTextAlignmentProperty, Value = TextAlignment.Center
+					},
+					new Setter {
+						Property = Label.BackgroundColorProperty, Value = BLUE_COLOR,
+					},
+					new Setter {
+						Property = Label.FontSizeProperty, Value = MediumFontSize
+					},
+				}
+			};
+
 				
 
 				var baseLayoutStyle = new Style(typeof(Layout))
@@ -135,7 +168,7 @@
 					BasedOn = baseStyle,
 					Setters = {
 					new Setter {
-						Property = SearchBar.PlaceholderColorProperty, Value = LETTER_COLOR// BASE_COLOR
+						Property = SearchBar.PlaceholderColorProperty, Value =  BASE_COLOR
 					},
 					new Setter {
 						Property = SearchBar.FontAttributesProperty, Value = FontAttributes.None
@@ -144,29 +177,54 @@
 						Property = SearchBar.FontFamilyProperty, Value = "Avenir-Book"
 					},
 					new Setter {
-						Property = SearchBar.TextColorProperty, Value = CONTRAST_LETTER_COLOR
+						Property = SearchBar.TextColorProperty, Value = LIGHT_BLUE_COLOR
 					},
 					new Setter {
 						Property = SearchBar.FontAttributesProperty, Value = FontAttributes.Bold
 					},
 					new Setter {
-						Property = SearchBar.FontSizeProperty, Value = MediumFontSize
-					}
+						Property = SearchBar.FontSizeProperty, Value = SmallMediumFontSize
+					},
+					new Setter {
+						Property = SearchBar.BackgroundColorProperty, Value = BLUE_COLOR,
+					},
+					new Setter {
+						Property = SearchBar.CancelButtonColorProperty, Value = WHITE_COLOR,
+					},
+
 				}
 				};
 
-				var navigationBarStyle = new Style(typeof(NavigationPage))
+
+				var navigationBarStyle = new Style(typeof(eMNavigationPage))
 				{
 					Setters = {
 					new Setter {
-						Property = NavigationPage.BarBackgroundColorProperty, Value = Color.Transparent// BASE_COLOR= BASE_COLOR,
+						Property = NavigationPage.BarTextColorProperty, Value = WHITE_COLOR,
 					},
 					new Setter {
-						Property = NavigationPage.BarTextColorProperty, Value = CONTRAST_LETTER_COLOR,
+						Property = NavigationPage.BarBackgroundColorProperty, Value = BLUE_COLOR,
+					},
+					new Setter {
+						Property = NavigationPage.BackButtonTitleProperty, Value = "Atras",
 					},
 
 				}
 				};
+
+
+
+			/*
+			var tabbedPageStyle = new Style(typeof(TabbedPage))
+			{
+				Setters = {
+					new Setter {
+						Property = TabbedPage.BackgroundImageProperty, Value = BLUE_COLOR// BASE_COLOR= BASE_COLOR,
+					},
+
+				}
+			};*/
+
 
 				var listViewStyle = new Style(typeof(ListView))
 				{
@@ -189,6 +247,9 @@
 				Application.Current.Resources.Add(searchBarStyle);
 				Application.Current.Resources.Add(tableViewStyle);
 
+				//Application.Current.Resources.Add(tabbedPageStyle);
+
+
 
 
 				Application.Current.Resources.Add(labelSmallStyle);
@@ -197,6 +258,9 @@
 				
 				Application.Current.Resources.Add(Style_LabelSmallStyle, labelSmallStyle);
 				Application.Current.Resources.Add(Style_LabelMediumStyle, labelMediumStyle);
+			Application.Current.Resources.Add(Style_LabelMediumBackgroundStyle, labelMediumBackgroundStyle);
+
+
 
 				
 

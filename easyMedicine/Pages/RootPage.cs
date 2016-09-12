@@ -3,12 +3,12 @@ using Xamarin.Forms;
 
 namespace easyMedicine.Pages
 {
-	public class RootPage : TabbedPage
+	public class RootPage : CustomTabbedPage
 	{
 		public RootPage ()
 		{
 			Title = "easyMedicine";
-			this.BackgroundColor = Color.Blue;
+			//this.ba = Color.Red;
 
 		}
 	}

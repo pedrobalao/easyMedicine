@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -10,6 +11,17 @@ using Xamarin.Forms;
 
 namespace easyMedicine
 {
+
+	public class IndicationViewModel : ObservableCollection<Dose>
+	{
+		public string Description
+		{
+			get;
+			set;
+		}
+
+	}
+
 	public class DrugPageModel : PageModelBase
 	{
 
@@ -26,14 +38,54 @@ namespace easyMedicine
 		{
 			_drugsDataServ = drugServ;
 			_navigator = navigator;
+			Indications = new ObservableCollection<IndicationViewModel>();
 
 			ChangeFavouriteStatus = new Command(FavouriteStatusChange);
 		}
 
 
-		private Drug _Drug;
+		private int _DrugId;
 
-		public Drug Drug
+		public int DrugId
+		{
+			get
+			{
+				return _DrugId;
+			}
+			set
+			{
+				_DrugId = value;
+				OnPropertyChanged(DrugIdPropertyName);
+			}
+		}
+
+		public const string DrugIdPropertyName = "DrugId";
+
+
+
+		private ObservableCollection<IndicationViewModel> _Indications;
+
+		public ObservableCollection<IndicationViewModel> Indications
+		{
+			get
+			{
+				return _Indications;
+			}
+			set
+			{
+				_Indications = value;
+				OnPropertyChanged(IndicationsPropertyName);
+			}
+		}
+
+		public const string IndicationsPropertyName = "Indications";
+
+
+
+
+		private DrugFull _Drug;
+
+		public DrugFull Drug
 		{
 			get
 			{
@@ -100,9 +152,27 @@ namespace easyMedicine
 		protected override async System.Threading.Tasks.Task Started()
 		{
 			await base.Started();
-			IsFavourite = Settings.IsFavourite(Drug.Id.ToString());
+			IsFavourite = Settings.IsFavourite(DrugId.ToString());
+
+			Drug = await _drugsDataServ.GetDrug(DrugId);
+
+			Indications.Clear();
+			foreach (var indic in Drug.Indications)
+			{
+				var idvm = new IndicationViewModel()
+				{
+					Description = indic.Indication.IndicationText
+				};
+				foreach (var dos in indic.Doses)
+				{
+					idvm.Add(dos);
+				}
+				Indications.Add(idvm);
+			}
 
 		}
+
+
 	}
 }
 

@@ -12,9 +12,12 @@ namespace easyMedicine.Services
 {
 	
 
+
 	public class DrugsDataService : IDrugsDataService
 	{
-		
+
+
+
 		//private static readonly AsyncLock Mutex = new AsyncLock ();
 
 		SQLiteAsyncConnection database;
@@ -36,6 +39,43 @@ namespace easyMedicine.Services
 			_sqlLiteService = sqlLiteService;
 			database = _sqlLiteService.GetConnection ();
 
+
+		}
+
+		public List<Via> Vias
+		{
+			get;
+			private set;
+		}
+
+
+		public async Task<IEnumerable<Via>> GetVias()
+		{
+			if (Vias != null && Vias.Count > 0)
+				return Vias;
+			
+			Vias = new List<Via>();
+			//using (await Mutex.LockAsync ().ConfigureAwait (false)) {
+			Vias = await database.Table<Via>().OrderBy(x => x.Id).ToListAsync().ConfigureAwait(false);
+			//}
+			return Vias;
+		}
+
+		public List<Unity> Unities
+		{
+			get;
+			private set;
+		}
+		public async Task<IEnumerable<Unity>> GetUnities()
+		{
+			if (Unities != null && Unities.Count > 0)
+				return Unities;
+
+			Unities = new List<Unity>();
+			//using (await Mutex.LockAsync ().ConfigureAwait (false)) {
+			Unities = await database.Table<Unity>().OrderBy(x => x.Id).ToListAsync().ConfigureAwait(false);
+			//}
+			return Unities;
 		}
 
 		/*
@@ -69,14 +109,14 @@ namespace easyMedicine.Services
 			return subcategories;
 		}
 
-		public async Task<IEnumerable<Drug>> GetDrugsByCategory(string categoryId, string subCategoryId)
+		public async Task<IEnumerable<Drug>> GetDrugsByCategory( string subCategoryId)
 		{
 
 			//var res = await database.QueryAsync<Drug>("select * from Drug");
 
 
 			var res = await database.QueryAsync<Drug>("select a.* from Drug a inner join DrugCategory b on a.Id = b.DrugId " +
-									  "\twhere b.CategoryId = ? and b.SubCategoryId = ?", categoryId, subCategoryId); 
+									  "\twhere b.SubCategoryId = ?", subCategoryId); 
 
 			return res;
 		}
@@ -86,8 +126,17 @@ namespace easyMedicine.Services
 		{
 			//List<Drug> drugs = new List<Drug>();
 			//using (await Mutex.LockAsync ().ConfigureAwait (false)) {
-			var drugs = await database.Table<Drug>().Where(x => x.SearchString.Contains(searchStr)).OrderBy(x => x.Name).ToListAsync().ConfigureAwait(false);
-			//}
+			var drugs = await database.Table<Drug>().Where(x => x.Name.Contains(searchStr) || x.ComercialBrands.Contains(searchStr)).OrderBy(x => x.Name).ToListAsync().ConfigureAwait(false);
+
+
+			var searchStrLike = "%" + searchStr + "%";
+			var drugs2 = await database.QueryAsync<Drug>("select a.* from Drug a inner join Indication b on a.Id = b.DrugId " +
+									  "\twhere IndicationText like ?", searchStrLike);
+
+			var ids = drugs.Select(y => y.Id);
+			drugs2.RemoveAll(x => ids.Contains(x.Id));
+
+			drugs.AddRange(drugs2);
 			return drugs;
 		}
 
@@ -102,6 +151,55 @@ namespace easyMedicine.Services
 			return drugs;
 		}
 
+
+		public async Task<DrugFull> GetDrug(int drugId)
+		{
+
+
+			var ret = new DrugFull();
+			var drug = await database.Table<Drug>().Where(x => x.Id == drugId).FirstAsync().ConfigureAwait(false);
+
+			ret.Id = drug.Id;
+			ret.Name = drug.Name;
+			ret.Obs = drug.Obs;
+			ret.Presentation = drug.Presentation;
+			ret.SecondaryEfects = drug.SecondaryEfects;
+			ret.ComercialBrands = drug.ComercialBrands;
+			ret.ConterIndications = drug.ConterIndications;
+
+			var indications = await database.Table<Indication>().Where(x => x.DrugId == drugId).ToListAsync().ConfigureAwait(false);
+
+			ret.Indications = new List<IndicationFull>();
+			ret.SubCategories = new List<SubCategory>();
+
+			indications.All((x) =>
+			{
+				ret.Indications.Add(new IndicationFull()
+				{
+					Indication = x,
+					Doses = new List<Dose>()
+						
+				});
+				return true;
+			}
+			);
+
+			var indicationsIds = indications.Select(x => x.Id);
+
+			var doses = await database.Table<Dose>().Where(x => indicationsIds.Contains(x.IndicationId)).ToListAsync().ConfigureAwait(false);
+
+			ret.Indications.All(
+				(x) => {
+					x.Doses.AddRange(doses.Where(y => y.IndicationId == x.Indication.Id));
+					return true;
+			}
+			);
+
+			ret.SubCategories = await database.QueryAsync<SubCategory>("select a.* from SubCategory a inner join DrugCategory b on a.Id = b.SubCategoryId " +
+			                                                    "\twhere b.DrugId = ?", drugId);
+
+			return ret;
+		}
 
 
 	}

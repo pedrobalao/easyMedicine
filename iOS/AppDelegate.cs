@@ -30,6 +30,20 @@ namespace easyMedicine.iOS
 
 			LoadApplication (app1);
 
+			UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes()
+			{
+				Font = UIFont.FromName("Avenir-Book", 20),
+			});
+
+
+
+			UITabBarItem.Appearance.SetTitleTextAttributes(
+				new UITextAttributes()
+				{
+					Font = UIFont.FromName("Avenir-Book", 10),
+				}, UIControlState.Normal);
+			//UISearchBar.Appearance. = UIColor.Red;
+
 			return base.FinishedLaunching (app, options);
 		}
 

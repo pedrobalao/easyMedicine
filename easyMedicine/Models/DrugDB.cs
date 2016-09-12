@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SQLite.Net.Attributes;
 
 namespace easyMedicine.Models
@@ -30,103 +31,118 @@ namespace easyMedicine.Models
 		}
 	}
 
-	/*
-	[Table("DrugCategory")]
-	public class DrugCategory
-	{
-		[PrimaryKey]
-		public int Id { get; set; }
-
-		[Indexed("DrugCatIdx", 1)]
-		public string DrugId
-		{
-			get;
-			set;
-		}
-
-		[Indexed("catsubx", 1)]
-		public string CategoryId
-		{
-			get;
-			set;
-		}
-		[Indexed("catsubx", 2)]
-		public string SubCategoryId
-		{
-			get;
-			set;
-		}
-	}*/
-
-
 	[Table ("Drug")]
 	public class Drug
-	{
-
-		[PrimaryKey]
-		public int Id { get; set; }
-
-		[Indexed ("CatIdx", 1)]
-		public string ClinicalCategoryId {
-			get;
-			set;
-		}
-
-		[Indexed ("CatIdx", 2)]
-		public string SubCategoryId {
-			get;
-			set;
-		}
-
-		public string Name {
-			get;
-			set;
-		}
-
-
-
-		public string Indication{ get; set; }
-
-		public string Via{ get; set; }
-
-		public string ConterIndications { get; set; }
-
-		public string Observations { get; set; }
-
-		public string SecondaryEffects { get; set; }
-
-		[Indexed]
-		public string SearchString { get; set; }
-
-		/*public decimal PediatricDoseValue{ get; set; }
-
-		public string PediatricDoseUnit{ get; set; }
-
-		public decimal AdultDoseValue{ get; set; }
-
-		public string AdultDoseUnit{ get; set; }
-
-		public decimal MaxDailyDoseValue{ get; set; }
-
-		public string MaxDailyDoseUnit{ get; set; }
-
-		public string Takes { get; set; }
-
-		public string Presentation { get; set; }
-*/
-		public string CommercialBrand { get; set; }
-
+    {
 		
 
-	}
-
-	[Table ("Favourite")]
-	public class Favourite
-	{
 		[PrimaryKey]
-		public string DrugID { get; set; }
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string ConterIndications { get; set; }
+
+        public string SecondaryEfects { get; set; }
+
+        public string ComercialBrands { get; set; }
+
+        public string Obs { get; set; }
+
+        public string Presentation { get; set; }
+
+    }
+    [Table ("Dose")]
+    public class Dose
+    {
+		[PrimaryKey]
+        public int Id { get; set; }
+
+        public int IndicationId { get; set; }
+
+        public string IdVia { get; set; }
+
+        public string PediatricDose { get; set; }
+
+        public string IdUnityPediatricDose { get; set; }
+
+        public string AdultDose { get; set; }
+
+        public string IdUnityAdultDose { get; set; }
+
+        public string TakesPerDay { get; set; }
+
+        public string MaxDosePerDay { get; set; }
+
+        public string IdUnityMaxDosePerDay { get; set; }
+
+        public string Obs { get; set; }
+
+
+    }
+	[Table ("DrugCategory")]
+    public class DrugCategory
+    {
+		[PrimaryKey]
+        public int DrugId { get; set; }
+		[PrimaryKey]
+        public int SubCategoryId { get; set; }
+
+    }
+	[Table ("Indication")]
+    public class Indication
+    {
+		[PrimaryKey]
+        public int Id { get; set; }
+
+        public int DrugId { get; set; }
+		public string IndicationText { get; set; }
+
+    }
+
+    
+[Table ("Unity")]
+    public class Unity
+    {
+		[PrimaryKey]
+        public string Id { get; set; }
+    }
+[Table ("Via")]
+    public class Via
+    {
+		[PrimaryKey]
+        public string Id { get; set; }
+    }
+
+
+	public class IndicationFull 
+	{
+		public Indication Indication
+		{
+			get;
+			set;
+		}
+		public List<Dose> Doses
+		{
+			get;
+			set;
+		}
 	}
 
+	public class DrugFull :Drug
+	{
+		
+		public List<SubCategory> SubCategories
+		{
+			get;
+			set;
+		}
 
+		public List<IndicationFull> Indications
+		{
+			get;set;
+		}
+
+	}
 }
 

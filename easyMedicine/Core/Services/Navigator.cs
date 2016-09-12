@@ -106,7 +106,9 @@ namespace easyMedicine.Core.Services
             {
                 await 
             }*/
-			RootPage.CurrentPage = new NavigationPage (view);
+			RootPage.CurrentPage = new eMNavigationPage(view) { 
+
+			};
 			return viewModel;
 		}
 
@@ -120,7 +122,10 @@ namespace easyMedicine.Core.Services
             }*/
 			viewModel.CreationAction = true;
 			var view = _viewFactory.Resolve (viewModel);
-			RootPage.CurrentPage = new NavigationPage (view);
+			RootPage.CurrentPage = new eMNavigationPage(view) { 
+				
+
+			};
 			return viewModel;
 		}
 
@@ -184,11 +189,15 @@ namespace easyMedicine.Core.Services
 			else
 				_root = _viewFactory.Resolve<TPageModel> (out model) as Page;
 			model.CreationAction = true;
-			if (_root is TabbedPage) {
+			if (_root is CustomTabbedPage) {
 				model.LoadChildPages ();
 			}
 
-			_app.MainPage = new eMNavigationPage(_root);
+			_app.MainPage = new eMNavigationPage(_root)
+			{
+				//BarBackgroundColor = Styles.BLUE_COLOR,
+				//BarTextColor = Styles.WHITE_COLOR
+			};
             
 		}
 

@@ -24,6 +24,7 @@ namespace easyMedicine.Pages
 			SearchBar sbar = new SearchBar () {
 				BindingContext = Model,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
+				Placeholder = "Pesquisa",
 			};
 			sbar.SetBinding (SearchBar.TextProperty, SearchPageModel.SearchStringPropertyName, BindingMode.TwoWay);
 
@@ -35,14 +36,16 @@ namespace easyMedicine.Pages
 				await Model.FilterDrugs();
 			};
 
-			var cell = new DataTemplate(typeof(TextCell));
-			cell.SetBinding(TextCell.TextProperty, "Name");
+			var cell = new DataTemplate(typeof(CustomCell));
+			cell.SetBinding(CustomCell.NameProperty, "Name");
+			cell.SetBinding(CustomCell.DetailProperty, "Name");
 
 			var list = new ListView()
 			{
 				BindingContext = Model,
-				ItemTemplate = cell
-
+				ItemTemplate = cell,
+				HasUnevenRows = true,
+				SeparatorColor = Styles.BLUE_COLOR,
 			};
 			list.SetBinding(ListView.ItemsSourceProperty, SearchPageModel.SearchResultPropertyName);
 

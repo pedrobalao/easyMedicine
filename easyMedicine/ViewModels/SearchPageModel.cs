@@ -65,7 +65,7 @@ namespace easyMedicine.ViewModels
 
 			await _navigator.PushAsync<DrugPageModel>("Drug", (model) =>
 			{
-				model.Drug = tappedItem;
+				model.DrugId = tappedItem.Id;
 			});
 		}
 

@@ -18,14 +18,16 @@ namespace easyMedicine.Pages
 			Title = "Favoritos";
 			Icon = "ic_favorite_36pt.png";
 
-			var cell = new DataTemplate(typeof(TextCell));
-			cell.SetBinding(TextCell.TextProperty, "Name");
+			var cell = new DataTemplate(typeof(CustomCell));
+			cell.SetBinding(CustomCell.NameProperty, "Name");
+			cell.SetBinding(CustomCell.DetailProperty, "Name");
 
 			var list = new ListView()
 			{
 				BindingContext = Model,
-				ItemTemplate = cell
-
+				ItemTemplate = cell,
+				HasUnevenRows = true,
+				SeparatorColor = Styles.BLUE_COLOR,
 			};
 			list.SetBinding(ListView.ItemsSourceProperty, FavouritesPageModel.DrugsPropertyName);
 
