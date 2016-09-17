@@ -37,9 +37,9 @@ namespace easyMedicine
 		public const string SubClinicalCategoriesPropertyName = "SubClinicalCategories";
 
 
-		private string _ClinicalCategoryId;
+		private int _ClinicalCategoryId;
 
-		public string ClinicalCategoryId
+		public int ClinicalCategoryId
 		{
 			get
 			{

@@ -10,11 +10,11 @@ namespace easyMedicine.Services
 		
 		Task<IEnumerable<ClinicalCategory>> GetClinicalCategories ();
 
-		Task<IEnumerable<SubCategory>> GetSubCategories (string categoryId);
+		Task<IEnumerable<SubCategory>> GetSubCategories (int categoryId);
 
 		Task<IEnumerable<Drug>> SearchDrug(string searchStr);
 
-		Task<IEnumerable<Drug>> GetDrugsByCategory(string subCategoryId);
+		Task<IEnumerable<Drug>> GetDrugsByCategory(int subCategoryId);
 
 		Task<IEnumerable<Drug>> GetFavourites();
 

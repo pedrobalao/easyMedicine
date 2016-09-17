@@ -20,7 +20,7 @@ namespace easyMedicine.Pages
 
 			var cell = new DataTemplate(typeof(CustomCell));
 			cell.SetBinding(CustomCell.NameProperty, "Name");
-			cell.SetBinding(CustomCell.DetailProperty, "Name");
+			cell.SetBinding(CustomCell.DetailProperty, "Detail");
 
 			var list = new ListView()
 			{

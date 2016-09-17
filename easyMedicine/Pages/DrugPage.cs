@@ -29,7 +29,7 @@ namespace easyMedicine
 
 			this.ToolbarItems.Add(favButton);
 
-			this.Padding = new Thickness(5);
+			//this.Padding = new Thickness(5);
 
 
 			var layout = new StackLayout()
@@ -38,16 +38,23 @@ namespace easyMedicine
 				VerticalOptions = LayoutOptions.FillAndExpand,
 			};
 
+			var layoutHeader = new StackLayout()
+			{
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
+				Padding = new Thickness(5),
+			};
 
 			var lbtname = new LabelValue("Nome", "Drug.Name");
-			layout.Children.Add(lbtname);
+			layoutHeader.Children.Add(lbtname);
 			var lbtbrand = new LabelValue("Marca Comercial", "Drug.CommercialBrand");
-			layout.Children.Add(lbtbrand);
+			layoutHeader.Children.Add(lbtbrand);
 			var lbtConterIndications = new LabelValue("Contra-Indicações", "Drug.ConterIndications");
-			layout.Children.Add(lbtConterIndications);
+			layoutHeader.Children.Add(lbtConterIndications);
 			var lbtSecEffects = new LabelValue("Efeitos Secundários", "Drug.SecondaryEffects");
-			layout.Children.Add(lbtSecEffects);
+			layoutHeader.Children.Add(lbtSecEffects);
 
+			layout.Children.Add(layoutHeader);
 
 			var lstView = new ListView()
 			{
@@ -74,6 +81,13 @@ namespace easyMedicine
 
 			lstView.GroupHeaderTemplate = new DataTemplate(() =>
 			{
+				var ghlayout = new StackLayout()
+				{
+					Padding = new Thickness(5),
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+					BackgroundColor = Styles.BLUE_COLOR,
+				};
 				var hdrLayout = new Label()
 				{
 					HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -84,94 +98,11 @@ namespace easyMedicine
 				};
 				hdrLayout.SetBinding(Label.TextProperty, "Description");
 
-				return new ViewCell() { View = hdrLayout };
+				ghlayout.Children.Add(hdrLayout);
+				return new ViewCell() { View = ghlayout, };
 			});
 
 			layout.Children.Add(lstView);
-
-			/*
-			//Via
-			var lbtVia = new Label()
-			{
-				Text = "Via",
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
-			};
-
-			var lbdVia = new Label()
-			{
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelMediumStyle],
-			};
-			lbdVia.SetBinding(Label.TextProperty, "Drug.Via");
-
-			grid.Children.Add(lbtVia, 0, 10);
-			grid.Children.Add(lbdVia, 0, 11);
-
-			*/
-
-			/*/
-			var carousel = new CarouselView()
-			{
-				BackgroundColor = Color.Aqua,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				VerticalOptions = LayoutOptions.FillAndExpand,
-				ItemTemplate = new DataTemplate(() => {
-					var gridtemp = new Grid() { 
-						HorizontalOptions = LayoutOptions.FillAndExpand,
-						VerticalOptions = LayoutOptions.FillAndExpand,
-					};
-					gridtemp.ColumnDefinitions.Add(new ColumnDefinition()
-					{
-						Width = new GridLength(1, GridUnitType.Auto)
-					});
-
-					gridtemp.RowDefinitions.Add(titleRowDefinition);
-					gridtemp.RowDefinitions.Add(descriptionRowDefinition);
-					gridtemp.RowDefinitions.Add(descriptionRowDefinition);
-
-					var lbtInd = new Label()
-					{
-						Text = "Indicação",
-						Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
-					};
-
-					var lbdInd = new Label()
-					{
-						Style = (Style)Application.Current.Resources[Styles.Style_LabelMediumStyle],
-					};
-					lbdInd.SetBinding(Label.TextProperty, "Indication.IndicationText");
-
-					gridtemp.Children.Add(lbtInd, 0, 0);
-					gridtemp.Children.Add(lbdInd, 0, 1);
-
-					var doses = new ListView { 
-						HorizontalOptions = LayoutOptions.FillAndExpand,
-						VerticalOptions = LayoutOptions.FillAndExpand,
-						ItemTemplate = new DataTemplate(() =>{
-							var lay = new StackLayout()
-							{
-								HorizontalOptions = LayoutOptions.FillAndExpand,
-								VerticalOptions = LayoutOptions.FillAndExpand,
-							};
-
-							var lbtpedDose = new LabelValue("Dose Pediátrica", "PediatricDose");
-
-						
-							lay.Children.Add(lbtpedDose);
-
-							return new ViewCell { View = lay };
-						})
-					};
-					doses.SetBinding(ListView.ItemsSourceProperty, "Doses");
-
-					gridtemp.Children.Add(doses, 0, 2);
-
-					return gridtemp; //new ViewCell { View = gridtemp };
-				})
-			};
-			carousel.SetBinding(CarouselView.ItemsSourceProperty, "Drug.Indications"); 
-			grid.Children.Add(carousel, 0, 11);
-
-			*/
 
 
 			Content = layout;

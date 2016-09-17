@@ -100,7 +100,7 @@ namespace easyMedicine.Services
 			return categories;
 		}
 
-		public async Task<IEnumerable<SubCategory>> GetSubCategories (string categoryId)
+		public async Task<IEnumerable<SubCategory>> GetSubCategories (int categoryId)
 		{
 			List<SubCategory> subcategories = new List<SubCategory> ();
 			//using (await Mutex.LockAsync ().ConfigureAwait (false)) {
@@ -109,35 +109,65 @@ namespace easyMedicine.Services
 			return subcategories;
 		}
 
-		public async Task<IEnumerable<Drug>> GetDrugsByCategory( string subCategoryId)
+
+		private async Task<IEnumerable<Drug>> CompleteDrugsInfo(IEnumerable<Drug> res)
+		{
+			var ids = res.Select(z => z.Id);
+
+			var drugCategories = await database.Table<DrugCategory>().Where(y => ids.Contains(y.DrugId)).ToListAsync(); ;
+
+			var distinctCats = drugCategories.Select(x => x.SubCategoryId).Distinct().ToList();
+
+			var cats = await database.Table<SubCategory>().Where(z => distinctCats.Contains(z.Id)).ToListAsync();
+
+			foreach (var dc in drugCategories)
+			{
+				var drug = res.First(x => x.Id == dc.DrugId);
+				var cat = cats.First(x => x.Id == dc.SubCategoryId);
+				drug.Detail += string.IsNullOrEmpty(drug.Detail) ? cat.Description : ", " + cat.Description;
+			}
+
+			return res;
+		}
+
+		public async Task<IEnumerable<Drug>> GetDrugsByCategory( int subCategoryId)
 		{
 
 			//var res = await database.QueryAsync<Drug>("select * from Drug");
 
 
 			var res = await database.QueryAsync<Drug>("select a.* from Drug a inner join DrugCategory b on a.Id = b.DrugId " +
-									  "\twhere b.SubCategoryId = ?", subCategoryId); 
+									  "\twhere b.SubCategoryId = ?", subCategoryId);
 
-			return res;
+			return await CompleteDrugsInfo(res);
 		}
 
 
 		public async Task<IEnumerable<Drug>> SearchDrug(string searchStr)
 		{
-			//List<Drug> drugs = new List<Drug>();
-			//using (await Mutex.LockAsync ().ConfigureAwait (false)) {
-			var drugs = await database.Table<Drug>().Where(x => x.Name.Contains(searchStr) || x.ComercialBrands.Contains(searchStr)).OrderBy(x => x.Name).ToListAsync().ConfigureAwait(false);
 
+			//searchStr = searchStr.ToUpper();
 
-			var searchStrLike = "%" + searchStr + "%";
-			var drugs2 = await database.QueryAsync<Drug>("select a.* from Drug a inner join Indication b on a.Id = b.DrugId " +
-									  "\twhere IndicationText like ?", searchStrLike);
+			var searchStrLike = "%" + searchStr.ToUpper() + "%";
+//			var drugs = await database.Table<Drug>().Where(x => x.Name.Contains(searchStr) || x.ComercialBrands.Contains(searchStr)).OrderBy(x => x.Name).ToListAsync().ConfigureAwait(false);
 
+			/*
+			var drugs = await database.QueryAsync<Drug>("select a.* from Drug a " +
+														 "\twhere upper(Name) like ? or ComercialBrands like ? ", searchStrLike);
+*/
+
+			//var searchStrLike = "%" + searchStr + "%";
+			var drugs2 = await database.QueryAsync<Drug>("select distinct a.* from Drug a inner join Indication b on a.Id = b.DrugId " +
+			                                             "\twhere upper(Name) like ? or ComercialBrands like ? or upper(IndicationText) like ?", searchStrLike, searchStrLike,searchStrLike);
+
+			/*
 			var ids = drugs.Select(y => y.Id);
 			drugs2.RemoveAll(x => ids.Contains(x.Id));
 
 			drugs.AddRange(drugs2);
-			return drugs;
+*/
+			return await CompleteDrugsInfo(drugs2);
+			//return drugs;
 		}
 
 
@@ -148,7 +178,8 @@ namespace easyMedicine.Services
 			 
 			var drugs = await database.Table<Drug>().Where(x => favs.Contains(x.Id)).OrderBy(x => x.Name).ToListAsync().ConfigureAwait(false);
 
-			return drugs;
+			return await CompleteDrugsInfo(drugs);
+			//return drugs;
 		}
 
 

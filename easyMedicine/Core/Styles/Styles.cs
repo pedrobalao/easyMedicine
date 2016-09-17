@@ -26,6 +26,7 @@ namespace easyMedicine
 			public static Color BLUE_COLOR = Color.FromHex("0078D7");
 			public static Color LIGHT_BLUE_COLOR = Color.FromHex("3393DE");
 			public static Color WHITE_COLOR = Color.White;
+			public static Color GRAY_COLOR = Color.FromHex("666666");
 			
 			
 
@@ -34,6 +35,11 @@ namespace easyMedicine
 			public static string Style_LabelContrastStyle = "LabelContrastStyle";
 
 			public static string Style_LabelMediumBackgroundStyle = "LabelMediumBackgroundStyle";
+
+			public static string Style_LabelIndincTitleStyle = "LabelIndincTitleStyle";	
+			public static string Style_LabelIndincValueStyle = "LabelIndincValueStyle";
+			
+
 
 
 
@@ -120,6 +126,44 @@ namespace easyMedicine
 				}
 			};
 
+			var labelIndincTitleStyle = new Style(typeof(Label))
+			{
+				BasedOn = labelContrastBaseStyle,
+				Setters = {
+					new Setter {
+						Property = Label.TextColorProperty, Value = BLUE_COLOR,
+					},
+					new Setter {
+						Property = Label.HorizontalTextAlignmentProperty, Value = TextAlignment.Start
+					},
+					new Setter {
+						Property = Label.VerticalTextAlignmentProperty, Value = TextAlignment.Start
+					},
+					new Setter {
+						Property = Label.FontSizeProperty, Value = SmallMediumFontSize
+					},
+				}
+			};
+
+			var labelIndincValueStyle = new Style(typeof(Label))
+			{
+				BasedOn = labelContrastBaseStyle,
+				Setters = {
+					new Setter {
+						Property = Label.TextColorProperty, Value = GRAY_COLOR,
+					},
+					new Setter {
+						Property = Label.HorizontalTextAlignmentProperty, Value = TextAlignment.Start
+					},
+					new Setter {
+						Property = Label.VerticalTextAlignmentProperty, Value = TextAlignment.Start
+					},
+					new Setter {
+						Property = Label.FontSizeProperty, Value = SmallMediumFontSize
+					},
+				}
+			};
+
 
 			var labelMediumBackgroundStyle = new Style(typeof(Label))
 			{
@@ -138,7 +182,7 @@ namespace easyMedicine
 						Property = Label.BackgroundColorProperty, Value = BLUE_COLOR,
 					},
 					new Setter {
-						Property = Label.FontSizeProperty, Value = MediumFontSize
+						Property = Label.FontSizeProperty, Value = SmallMediumFontSize
 					},
 				}
 			};
@@ -206,7 +250,7 @@ namespace easyMedicine
 						Property = NavigationPage.BarBackgroundColorProperty, Value = BLUE_COLOR,
 					},
 					new Setter {
-						Property = NavigationPage.BackButtonTitleProperty, Value = "Atras",
+						Property = NavigationPage.BackButtonTitleProperty, Value = "",
 					},
 
 				}
@@ -258,7 +302,9 @@ namespace easyMedicine
 				
 				Application.Current.Resources.Add(Style_LabelSmallStyle, labelSmallStyle);
 				Application.Current.Resources.Add(Style_LabelMediumStyle, labelMediumStyle);
-			Application.Current.Resources.Add(Style_LabelMediumBackgroundStyle, labelMediumBackgroundStyle);
+				Application.Current.Resources.Add(Style_LabelMediumBackgroundStyle, labelMediumBackgroundStyle);
+				Application.Current.Resources.Add(Style_LabelIndincTitleStyle, labelIndincTitleStyle);
+				Application.Current.Resources.Add(Style_LabelIndincValueStyle, labelIndincValueStyle);
 
 
 

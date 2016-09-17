@@ -7,7 +7,7 @@ namespace easyMedicine.Models
 	public class Category
 	{
 		[PrimaryKey]
-		public string Id {
+		public int Id {
 			get;
 			set;
 		}
@@ -25,7 +25,7 @@ namespace easyMedicine.Models
 	public class SubCategory : Category
 	{
 		[Indexed]
-		public string CategoryId {
+		public int CategoryId {
 			get;
 			set;
 		}
@@ -50,6 +50,9 @@ namespace easyMedicine.Models
         public string Obs { get; set; }
 
         public string Presentation { get; set; }
+
+		[Ignore]
+		public string Detail { get; set; }
 
     }
     [Table ("Dose")]

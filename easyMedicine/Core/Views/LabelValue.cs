@@ -30,7 +30,7 @@ namespace easyMedicine
 			});
 
 			var titleRowDefinition = new RowDefinition() { Height = new GridLength(10, GridUnitType.Absolute) };
-			var descriptionRowDefinition = new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) };
+			var descriptionRowDefinition = new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) };
 
 
 			grid.RowDefinitions.Add(titleRowDefinition);
@@ -44,7 +44,8 @@ namespace easyMedicine
 
 			var lbdDrugName = new Label()
 			{
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelMediumStyle],
+				Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
+				LineBreakMode = LineBreakMode.WordWrap
 			};
 			lbdDrugName.SetBinding(Label.TextProperty, valueBinding);
 

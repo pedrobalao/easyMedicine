@@ -9,6 +9,7 @@ namespace easyMedicine.Pages
 		{
 			this.Title = page.Title;
 			this.Icon = page.Icon;
+			NavigationPage.SetBackButtonTitle(page, "");
 		}
 	}
 }

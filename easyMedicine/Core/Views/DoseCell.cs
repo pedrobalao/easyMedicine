@@ -116,56 +116,93 @@ namespace easyMedicine
 		public DoseCell()
 		{
 
-			viaLabel = new Label() { }; 
-			pedDoseLabel= new Label() { };
+			viaLabel = new Label() { 
+				Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
+			}; 
+			pedDoseLabel= new Label() { 
+				Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
+			};
 
-			adultDoseLabel= new Label() { }; 
-			takesPerDayLabel = new Label() { }; 
-			maxDosePerDayLabel = new Label() { }; 
-			obsLabel= new Label() { };
+			adultDoseLabel= new Label() { 
+				Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
+			}; 
+			takesPerDayLabel = new Label() { 
+			Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
+			}; 
+			maxDosePerDayLabel = new Label() { 
+			Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
+			}; 
+			obsLabel= new Label() { 
+			Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
+			};
 
 			Grid grid = new Grid()
 			{
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.FillAndExpand,
+				Padding = new Thickness(5),
 			};
 
 			grid.ColumnDefinitions.Add(new ColumnDefinition()
 			{
-				Width = new GridLength(1, GridUnitType.Star)
+				Width = new GridLength(2, GridUnitType.Star)
 			});
 			grid.ColumnDefinitions.Add(new ColumnDefinition()
 			{
-				Width = new GridLength(3, GridUnitType.Star)
+				Width = new GridLength(5, GridUnitType.Star)
 			});
 
-			var descriptionRowDefinition = new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) };
+			var oneLineRowDefinition = new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) };
+			var descriptionRowDefinition = new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) };
 
+			grid.RowDefinitions.Add(oneLineRowDefinition);
+			grid.RowDefinitions.Add(oneLineRowDefinition);
+			grid.RowDefinitions.Add(oneLineRowDefinition);
+			grid.RowDefinitions.Add(oneLineRowDefinition);
+			grid.RowDefinitions.Add(oneLineRowDefinition);
+			grid.RowDefinitions.Add(oneLineRowDefinition);
 			grid.RowDefinitions.Add(descriptionRowDefinition);
-			grid.RowDefinitions.Add(descriptionRowDefinition);
 
 
-			grid.Children.Add(viaLabel, 0, 0);
+			var viaTitle = new Label()
+			{
+				Text = "Via",
+				Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincTitleStyle],
+			};
+			grid.Children.Add(viaTitle, 0, 0);
+			grid.Children.Add(viaLabel, 1, 0);
 
-			var pedDoseTitle = new Label() { Text = "Dose Pediátrica"};
+			var pedDoseTitle = new Label() { Text = "Dose Pediátrica",
+				Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincTitleStyle],
+			};
 			grid.Children.Add(pedDoseTitle, 0, 1);
 			grid.Children.Add(pedDoseLabel, 1, 1);
 
-			var adultDoseTitle = new Label() { Text = "Dose Adulto" };
+			var adultDoseTitle = new Label() { Text = "Dose Adulto",
+				Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincTitleStyle],
+			};
 			grid.Children.Add(adultDoseTitle, 0, 2);
 			grid.Children.Add(adultDoseLabel, 1, 2);
 
-			var takesTitle = new Label() { Text = "Tomas" };
+			var takesTitle = new Label() { Text = "Tomas",
+			Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincTitleStyle],
+			};
 			grid.Children.Add(takesTitle, 0, 3);
 			grid.Children.Add(takesPerDayLabel, 1, 3);
 
-			var maxDoseTitle = new Label() { Text = "Dose Máxima p/Dia" };
+			var maxDoseTitle = new Label() { Text = "Max Dose Diária",
+			Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincTitleStyle],
+			};
 			grid.Children.Add(maxDoseTitle, 0, 4);
 			grid.Children.Add(maxDosePerDayLabel, 1, 4);
 
-			var obsTitle = new Label() { Text = "Observações" };
+			var obsTitle = new Label() { Text = "Observações",
+			Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincTitleStyle],
+			};
 			grid.Children.Add(obsTitle, 0, 5);
-			grid.Children.Add(obsLabel, 1, 5);
+
+			grid.Children.Add(obsLabel, 0,6);
+			Grid.SetColumnSpan(obsLabel, 2);
 
 			View = grid;
 		}
