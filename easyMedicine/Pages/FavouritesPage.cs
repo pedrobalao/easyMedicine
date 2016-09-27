@@ -16,7 +16,7 @@ namespace easyMedicine.Pages
 		public FavouritesPage (FavouritesPageModel model) : base (model)
 		{
 			Title = "Favoritos";
-			Icon = "ic_favorite_36pt.png";
+			Icon = "ic_favorite_white_48px.png";
 
 			var cell = new DataTemplate(typeof(CustomCell));
 			cell.SetBinding(CustomCell.NameProperty, "Name");

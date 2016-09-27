@@ -119,15 +119,14 @@ namespace easyMedicine
 
 		public const string IsFavouritePropertyName = "IsFavourite";
 
-		private string _FavouriteIcon;
 
 		public string FavouriteIcon
 		{
 			get
 			{
 				if (IsFavourite)
-					return "ic_favorite_36pt.png";
-				return "ic_favorite_border_36pt.png"; 
+					return "tb_ic_favorite_white_48px.png";
+				return "tb_ic_favorite_border_white_48px.png"; 
 			}
 		}
 

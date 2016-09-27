@@ -15,7 +15,7 @@ namespace easyMedicine.Pages
 		public SearchPage (SearchPageModel model) : base (model)
 		{
 			Title = "Pesquisa";
-			Icon = "ic_search_36pt.png";
+			Icon = "ic_search_white_48px.png";
 			var layout = new StackLayout () {
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.FillAndExpand,

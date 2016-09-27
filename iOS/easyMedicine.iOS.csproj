@@ -26,7 +26,7 @@
     <MtouchFastDev>true</MtouchFastDev>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchProfiling>false</MtouchProfiling>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -39,7 +39,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchFloat32>true</MtouchFloat32>
     <MtouchUseSGen>true</MtouchUseSGen>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Distribution: Pedro Rocha (F39T9H2Q78)</CodesignKey>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -72,7 +72,7 @@
     <MtouchDebug>true</MtouchDebug>
     <MtouchUseSGen>true</MtouchUseSGen>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
-    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchProfiling>false</MtouchProfiling>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -112,12 +112,6 @@
     <Reference Include="SQLite.Net.Platform.XamarinIOS.Unified">
       <HintPath>..\packages\SQLite.Net-PCL.3.1.1\lib\Xamarin.iOS10\SQLite.Net.Platform.XamarinIOS.Unified.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Settings">
-      <HintPath>..\packages\Xam.Plugins.Settings.2.1.0\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Settings.Abstractions">
-      <HintPath>..\packages\Xam.Plugins.Settings.2.1.0\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="Stateless">
       <HintPath>..\packages\Stateless.2.5.84\lib\portable40-net40+sl5+win8+wp8\Stateless.dll</HintPath>
     </Reference>
@@ -139,6 +133,12 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.3.2.127\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.5.1.0\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.5.1.0\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\easyMedicine\easyMedicine.csproj">
@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -161,12 +162,12 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Data\IOSSQLite.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Renderers\CustomTabbedPageRenderer.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Renderers\CustomListViewRenderer.cs" />
     <Compile Include="Renderers\NavigationPageRenderer.cs" />
     <Compile Include="Renderers\SearchBarRenderer.cs" />
+    <Compile Include="Helpers\Settings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.12.3\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.12.3\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
@@ -175,24 +176,30 @@
     <Folder Include="Renderers\" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_search_36pt_2x.png" />
-    <BundleResource Include="Resources\ic_search_36pt_3x.png" />
-    <BundleResource Include="Resources\ic_search_36pt.png" />
-    <BundleResource Include="Resources\ic_favorite_border_36pt_2x.png" />
-    <BundleResource Include="Resources\ic_favorite_border_36pt_3x.png" />
-    <BundleResource Include="Resources\ic_favorite_border_36pt.png" />
-    <BundleResource Include="Resources\ic_favorite_36pt_2x.png" />
-    <BundleResource Include="Resources\ic_favorite_36pt_3x.png" />
-    <BundleResource Include="Resources\ic_favorite_36pt.png" />
-    <BundleResource Include="Resources\ic_explore_36pt_2x.png" />
-    <BundleResource Include="Resources\ic_explore_36pt_3x.png" />
-    <BundleResource Include="Resources\ic_explore_36pt.png" />
-    <BundleResource Include="Resources\ic_explore_48pt_2x.png" />
-    <BundleResource Include="Resources\ic_explore_48pt_3x.png" />
-    <BundleResource Include="Resources\ic_explore_48pt.png" />
+    <BundleResource Include="iTunesArtwork%401x.png" />
+    <BundleResource Include="iTunesArtwork%403x.png" />
+    <BundleResource Include="Default-568h%402x.png" />
+    <BundleResource Include="Default-667h%402x.png" />
+    <BundleResource Include="Default-736%402x.png" />
+    <BundleResource Include="Default.png" />
+    <BundleResource Include="Default%402x.png" />
+    <BundleResource Include="Resources\ic_search_white_48px%402x.png" />
+    <BundleResource Include="Resources\ic_search_white_48px%403x.png" />
+    <BundleResource Include="Resources\ic_explore_white_48px%402x.png" />
+    <BundleResource Include="Resources\ic_explore_white_48px%403x.png" />
+    <BundleResource Include="Resources\ic_favorite_white_48px%402x.png" />
+    <BundleResource Include="Resources\ic_favorite_white_48px%403x.png" />
+    <BundleResource Include="Resources\tb_ic_favorite_border_white_48px%402x.png" />
+    <BundleResource Include="Resources\tb_ic_favorite_border_white_48px%403x.png" />
+    <BundleResource Include="Resources\tb_ic_favorite_white_48px%402x.png" />
+    <BundleResource Include="Resources\tb_ic_favorite_white_48px%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\eMedicineDBV01.sqlite" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x.png" />
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
 </Project>

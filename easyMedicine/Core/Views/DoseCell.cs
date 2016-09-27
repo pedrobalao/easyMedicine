@@ -113,6 +113,8 @@ namespace easyMedicine
 				obsLabel.Text = Obs;
 			}
 		}
+
+
 		public DoseCell()
 		{
 
@@ -136,11 +138,16 @@ namespace easyMedicine
 			Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
 			};
 
+			var layout = new StackLayout() { 
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
+				Padding = new Thickness(5),
+			};
+
 			Grid grid = new Grid()
 			{
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.FillAndExpand,
-				Padding = new Thickness(5),
 			};
 
 			grid.ColumnDefinitions.Add(new ColumnDefinition()
@@ -160,8 +167,8 @@ namespace easyMedicine
 			grid.RowDefinitions.Add(oneLineRowDefinition);
 			grid.RowDefinitions.Add(oneLineRowDefinition);
 			grid.RowDefinitions.Add(oneLineRowDefinition);
-			grid.RowDefinitions.Add(oneLineRowDefinition);
-			grid.RowDefinitions.Add(descriptionRowDefinition);
+			//grid.RowDefinitions.Add(oneLineRowDefinition);
+			//grid.RowDefinitions.Add(descriptionRowDefinition);
 
 
 			var viaTitle = new Label()
@@ -199,12 +206,16 @@ namespace easyMedicine
 			var obsTitle = new Label() { Text = "Observações",
 			Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincTitleStyle],
 			};
-			grid.Children.Add(obsTitle, 0, 5);
+			//grid.Children.Add(obsTitle, 0, 5);
 
-			grid.Children.Add(obsLabel, 0,6);
-			Grid.SetColumnSpan(obsLabel, 2);
+			//grid.Children.Add(obsLabel, 0,6);
+			//Grid.SetColumnSpan(obsLabel, 2);
 
-			View = grid;
+			layout.Children.Add(grid);
+			layout.Children.Add(obsTitle);
+			layout.Children.Add(obsLabel);
+
+			View = layout;
 		}
 	}
 }

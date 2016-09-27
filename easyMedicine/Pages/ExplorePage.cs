@@ -16,7 +16,7 @@ namespace easyMedicine.Pages
 		public ExplorePage (ExplorePageModel model) : base (model)
 		{
 			Title = "Explorar";
-			Icon = "ic_explore_36pt.png";
+			Icon = "ic_explore_white_48px.png";
 			var layout = new StackLayout () {
 				
 			};
