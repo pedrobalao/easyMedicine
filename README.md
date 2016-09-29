@@ -8,7 +8,7 @@ easyMedicine is an opensource medical application for IOS and Android. The drugs
   - SQLite 
   - Autofac 
   - Xamarin.Forms plugins
-  - [Google Material Icons][https://design.google.com/icons/]
+  - *[Google Material Icons][https://design.google.com/icons/]*
 
 ###Current State
   - IOS - Testing
