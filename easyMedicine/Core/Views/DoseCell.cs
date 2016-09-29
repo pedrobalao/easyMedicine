@@ -152,7 +152,7 @@ namespace easyMedicine
 
 			grid.ColumnDefinitions.Add(new ColumnDefinition()
 			{
-				Width = new GridLength(2, GridUnitType.Star)
+				Width = new GridLength(3, GridUnitType.Star)
 			});
 			grid.ColumnDefinitions.Add(new ColumnDefinition()
 			{
@@ -160,7 +160,7 @@ namespace easyMedicine
 			});
 
 			var oneLineRowDefinition = new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) };
-			var descriptionRowDefinition = new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) };
+			//var descriptionRowDefinition = new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) };
 
 			grid.RowDefinitions.Add(oneLineRowDefinition);
 			grid.RowDefinitions.Add(oneLineRowDefinition);
