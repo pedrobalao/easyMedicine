@@ -1,0 +1,13 @@
+delete from Indication;
+delete from Dose;
+delete from DrugCategory;
+delete from SubCategory;
+delete from Unity;
+
+delete from Via;
+delete from Drug;
+delete from ClinicalCategory;
+
+
+
+
