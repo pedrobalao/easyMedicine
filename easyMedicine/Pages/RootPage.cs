@@ -12,8 +12,8 @@ namespace easyMedicine.Pages
             //this.ba = Color.Red;
             Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
            {
-               //UserDialogs.Instance.
-               this.CurrentPage.DisplayAlert("ATENÇÃO", "A informação presente no easyMedicine pode conter erros. Não nos responsabilizamos por qualquer consequência do uso da mesma. Toda a informação deve ser validada pelo médico.", "Li e Concordo");
+                //UserDialogs.Instance.
+                this.CurrentPage.DisplayAlert("ATENÇÃO", "A informação presente no easyMedicine pode conter erros. Não nos responsabilizamos por qualquer consequência do uso da mesma. Toda a informação deve ser validada pelo médico.", "Li e Concordo");
            });
 
         }

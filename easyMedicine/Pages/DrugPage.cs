@@ -51,8 +51,15 @@ namespace easyMedicine
             //layoutHeader.Children.Add(lbtbrand);
             var lbtConterIndications = new LabelValue("Contra-Indicações", "Drug.ConterIndications");
             layoutHeader.Children.Add(lbtConterIndications);
-            var lbtSecEffects = new LabelValue("Efeitos Secundários", "Drug.SecondaryEffects");
+            var lbtSecEffects = new LabelValue("Efeitos Secundários", "Drug.SecondaryEfects");
             layoutHeader.Children.Add(lbtSecEffects);
+            var lbtPresentation = new LabelValue("Apresentação", "Drug.Presentation");
+            layoutHeader.Children.Add(lbtPresentation);
+            var lbtCommercialBrands = new LabelValue("Marcas Comerciais", "Drug.ComercialBrands");
+            layoutHeader.Children.Add(lbtCommercialBrands);
+            var lbtObs = new LabelValue("Outros Dados", "Drug.Obs");
+            layoutHeader.Children.Add(lbtObs);
+
 
             layout.Children.Add(layoutHeader);
 

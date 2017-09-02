@@ -37,7 +37,7 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchFloat32>true</MtouchFloat32>
-    <CodesignKey>iPhone Distribution: Pedro Rocha (F39T9H2Q78)</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignProvision></CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -63,11 +63,12 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchFloat32>true</MtouchFloat32>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Pedro Rocha (793ADJP8KL)</CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchProfiling>false</MtouchProfiling>
     <CodesignProvision>easyMedicice.PP.Dev</CodesignProvision>
+    <MtouchFastDev>true</MtouchFastDev>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

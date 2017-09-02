@@ -5,41 +5,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using easyMedicine.Core.Models;
+using Xamarin.Forms;
 
 namespace easyMedicine.Core.Services
 {
-	public interface INavigatorService
-	{
+    public interface INavigatorService
+    {
 
-		Task<IPageModel> PopAsync ();
+        TabbedPage RootPage { get; }
 
-		Task<IPageModel> PopModalAsync ();
+        Task<IPageModel> PopAsync();
 
-		Task PopToRootAsync ();
+        Task<IPageModel> PopModalAsync();
 
-		Task<TViewModel> PushAsync<TViewModel> (string screen, Action<TViewModel> setStateAction = null)
+        Task PopToRootAsync();
+
+        Task<TViewModel> PushAsync<TViewModel>(string screen, Action<TViewModel> setStateAction = null)
             where TViewModel : class, IPageModel;
 
-		Task<TViewModel> PushAsync<TViewModel> (string screen, TViewModel viewModel)
+        Task<TViewModel> PushAsync<TViewModel>(string screen, TViewModel viewModel)
             where TViewModel : class, IPageModel;
 
-		Task<TViewModel> PushModalAsync<TViewModel> (string screen, Action<TViewModel> setStateAction = null)
+        Task<TViewModel> PushModalAsync<TViewModel>(string screen, Action<TViewModel> setStateAction = null)
             where TViewModel : class, IPageModel;
 
-		Task<TViewModel> PushModalAsync<TViewModel> (string screen, TViewModel viewModel)
+        Task<TViewModel> PushModalAsync<TViewModel>(string screen, TViewModel viewModel)
             where TViewModel : class, IPageModel;
 
 
-		TViewModel PushDetail<TViewModel> (string screen, Action<TViewModel> setStateAction = null)
+        TViewModel PushDetail<TViewModel>(string screen, Action<TViewModel> setStateAction = null)
             where TViewModel : class, IPageModel;
 
-		TViewModel PushDetail<TViewModel> (string screen, TViewModel viewModel)
+        TViewModel PushDetail<TViewModel>(string screen, TViewModel viewModel)
         where TViewModel : class, IPageModel;
 
-		void Start<TViewModel> (string screen, App app = null, Action<TViewModel> setStateAction = null)
+        void Start<TViewModel>(string screen, App app = null, Action<TViewModel> setStateAction = null)
              where TViewModel : class, IPageModel;
 
-		TPageModel PushTab<TPageModel> (string screen, Action<TPageModel> setStateAction = null)
-			where TPageModel : class, IPageModel;
-	}
+        TPageModel PushTab<TPageModel>(string screen, Action<TPageModel> setStateAction = null)
+            where TPageModel : class, IPageModel;
+    }
 }

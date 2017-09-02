@@ -1,59 +1,64 @@
 ﻿using System;
+using easyMedicine.Core.Converters;
 using Xamarin.Forms;
 
 namespace easyMedicine
 {
-	public class LabelValue : ContentView
-	{
+    public class LabelValue : ContentView
+    {
 
-		public Label Title
-		{
-			get;
-			set;
-		}
-		public Label Description
-		{
-			get;
-			set;
-		}
-		public LabelValue(string label, string valueBinding)
-		{
-			var grid = new Grid()
-			{
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				VerticalOptions = LayoutOptions.FillAndExpand,
-			};
+        public Label Title
+        {
+            get;
+            set;
+        }
+        public Label Description
+        {
+            get;
+            set;
+        }
+        public LabelValue(string label, string valueBinding)
+        {
+            var grid = new Grid()
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.FillAndExpand,
+            };
 
-			grid.ColumnDefinitions.Add(new ColumnDefinition()
-			{
-				Width = new GridLength(1, GridUnitType.Star)
-			});
+            grid.ColumnDefinitions.Add(new ColumnDefinition()
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            });
 
-			var titleRowDefinition = new RowDefinition() { Height = new GridLength(10, GridUnitType.Absolute) };
-			var descriptionRowDefinition = new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) };
+            var titleRowDefinition = new RowDefinition() { Height = new GridLength(10, GridUnitType.Absolute) };
+            var descriptionRowDefinition = new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) };
 
 
-			grid.RowDefinitions.Add(titleRowDefinition);
-			grid.RowDefinitions.Add(descriptionRowDefinition);
+            grid.RowDefinitions.Add(titleRowDefinition);
+            grid.RowDefinitions.Add(descriptionRowDefinition);
 
-			var lbtName = new Label()
-			{
-				Text = label,
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
-			};
+            var lbtName = new Label()
+            {
+                Text = label,
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
+            };
 
-			var lbdDrugName = new Label()
-			{
-				Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
-				LineBreakMode = LineBreakMode.WordWrap
-			};
-			lbdDrugName.SetBinding(Label.TextProperty, valueBinding);
+            var lbdDrugName = new Label()
+            {
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
+                LineBreakMode = LineBreakMode.WordWrap
+            };
+            lbdDrugName.SetBinding(Label.TextProperty, valueBinding);
 
-			grid.Children.Add(lbtName, 0, 0);
-			grid.Children.Add(lbdDrugName, 0, 1);
+            lbdDrugName.SetBinding(Label.IsVisibleProperty, valueBinding, BindingMode.OneWay, new StringToBoolConverter());
+            lbtName.SetBinding(Label.IsVisibleProperty, valueBinding, BindingMode.OneWay, new StringToBoolConverter());
 
-			Content = grid;
-		}
-	}
+
+            grid.Children.Add(lbtName, 0, 0);
+            grid.Children.Add(lbdDrugName, 0, 1);
+
+            Content = grid;
+        }
+    }
 }
 
