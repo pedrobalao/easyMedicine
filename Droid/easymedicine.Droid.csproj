@@ -96,12 +96,6 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.270\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Settings.Abstractions">
-      <HintPath>..\packages\Xam.Plugins.Settings.3.0.1\lib\MonoAndroid10\Plugin.Settings.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Settings">
-      <HintPath>..\packages\Xam.Plugins.Settings.3.0.1\lib\MonoAndroid10\Plugin.Settings.dll</HintPath>
-    </Reference>
     <Reference Include="Plugin.Connectivity.Abstractions">
       <HintPath>..\packages\Xam.Plugin.Connectivity.3.0.2\lib\MonoAndroid10\Plugin.Connectivity.Abstractions.dll</HintPath>
     </Reference>
@@ -110,6 +104,12 @@
     </Reference>
     <Reference Include="Plugin.CurrentActivity">
       <HintPath>..\packages\Plugin.CurrentActivity.1.0.1\lib\MonoAndroid10\Plugin.CurrentActivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Settings.3.0.1\lib\MonoAndroid10\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>..\packages\Xam.Plugins.Settings.3.0.1\lib\MonoAndroid10\Plugin.Settings.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -123,19 +123,40 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Data\AndroidSQLite.cs" />
     <Compile Include="Data\FileAccessHelper.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="MainApplication.cs" />
+    <Compile Include="Helpers\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\drawable\xamarin_logo.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
     <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\tb_ic_favorite_border_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_explore_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_info_outline_white_48pt.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_favorite_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tb_ic_favorite_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_favorite_border_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_search_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_explore_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_info_outline_white_48pt.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_favorite_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tb_ic_favorite_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_favorite_border_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tb_ic_favorite_border_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_search_white_48px.png" />
+    <AndroidResource Include="Resources\drawable\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_explore_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_info_outline_white_48pt.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_favorite_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tb_ic_favorite_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_favorite_border_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tb_ic_favorite_border_white_48px.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_search_white_48px.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\easyMedicine\easyMedicine.csproj">
@@ -150,6 +171,15 @@
     <AndroidAsset Include="..\iOS\Resources\eMedicineDBV01.sqlite">
       <Link>Assets\eMedicineDBV01.sqlite</Link>
     </AndroidAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\drawable\ic_explore_white_48px.png" />
+    <EmbeddedResource Include="Resources\drawable\ic_info_outline_white_48pt.png" />
+    <EmbeddedResource Include="Resources\drawable\ic_favorite_white_48px.png" />
+    <EmbeddedResource Include="Resources\drawable\ic_favorite_border_white_48px.png" />
+    <EmbeddedResource Include="Resources\drawable\ic_search_white_48px.png" />
+    <EmbeddedResource Include="Resources\drawable\tb_ic_favorite_white_48px.png" />
+    <EmbeddedResource Include="Resources\drawable\tb_ic_favorite_border_white_48px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

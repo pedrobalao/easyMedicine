@@ -134,8 +134,12 @@ namespace easyMedicine
 
             layout.Children.Add(lstView);
 
+            var scroll = new ScrollView()
+            {
+            };
+            scroll.Content = layout;
 
-            Content = layout;
+            Content = scroll;
 
         }
     }

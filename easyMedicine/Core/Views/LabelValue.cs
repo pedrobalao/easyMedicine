@@ -30,7 +30,19 @@ namespace easyMedicine
                 Width = new GridLength(1, GridUnitType.Star)
             });
 
-            var titleRowDefinition = new RowDefinition() { Height = new GridLength(10, GridUnitType.Absolute) };
+            var titleHeight = 10;
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    titleHeight = 10;
+                    break;
+                case Device.Android:
+                    titleHeight = 15;
+                    break;
+            }
+
+            var titleRowDefinition = new RowDefinition() { Height = new GridLength(titleHeight, GridUnitType.Absolute) };
             var descriptionRowDefinition = new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) };
 
 
