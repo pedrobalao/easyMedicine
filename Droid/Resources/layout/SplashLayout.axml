@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="bottom">
+    <LinearLayout
+        android:id="@+id/splashLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#FF0078D7">
+        <TextView
+            android:id="@+id/splashTitleText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            android:gravity="center_horizontal"
+            android:text="easyMedicine"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textIsSelectable="false"
+            android:textSize="40dp" />
+        <TextView
+            android:id="@+id/splashTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:gravity="bottom"
+            android:text="Ruben Rocha"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textColorHighlight="#000000"
+            android:textIsSelectable="false"
+            android:textSize="12dp" />
+        <TextView
+            android:id="@+id/splashTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:gravity="bottom"
+            android:text="Ana Reis Melo"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textColorHighlight="#000000"
+            android:textIsSelectable="false"
+            android:textSize="12dp" />
+        <TextView
+            android:id="@+id/splashTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:gravity="bottom"
+            android:text="Claudia Silva"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textColorHighlight="#000000"
+            android:textIsSelectable="false"
+            android:textSize="12dp" />
+        <TextView
+            android:id="@+id/splashTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:gravity="bottom"
+            android:text="João Sarmento"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textColorHighlight="#000000"
+            android:textIsSelectable="false"
+            android:textSize="12dp" />
+        <TextView
+            android:id="@+id/splashTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:gravity="bottom"
+            android:text="Mariana Adrião"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textColorHighlight="#000000"
+            android:textIsSelectable="false"
+            android:textSize="12dp" />
+        <TextView
+            android:id="@+id/splashTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:gravity="bottom"
+            android:text="Marta Rosário"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textColorHighlight="#000000"
+            android:textIsSelectable="false"
+            android:textSize="12dp" />
+        <TextView
+            android:id="@+id/splashTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:gravity="bottom"
+            android:text="Sofia Ferreira"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textColorHighlight="#000000"
+            android:textIsSelectable="false"
+            android:textSize="12dp" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/splashTitleText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="Made with ♥ in Porto"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="12dp"
+        android:textAlignment="center"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

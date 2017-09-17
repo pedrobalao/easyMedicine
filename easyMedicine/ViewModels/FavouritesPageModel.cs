@@ -14,8 +14,10 @@ namespace easyMedicine.ViewModels
 {
     public class FavouritesPageModel : PageModelBase
     {
+        bool _isFirstRun;
         public FavouritesPageModel(INavigatorService navigator, IDrugsDataService drugsDataServ)
         {
+            _isFirstRun = true;
             _drugsDataServ = drugsDataServ;
             _navigator = navigator;
 
@@ -24,8 +26,10 @@ namespace easyMedicine.ViewModels
             DrugSelectedCommand = new Command<Drug>(async (cat) => await DrugSelected(cat));
         }
 
+        bool _isLoadRunning;
         public async Task Load()
         {
+            _isLoadRunning = true;
             Drugs.Clear();
 
 
@@ -34,6 +38,20 @@ namespace easyMedicine.ViewModels
             {
                 Drugs.Add(clicat);
             }
+
+            if (_isFirstRun)
+            {
+                if (Drugs.Count() == 0)
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        _navigator.RootPage.CurrentPage = _navigator.RootPage.Children[2];
+                    });
+                }
+            }
+
+            _isFirstRun = false;
+            _isLoadRunning = false;
         }
 
         public async Task<bool> HasFavourites()
@@ -48,23 +66,17 @@ namespace easyMedicine.ViewModels
         {
             await base.Started();
 
+
+#if __IOS__
             await Load();
-
-            if (Drugs.Count() == 0)
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    _navigator.RootPage.CurrentPage = _navigator.RootPage.Children[2];
-                });
-            }
-
+#endif
         }
 
         protected override async Task Activated()
         {
             await base.Activated();
-
-            await Load();
+            if (!_isLoadRunning)
+                await Load();
         }
 
 

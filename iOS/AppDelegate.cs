@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
