@@ -138,7 +138,7 @@ namespace easyMedicine.Services
 
 
             var res = await database.QueryAsync<Drug>("select a.* from Drug a inner join DrugCategory b on a.Id = b.DrugId " +
-                                      "\twhere b.SubCategoryId = ?", subCategoryId);
+                                      "\twhere b.SubCategoryId = ? order by Name", subCategoryId);
 
             return await CompleteDrugsInfo(res);
         }
@@ -229,7 +229,7 @@ namespace easyMedicine.Services
             );
 
             ret.SubCategories = await database.QueryAsync<SubCategory>("select a.* from SubCategory a inner join DrugCategory b on a.Id = b.SubCategoryId " +
-                                                                "\twhere b.DrugId = ?", drugId);
+                                                                "\twhere b.DrugId = ? order by Description", drugId);
 
             return ret;
         }

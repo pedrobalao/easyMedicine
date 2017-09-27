@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "450764852779",
+    "firebase_url": "https://easymedicine-e3328.firebaseio.com",
+    "project_id": "easymedicine-e3328",
+    "storage_bucket": "easymedicine-e3328.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450764852779:android:6b614ec41991a336",
+        "android_client_info": {
+          "package_name": "com.easymedicine.easymedicine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450764852779-v1ddmt7rg2cg12p4au02c8vpmlvn6lsg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.easymedicine.easymedicine",
+            "certificate_hash": "a64dfb7901e6b9dece9a24e56c1646f18767364f"
+          }
+        },
+        {
+          "client_id": "450764852779-eo4eb60fafvkalfaoq3fbaubnj74dlj9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtOvM3C3XfQ4hmZ0hK82pgJ6C0Lpj6_N0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450764852779-eo4eb60fafvkalfaoq3fbaubnj74dlj9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
