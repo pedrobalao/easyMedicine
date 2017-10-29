@@ -18,46 +18,47 @@ using easyMedicine.ViewModels;
 
 namespace easyMedicine
 {
-	public class Bootstrapper : AutofacBootstrapper
-	{
-		private readonly App _application;
-		public static Bootstrapper Instance;
+    public class Bootstrapper : AutofacBootstrapper
+    {
+        private readonly App _application;
+        public static Bootstrapper Instance;
 
-		public Bootstrapper (App application)
-		{
+        public Bootstrapper(App application)
+        {
 
-			_application = application;
-			Setup ();
-
-
-			Instance = this;
-
-		}
-
-		protected override void ConfigureContainer (ContainerBuilder builder)
-		{
-			base.ConfigureContainer (builder);
-			builder.RegisterModule<AppModule> ();
-
-		}
-		//@ADD VIEW
-		protected override void RegisterViews (IViewFactory viewFactory)
-		{
-			viewFactory.Register<SearchPageModel, SearchPage> ();
-			viewFactory.Register<ExplorePageModel, ExplorePage> ();
-			viewFactory.Register<SubCategoryExplorePageModel, SubCategoryExplorePage>();
-			viewFactory.Register<DrugExplorePageModel, DrugExplorePage>();
-			viewFactory.Register<DrugPageModel, DrugPage>();
-			viewFactory.Register<FavouritesPageModel, FavouritesPage> ();
-			viewFactory.Register<RootPageModel, RootPage> ();
+            _application = application;
+            Setup();
 
 
-		}
+            Instance = this;
+
+        }
+
+        protected override void ConfigureContainer(ContainerBuilder builder)
+        {
+            base.ConfigureContainer(builder);
+            builder.RegisterModule<AppModule>();
+
+        }
+        //@ADD VIEW
+        protected override void RegisterViews(IViewFactory viewFactory)
+        {
+            viewFactory.Register<SearchPageModel, SearchPage>();
+            viewFactory.Register<ExplorePageModel, ExplorePage>();
+            viewFactory.Register<SubCategoryExplorePageModel, SubCategoryExplorePage>();
+            viewFactory.Register<DrugExplorePageModel, DrugExplorePage>();
+            viewFactory.Register<DrugPageModel, DrugPage>();
+            viewFactory.Register<FavouritesPageModel, FavouritesPage>();
+            viewFactory.Register<RootPageModel, RootPage>();
+            viewFactory.Register<AboutPageModel, AboutPage>();
+            viewFactory.Register<ReportErrorPageModel, ReportErrorPage>();
+
+        }
 
 
-		public void Start ()
-		{
-			/*/CrossConnectivity.Current.ConnectivityChanged += (sender, args) => {
+        public void Start()
+        {
+            /*/CrossConnectivity.Current.ConnectivityChanged += (sender, args) => {
 				CheckConnectivity ();
 
 			};
@@ -65,7 +66,7 @@ namespace easyMedicine
 			if (!CheckConnectivity ())
 				return;*/
 
-			/*
+            /*
 			if (Device.OS != TargetPlatform.WinPhone) {
 				try {
 					AppResources.Culture = new CultureInfo (_container.Resolve<ILocalizeService> ().GetCurrentCultureInfo ());
@@ -75,12 +76,12 @@ namespace easyMedicine
 			}
 			*/
 
-			//bool authenticated = _container.Resolve<IAuthenticationService> ().IsAuthenticated ();
+            //bool authenticated = _container.Resolve<IAuthenticationService> ().IsAuthenticated ();
 
-			_container.Resolve<INavigatorService> ().Start<RootPageModel> ("Root", _application);
+            _container.Resolve<INavigatorService>().Start<RootPageModel>("Root", _application);
 
-		}
+        }
 
 
-	}
+    }
 }

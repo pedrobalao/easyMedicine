@@ -8,6 +8,7 @@ using easyMedicine.Core.Services;
 using easyMedicine.Helpers;
 using easyMedicine.Models;
 using easyMedicine.Services;
+using easyMedicine.ViewModels;
 using Xamarin.Forms;
 
 namespace easyMedicine
@@ -34,6 +35,22 @@ namespace easyMedicine
         public const string ChangeFavouriteStatusPropertyName = "ChangeFavouriteStatus";
 
 
+        private ICommand _ReportErrorCommand;
+
+        public ICommand ReportErrorCommand
+        {
+            get
+            {
+                return _ReportErrorCommand;
+            }
+            set
+            {
+                _ReportErrorCommand = value;
+                OnPropertyChanged(ReportErrorCommandPropertyName);
+            }
+        }
+
+        public const string ReportErrorCommandPropertyName = "ReportErrorCommand";
 
         public DrugPageModel(INavigatorService navigator, IDrugsDataService drugServ)
         {
@@ -42,8 +59,19 @@ namespace easyMedicine
             Indications = new ObservableCollection<IndicationViewModel>();
 
             ChangeFavouriteStatus = new Command(FavouriteStatusChange);
+
+            ReportErrorCommand = new Command(async () => await ReportErrorTapped());
         }
 
+
+        async Task ReportErrorTapped()
+        {
+
+            await _navigator.PushAsync<ReportErrorPageModel>("ReportError", (model) =>
+            {
+                model.Drug = this.Drug;
+            });
+        }
 
         private int _DrugId;
 

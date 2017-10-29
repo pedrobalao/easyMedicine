@@ -17,16 +17,25 @@ namespace easyMedicine
         public static string Style_LabelMediumStyle = "LabelMediumStyle";
 
         //Preto esbatido
-        public static Color BASE_COLOR = Color.FromHex("252628");
+        public static string BASE_COLOR_HEX = "252628";
+        public static Color BASE_COLOR = Color.FromHex(BASE_COLOR_HEX);
         //Cinzento
         public static Color LETTER_COLOR = Color.FromHex("666666");
         //Verde
         public static Color CONTRAST_LETTER_COLOR = Color.FromHex("698335");
 
+        //Cinzento
+        public static string PLACEHOLDER_COLOR_HEX = "CAC6BE";
+        public static Color PLACEHOLDER_COLOR = Color.FromHex(PLACEHOLDER_COLOR_HEX);
+
+
+
         public static Color BLUE_COLOR = Color.FromHex("0078D7");
         public static Color LIGHT_BLUE_COLOR = Color.FromHex("3393DE");
         public static Color WHITE_COLOR = Color.White;
         public static Color GRAY_COLOR = Color.FromHex("666666");
+
+        public static Color NEGATIVE_COLOR = Color.FromHex("651F06");
 
 
 
@@ -38,6 +47,8 @@ namespace easyMedicine
 
         public static string Style_LabelIndincTitleStyle = "LabelIndincTitleStyle";
         public static string Style_LabelIndincValueStyle = "LabelIndincValueStyle";
+
+        public static string Style_ButtonMediumNegStyle = "ButtonMediumNegStyle";
 
 
 
@@ -260,6 +271,48 @@ namespace easyMedicine
                 }
             };
 
+            var buttonMediumLargeStyle = new Style(typeof(Button))
+            {
+                BasedOn = baseStyle,
+                Setters = {
+                    new Setter {
+                        Property = Button.TextColorProperty, Value =Color.White
+                    },
+
+                    new Setter {
+                        Property = Button.FontSizeProperty, Value = MediumFontSize
+                    },
+                    new Setter {
+                        Property = Button.BackgroundColorProperty, Value =  CONTRAST_LETTER_COLOR//Color.White
+                    },
+                    //new Setter {
+                    //    Property = Button.FontFamilyProperty, Value = "Bebas Neue"
+                    //},
+                    new Setter {
+                        Property = Button.BorderWidthProperty, Value = 1
+                    },
+                    new Setter {
+                        Property = Button.BorderColorProperty, Value = CONTRAST_LETTER_COLOR
+                    },
+                    new Setter {
+                        Property = Button.BorderRadiusProperty, Value = /*(Device.OS == TargetPlatform.iOS) ?*/ 0// : 45
+                    },
+
+                }
+            };
+
+            var buttonMediumLargeNegStyle = new Style(typeof(Button))
+            {
+                BasedOn = buttonMediumLargeStyle,
+                Setters = {
+                    new Setter {
+                        Property = Button.BackgroundColorProperty, Value =  NEGATIVE_COLOR//Color.White
+                    },
+                    new Setter {
+                        Property = Button.BorderColorProperty, Value = NEGATIVE_COLOR
+                    },
+                }
+            };
 
 
             /*
@@ -284,6 +337,17 @@ namespace easyMedicine
             };
 
 
+            var entryStyle = new Style(typeof(Entry))
+            {
+                Setters = {
+                    new Setter {
+                        Property = Entry.FontFamilyProperty, Value = "Avenir-Book"
+                    },
+                    new Setter {
+                        Property = Entry.PlaceholderColorProperty, Value = PLACEHOLDER_COLOR
+                    },
+                }
+            };
 
 
             /*Application.Current.Resources.Add (stackLayoutStyle);
@@ -309,6 +373,8 @@ namespace easyMedicine
             Application.Current.Resources.Add(Style_LabelMediumBackgroundStyle, labelMediumBackgroundStyle);
             Application.Current.Resources.Add(Style_LabelIndincTitleStyle, labelIndincTitleStyle);
             Application.Current.Resources.Add(Style_LabelIndincValueStyle, labelIndincValueStyle);
+            Application.Current.Resources.Add(Style_ButtonMediumNegStyle, buttonMediumLargeNegStyle);
+
 
 
 
