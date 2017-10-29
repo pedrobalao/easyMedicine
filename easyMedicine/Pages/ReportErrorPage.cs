@@ -72,7 +72,7 @@ namespace easyMedicine.Pages
 
             var lbtError = new Label()
             {
-                Text = "Erro",
+                Text = "Descrição",
                 Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
             };
 
@@ -81,7 +81,7 @@ namespace easyMedicine.Pages
             {
                 BackgroundColor = Color.Transparent,
                 HeightRequest = 50,
-                Placeholder = "Descreva o erro",
+                Placeholder = "Descreva o erro/sugestão",
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand,
             };
