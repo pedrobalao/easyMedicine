@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>easyMedicine</string>
+	<string>easyPed</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.easymedicine</string>
 	<key>CFBundleShortVersionString</key>
@@ -34,13 +34,13 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CFBundleName</key>
-	<string>easyMedicine</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcon-1.appiconset</string>
 	<key>CFBundleVersion</key>
 	<string>8</string>
+	<key>CFBundleName</key>
+	<string>easyPed</string>
 </dict>
 </plist>

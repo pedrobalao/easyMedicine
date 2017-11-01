@@ -11,7 +11,7 @@ using System.IO;
 using UserNotifications;
 using Firebase.CloudMessaging;
 using System;
-using Acr.UserDialogs;
+//using Acr.UserDialogs;
 
 namespace easyMedicine.iOS
 {

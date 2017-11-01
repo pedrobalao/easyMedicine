@@ -21,10 +21,10 @@ namespace easymedicine.Droid.Renderers
             {
                 var element = e.NewElement as CustomEditor;
                 this.Control.Hint = element.Placeholder;
-                this.Control.SetHintTextColor(ag.Color.ParseColor("#e6e6e6"));
+                this.Control.SetHintTextColor(Android.Graphics.Color.ParseColor("#e6e6e6"));
                 this.Control.SetBackgroundColor(Android.Graphics.Color.Transparent);
                 this.Control.SetCursorVisible(true);
-                this.Control.SetTextColor(Color.("#505050"));
+                this.Control.SetTextColor(Android.Graphics.Color.ParseColor("#505050"));
                 this.Control.Background = this.Resources.GetDrawable(Resource.Drawable.withBorderEditor);
             }
             Control.FocusChange += Control_FocusChange;
@@ -62,8 +62,8 @@ namespace easymedicine.Droid.Renderers
             {
                 var element = this.Element as CustomEditor;
                 this.Control.Hint = element.Placeholder;
-                this.Control.SetHintTextColor(ag.Color.ParseColor("#e5e5e5"));
-                this.Control.SetTextColor(ag.Color.ParseColor("#505050"));
+                this.Control.SetHintTextColor(Android.Graphics.Color.ParseColor("#e5e5e5"));
+                this.Control.SetTextColor(Android.Graphics.Color.ParseColor("#505050"));
             }
         }
     }

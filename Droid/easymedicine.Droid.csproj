@@ -204,6 +204,15 @@
 		<Reference Include="Microsoft.Azure.Mobile.Client">
 		  <HintPath>..\packages\Microsoft.Azure.Mobile.Client.4.0.2\lib\monoandroid70\Microsoft.Azure.Mobile.Client.dll</HintPath>
 		</Reference>
+		<Reference Include="AndHUD">
+		  <HintPath>..\packages\AndHUD.1.2.0\lib\MonoAndroid\AndHUD.dll</HintPath>
+		</Reference>
+		<Reference Include="Plugin.Hud.Abstractions">
+		  <HintPath>..\packages\Xam.Plugin.Hud.1.0.5\lib\MonoAndroid10\Plugin.Hud.Abstractions.dll</HintPath>
+		</Reference>
+		<Reference Include="Plugin.Hud">
+		  <HintPath>..\packages\Xam.Plugin.Hud.1.0.5\lib\MonoAndroid10\Plugin.Hud.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="Assets\AboutAssets.txt" />
@@ -269,6 +278,13 @@
 		<AndroidResource Include="Resources\drawable-xhdpi\ic_face_white_48pt.png" />
 		<AndroidResource Include="Resources\drawable-xxhdpi\ic_face_white_48pt.png" />
 		<AndroidResource Include="Resources\drawable\withBorderEditor.xml" />
+		<AndroidResource Include="Resources\drawable\ic_error_black_48px.png" />
+		<AndroidResource Include="Resources\drawable-hdpi\ic_error_black_48px.png" />
+		<AndroidResource Include="Resources\drawable-xhdpi\ic_error_black_48px.png" />
+		<AndroidResource Include="Resources\drawable\ic_error_white_48px.png" />
+		<AndroidResource Include="Resources\drawable-hdpi\ic_error_white_48px.png" />
+		<AndroidResource Include="Resources\drawable-xhdpi\ic_error_white_48px.png" />
+		<AndroidResource Include="Resources\drawable-xxhdpi\ic_error_white_48px.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\easyMedicine\easyMedicine.csproj">
@@ -281,11 +297,6 @@
 		<Folder Include="Renderers\" />
 	</ItemGroup>
 	<ItemGroup>
-		<AndroidAsset Include="..\iOS\Resources\eMedicineDBV01.sqlite">
-			<Link>Assets\eMedicineDBV01.sqlite</Link>
-		</AndroidAsset>
-	</ItemGroup>
-	<ItemGroup>
 		<EmbeddedResource Include="Resources\drawable\ic_explore_white_48px.png" />
 		<EmbeddedResource Include="Resources\drawable\ic_info_outline_white_48pt.png" />
 		<EmbeddedResource Include="Resources\drawable\ic_favorite_white_48px.png" />
@@ -293,6 +304,14 @@
 		<EmbeddedResource Include="Resources\drawable\ic_search_white_48px.png" />
 		<EmbeddedResource Include="Resources\drawable\tb_ic_favorite_white_48px.png" />
 		<EmbeddedResource Include="Resources\drawable\tb_ic_favorite_border_white_48px.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <AndroidAsset Remove="..\iOS\Resources\eMedicineDBV01.sqlite" />
+	</ItemGroup>
+	<ItemGroup>
+	  <AndroidAsset Include="..\iOS\Resources\eMedicineDBV01.sqlite">
+	    <Link>Assets\eMedicineDBV01.sqlite</Link>
+	  </AndroidAsset>
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 	<Import Project="..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

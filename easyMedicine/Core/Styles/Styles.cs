@@ -15,6 +15,7 @@ namespace easyMedicine
 
         public static string Style_LabelSmallStyle = "LabelSmallStyle";
         public static string Style_LabelMediumStyle = "LabelMediumStyle";
+        public static string Style_LabelSmallStyleNormal = "LabelSmallStyleNormal";
 
         //Preto esbatido
         public static string BASE_COLOR_HEX = "252628";
@@ -109,6 +110,25 @@ namespace easyMedicine
                 Setters = {
                     new Setter {
                         Property = Label.TextColorProperty, Value = LIGHT_BLUE_COLOR,
+                    },
+                    new Setter {
+                        Property = Label.HorizontalTextAlignmentProperty, Value = TextAlignment.Start
+                    },
+                    new Setter {
+                        Property = Label.VerticalTextAlignmentProperty, Value = TextAlignment.End
+                    },
+                    new Setter {
+                        Property = Label.FontSizeProperty, Value = SmallFontSize
+                    },
+                }
+            };
+
+            var labelSmallStyleNormal = new Style(typeof(Label))
+            {
+                BasedOn = labelContrastBaseStyle,
+                Setters = {
+                    new Setter {
+                        Property = Label.TextColorProperty, Value = LETTER_COLOR,
                     },
                     new Setter {
                         Property = Label.HorizontalTextAlignmentProperty, Value = TextAlignment.Start
@@ -369,6 +389,7 @@ namespace easyMedicine
             //Specific Styles
 
             Application.Current.Resources.Add(Style_LabelSmallStyle, labelSmallStyle);
+            Application.Current.Resources.Add(Style_LabelSmallStyleNormal, labelSmallStyleNormal);
             Application.Current.Resources.Add(Style_LabelMediumStyle, labelMediumStyle);
             Application.Current.Resources.Add(Style_LabelMediumBackgroundStyle, labelMediumBackgroundStyle);
             Application.Current.Resources.Add(Style_LabelIndincTitleStyle, labelIndincTitleStyle);

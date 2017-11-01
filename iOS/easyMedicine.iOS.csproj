@@ -97,9 +97,6 @@
     <Reference Include="Xamarin.Forms.CarouselView">
       <HintPath>..\packages\Xamarin.Forms.CarouselView.2.3.0-pre2\lib\Xamarin.iOS10\Xamarin.Forms.CarouselView.dll</HintPath>
     </Reference>
-    <Reference Include="Acr.Support.iOS">
-      <HintPath>..\packages\Acr.Support.2.1.0\lib\Xamarin.iOS10\Acr.Support.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
@@ -185,11 +182,14 @@
       <HintPath>..\packages\Splat.1.6.2\lib\Xamarin.iOS10\Splat.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Acr.UserDialogs">
-      <HintPath>..\packages\Acr.UserDialogs.5.3.0\lib\Xamarin.iOS10\Acr.UserDialogs.dll</HintPath>
+    <Reference Include="Plugin.Hud.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Hud.1.0.5\lib\Xamarin.iOS10\Plugin.Hud.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Acr.UserDialogs.Interface">
-      <HintPath>..\packages\Acr.UserDialogs.5.3.0\lib\Xamarin.iOS10\Acr.UserDialogs.Interface.dll</HintPath>
+    <Reference Include="Plugin.Hud">
+      <HintPath>..\packages\Xam.Plugin.Hud.1.0.5\lib\Xamarin.iOS10\Plugin.Hud.dll</HintPath>
+    </Reference>
+    <Reference Include="BTProgressHUD">
+      <HintPath>..\packages\BTProgressHUD.1.2.0.6\lib\Xamarin.iOS10\BTProgressHUD.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +247,15 @@
     <Folder Include="Renderers\" />
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Remove="Resources\ic_report_problem_white_48pt.png" />
+    <BundleResource Remove="Resources\ic_report_problem_white_48pt%402x.png" />
+    <BundleResource Remove="Resources\ic_report_problem_white_48pt%403x.png" />
+    <BundleResource Remove="Resources\ic_face_white_48pt.png" />
+    <BundleResource Remove="Resources\ic_face_white_48pt%402x.png" />
+    <BundleResource Remove="Resources\ic_face_white_48pt%403x.png" />
+    <BundleResource Remove="Resources\ic_error_white_36pt.png" />
+  </ItemGroup>
+  <ItemGroup>
     <BundleResource Include="iTunesArtwork%401x.png" />
     <BundleResource Include="iTunesArtwork%403x.png" />
     <BundleResource Include="Default-667h%402x.png" />
@@ -265,12 +274,15 @@
     <BundleResource Include="Resources\ic_info_outline_white_48pt%402x.png" />
     <BundleResource Include="Resources\ic_info_outline_white_48pt%403x.png" />
     <BundleResource Include="GoogleService-Info.plist" />
-    <BundleResource Include="Resources\ic_report_problem_white_48pt.png" />
-    <BundleResource Include="Resources\ic_report_problem_white_48pt%402x.png" />
-    <BundleResource Include="Resources\ic_face_white_48pt.png" />
-    <BundleResource Include="Resources\ic_face_white_48pt%402x.png" />
-    <BundleResource Include="Resources\ic_face_white_48pt%403x.png" />
-    <BundleResource Include="Resources\ic_report_problem_white_48pt%403x.png" />
+    <BundleResource Include="Resources\ic_error_white_18pt%402x.png" />
+    <BundleResource Include="Resources\ic_error_white_18pt%403x.png" />
+    <BundleResource Include="Resources\ic_error_white_18pt.png" />
+    <BundleResource Include="Resources\ic_error_black_48px%403x.png" />
+    <BundleResource Include="Resources\ic_error_black_48px%402x.png" />
+    <BundleResource Include="Resources\ic_error_black_48px.png" />
+    <BundleResource Include="Resources\ic_error_white_48px%403x.png" />
+    <BundleResource Include="Resources\ic_error_white_48px%402x.png" />
+    <BundleResource Include="Resources\ic_error_white_48px.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\eMedicineDBV01.sqlite" />

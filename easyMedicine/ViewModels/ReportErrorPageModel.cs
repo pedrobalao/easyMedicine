@@ -6,6 +6,7 @@ using easyMedicine.Core.Models;
 using easyMedicine.Core.Services;
 using easyMedicine.Models;
 using easyMedicine.Services;
+using Plugin.Hud;
 using Xamarin.Forms;
 
 namespace easyMedicine.ViewModels
@@ -25,6 +26,7 @@ namespace easyMedicine.ViewModels
 
         public async Task ReportErrorPressed()
         {
+
             if (String.IsNullOrWhiteSpace(this.Email) || String.IsNullOrWhiteSpace(this.Name) || String.IsNullOrWhiteSpace(this.Text))
             {
                 await Page.DisplayAlert("Reporte de erro", "Por favor preencha todos os campos.", "OK");
@@ -37,9 +39,34 @@ namespace easyMedicine.ViewModels
                 return;
             }
 
-            //insert
-            await Page.DisplayAlert("Reporte de erro", "Obrigado pela contribuição.", "Fechar");
-            await _navigator.PopAsync();
+            CrossHud.Current.Show("A submeter");
+
+            try
+            {
+                await ErrorService.InsertError(new ErrorItem()
+                {
+                    Date = DateTime.UtcNow,
+                    DrugId = Drug.Id.ToString(),
+                    DrugName = Drug.Name,
+                    Id = Guid.NewGuid().ToString(),
+                    Sender = this.Name + "#" + this.Email,
+                    Text = this.Text
+                });
+
+                CrossHud.Current.ShowSuccess("Submetido com sucesso! Obrigado.");
+                //insert
+                //await Page.DisplayAlert("Reporte de erro", "Obrigado pela contribuição.", "Fechar");
+                await _navigator.PopAsync();
+            }
+            catch
+            {
+                CrossHud.Current.Dismiss();
+                await Page.DisplayAlert("Reporte de erro", "Erro ao submeter, por favor tente mais tarde.Obrigado.", "OK");
+
+            }
+
+
+
         }
 
         public Page Page
