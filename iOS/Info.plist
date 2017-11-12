@@ -36,11 +36,11 @@
 	</array>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
-	<key>XSAppIconAssets</key>
-	<string>Resources/Images.xcassets/AppIcon-1.appiconset</string>
-	<key>CFBundleVersion</key>
-	<string>8</string>
 	<key>CFBundleName</key>
 	<string>easyPed</string>
+	<key>CFBundleVersion</key>
+	<string>10</string>
+	<key>XSAppIconAssets</key>
+	<string>Resources/Images.xcassets/AppIcon-1.appiconset</string>
 </dict>
 </plist>

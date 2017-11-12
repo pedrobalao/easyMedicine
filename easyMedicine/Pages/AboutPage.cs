@@ -18,7 +18,11 @@ namespace easyMedicine.Pages
         public AboutPage(AboutPageModel model) : base(model)
         {
             Title = "Sobre";
+#if __IOS__
+            Icon = "ic_error_white_18pt.png";
+#else
             Icon = "ic_error_white_48px.png";
+#endif
 
             var scroll = new ScrollView()
             { };

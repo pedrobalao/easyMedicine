@@ -39,7 +39,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignKey>iPhone Distribution</CodesignKey>
-    <CodesignProvision>easyMedicine.PP.Prod</CodesignProvision>
+    <CodesignProvision></CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -64,11 +64,11 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchFloat32>true</MtouchFloat32>
-    <CodesignKey>iPhone Developer: Pedro Rocha (793ADJP8KL)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchProfiling>false</MtouchProfiling>
-    <CodesignProvision>easyMedicice.PP.Dev</CodesignProvision>
+    <CodesignProvision></CodesignProvision>
     <MtouchFastDev>true</MtouchFastDev>
   </PropertyGroup>
   <ItemGroup>
@@ -191,6 +191,12 @@
     <Reference Include="BTProgressHUD">
       <HintPath>..\packages\BTProgressHUD.1.2.0.6\lib\Xamarin.iOS10\BTProgressHUD.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Connectivity.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Connectivity.3.0.3\lib\Xamarin.iOS10\Plugin.Connectivity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Connectivity">
+      <HintPath>..\packages\Xam.Plugin.Connectivity.3.0.3\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\easyMedicine\easyMedicine.csproj">
@@ -199,7 +205,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Remove="Resources\Images.xcassets\AppIcon.appiconset\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcon-1.appiconset\Contents.json" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcon-1.appiconset\Icon-App-40x40%402x.png" />
@@ -218,6 +226,7 @@
     <ImageAsset Include="Resources\Images.xcassets\AppIcon-1.appiconset\Icon-App-83.5x83.5%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcon-1.appiconset\Icon-App-72x72%401x.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcon-1.appiconset\Icon-App-72x72%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon-1.appiconset\iTunesArtwork%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -286,6 +295,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\eMedicineDBV01.sqlite" />
+    <Content Include="Resources\eMedicineDBV02.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

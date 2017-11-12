@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using SQLite.Net;
 using SQLite.Net.Async;
 using SQLite.Net.Platform.XamarinAndroid;
+using easyMedicine.Models;
 
 namespace easyMedicine.Droid.Data
 {
@@ -20,7 +21,7 @@ namespace easyMedicine.Droid.Data
 
         public SQLiteAsyncConnection GetConnection()
         {
-            var sqliteFilename = "eMedicineDBV01.sqlite";
+            var sqliteFilename = Configurations.DBFILE_NAME;
             string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal); // Documents folder
 
             var path = FileAccessHelper.GetLocalFilePath(sqliteFilename);

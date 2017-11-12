@@ -64,7 +64,8 @@ namespace easyMedicine.Pages
             var entEmail = new Entry()
             {
                 //Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
-                Placeholder = "exemplo@email.com"
+                Placeholder = "exemplo@email.com",
+                Keyboard = Keyboard.Email
             };
             entEmail.SetBinding(Entry.TextProperty, ReportErrorPageModel.EmailPropertyName, BindingMode.TwoWay);
             layoutHeader.Children.Add(lbtEmail);

@@ -6,6 +6,7 @@ using easyMedicine.Core.Models;
 using easyMedicine.Core.Services;
 using easyMedicine.Models;
 using easyMedicine.Services;
+using Plugin.Connectivity;
 using Plugin.Hud;
 using Xamarin.Forms;
 
@@ -39,10 +40,17 @@ namespace easyMedicine.ViewModels
                 return;
             }
 
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                await Page.DisplayAlert("Reporte de erro", "Esta funcionalidade exige acesso à internet. Por favor valide que tem conectividade e tente novamente. Obrigado.", "OK");
+                return;
+            }
+
             CrossHud.Current.Show("A submeter");
 
             try
             {
+
                 await ErrorService.InsertError(new ErrorItem()
                 {
                     Date = DateTime.UtcNow,
@@ -53,7 +61,8 @@ namespace easyMedicine.ViewModels
                     Text = this.Text
                 });
 
-                CrossHud.Current.ShowSuccess("Submetido com sucesso! Obrigado.");
+                CrossHud.Current.Dismiss();
+                await Page.DisplayAlert("Reporte de erro", "Submetido com sucesso! Obrigado.", "OK");
                 //insert
                 //await Page.DisplayAlert("Reporte de erro", "Obrigado pela contribuição.", "Fechar");
                 await _navigator.PopAsync();
@@ -61,7 +70,7 @@ namespace easyMedicine.ViewModels
             catch
             {
                 CrossHud.Current.Dismiss();
-                await Page.DisplayAlert("Reporte de erro", "Erro ao submeter, por favor tente mais tarde.Obrigado.", "OK");
+                await Page.DisplayAlert("Reporte de erro", "Erro ao submeter, por favor tente mais tarde. Obrigado.", "OK");
 
             }
 
