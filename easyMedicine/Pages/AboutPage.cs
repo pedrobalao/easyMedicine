@@ -18,11 +18,11 @@ namespace easyMedicine.Pages
         public AboutPage(AboutPageModel model) : base(model)
         {
             Title = "Sobre";
-#if __IOS__
-            Icon = "ic_error_white_18pt.png";
-#else
-            Icon = "ic_error_white_48px.png";
-#endif
+
+            if (Device.RuntimePlatform == Device.iOS)
+                Icon = "ic_error_white_18pt.png";
+            else
+                Icon = "ic_error_white_48px.png";
 
             var scroll = new ScrollView()
             { };
@@ -67,7 +67,7 @@ namespace easyMedicine.Pages
 
             var fbLink = new Label()
             {
-                Text = "fb.me/easyped",
+                Text = "facebook.com/easyped",
                 HorizontalTextAlignment = TextAlignment.Center,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Style = (Style)Application.Current.Resources[Styles.Style_LabelMediumStyle],
@@ -104,7 +104,7 @@ namespace easyMedicine.Pages
 
             var labelBiblioLb = new Label()
             {
-                Text = "Bibliografia",
+                Text = "Bibliografia essencial consultada",
                 HorizontalTextAlignment = TextAlignment.Start,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],

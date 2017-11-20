@@ -38,8 +38,8 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchFloat32>true</MtouchFloat32>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-    <CodesignProvision></CodesignProvision>
+    <CodesignKey>iPhone Distribution: Pedro Rocha (F39T9H2Q78)</CodesignKey>
+    <CodesignProvision>easyMedicine.PP.Prod</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -121,30 +121,6 @@
     <Reference Include="Plugin.Settings">
       <HintPath>..\packages\Xam.Plugins.Settings.3.0.1\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Azure.Mobile">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.0.15.0\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.iOS.Bindings">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.0.15.0\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.iOS.Bindings.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Crashes">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Crashes.0.15.0\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Crashes.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Crashes.iOS.Bindings">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Crashes.0.15.0\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Crashes.iOS.Bindings.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Analytics">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Analytics.0.15.0\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Analytics.iOS.Bindings">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Analytics.0.15.0\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Analytics.iOS.Bindings.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Push">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Push.0.15.0\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Push.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Push.iOS.Bindings">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Push.0.15.0\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Push.iOS.Bindings.dll</HintPath>
-    </Reference>
     <Reference Include="Firebase.Core">
       <HintPath>..\packages\Xamarin.Firebase.iOS.Core.4.0.3\lib\Xamarin.iOS10\Firebase.Core.dll</HintPath>
     </Reference>
@@ -196,6 +172,30 @@
     </Reference>
     <Reference Include="Plugin.Connectivity">
       <HintPath>..\packages\Xam.Plugin.Connectivity.3.0.3\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Mobile">
+      <HintPath>..\packages\Microsoft.Azure.Mobile.0.17.1\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Mobile.iOS.Bindings">
+      <HintPath>..\packages\Microsoft.Azure.Mobile.0.17.1\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.iOS.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Mobile.Analytics">
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Analytics.0.17.1\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Mobile.Analytics.iOS.Bindings">
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Analytics.0.17.1\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Analytics.iOS.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Mobile.Crashes">
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Crashes.0.17.1\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Crashes.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Mobile.Crashes.iOS.Bindings">
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Crashes.0.17.1\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Crashes.iOS.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Mobile.Push">
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Push.0.17.1\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Push.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Mobile.Push.iOS.Bindings">
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Push.0.17.1\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Push.iOS.Bindings.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -292,10 +292,12 @@
     <BundleResource Include="Resources\ic_error_white_48px%403x.png" />
     <BundleResource Include="Resources\ic_error_white_48px%402x.png" />
     <BundleResource Include="Resources\ic_error_white_48px.png" />
+    <BundleResource Include="Resources\ic_local_hospital_white_18pt.png" />
+    <BundleResource Include="Resources\ic_local_hospital_white_18pt%402x.png" />
+    <BundleResource Include="Resources\ic_local_hospital_white_18pt%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\eMedicineDBV01.sqlite" />
-    <Content Include="Resources\eMedicineDBV02.sqlite" />
+    <Content Include="Resources\eMedicineDBV03.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
