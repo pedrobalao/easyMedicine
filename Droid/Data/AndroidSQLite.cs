@@ -6,12 +6,15 @@ using SQLite.Net;
 using SQLite.Net.Async;
 using SQLite.Net.Platform.XamarinAndroid;
 using easyMedicine.Models;
+using Android.App;
 
 namespace easyMedicine.Droid.Data
 {
     public class AndroidSQLite : ISQLite
     {
+
         #region ISQLite implementation
+
 
 
 

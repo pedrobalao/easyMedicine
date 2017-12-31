@@ -56,7 +56,8 @@ namespace easyMedicine.iOS.Renderers
                 Control.SpellCheckingType = UITextSpellCheckingType.No;             // No Spellchecking
                 Control.AutocorrectionType = UITextAutocorrectionType.No;           // No Autocorrection
                 Control.AutocapitalizationType = UITextAutocapitalizationType.None; // No Autocapitalization
-                Control.InputAccessoryView.Hidden = true;//For Removing Done button from editor keyboard.
+                if (Control.InputAccessoryView != null)
+                    Control.InputAccessoryView.Hidden = true;//For Removing Done button from editor keyboard.
                 Control.KeyboardType = UIKeyboardType.ASCIICapable;//For Removing Emoticons from keyboard.
             }
         }

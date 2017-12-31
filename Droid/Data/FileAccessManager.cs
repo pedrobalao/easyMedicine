@@ -6,21 +6,22 @@ namespace easyMedicine.Droid.Data
 {
     public class FileAccessHelper
     {
+
         public static string GetLocalFilePath(string filename)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string dbPath = Path.Combine(path, filename);
 
-            CopyDatabaseIfNotExists(dbPath);
+            CopyDatabaseIfNotExists(dbPath, filename);
 
             return dbPath;
         }
 
-        private static void CopyDatabaseIfNotExists(string dbPath)
+        private static void CopyDatabaseIfNotExists(string dbPath, string filename)
         {
             if (!File.Exists(dbPath))
             {
-                using (var br = new BinaryReader(Application.Context.Assets.Open("eMedicineDBV01.sqlite")))
+                using (var br = new BinaryReader(Application.Context.Assets.Open(filename)))
                 {
                     using (var bw = new BinaryWriter(new FileStream(dbPath, FileMode.Create)))
                     {
@@ -34,5 +35,6 @@ namespace easyMedicine.Droid.Data
                 }
             }
         }
+
     }
 }

@@ -32,6 +32,12 @@ namespace easyMedicine.Pages
             };
             sbar.SetBinding(SearchBar.TextProperty, SearchPageModel.SearchStringPropertyName, BindingMode.TwoWay);
 
+
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                //Fixes an android bug where the search bar would be hidden
+                sbar.HeightRequest = 40.0;
+            }
             //sbar.SetBinding(SearchBar.SearchCommandProperty, SearchPageModel.SearchStringPropertyName, BindingMode.TwoWay);
 
             sbar.TextChanged += async (sender, e) => await Model.FilterDrugs();
