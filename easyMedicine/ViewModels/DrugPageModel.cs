@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using easyMedicine.Helpers;
 using easyMedicine.Models;
 using easyMedicine.Services;
 using easyMedicine.ViewModels;
+using Jint;
 using Xamarin.Forms;
 
 namespace easyMedicine
@@ -17,6 +19,46 @@ namespace easyMedicine
     public class IndicationViewModel : ObservableCollection<Dose>
     {
         public string Description
+        {
+            get;
+            set;
+        }
+
+    }
+
+    public class VariableViewModel : Variable
+    {
+        public VariableViewModel() { }
+        public VariableViewModel(Variable vari)
+        {
+            this.Description = vari.Description;
+            this.Id = vari.Id;
+            this.IdUnit = vari.IdUnit;
+        }
+        public decimal Value
+        {
+            get;
+            set;
+        }
+
+    }
+
+    public class CalculationViewModel : Calculation
+    {
+        public CalculationViewModel() { }
+
+        public CalculationViewModel(Calculation cal)
+        {
+            this.DrugId = cal.DrugId;
+            this.Function = cal.Function;
+            this.Id = cal.Id;
+            this.ResultIdUnit = cal.ResultIdUnit;
+            this.ResultDescription = cal.ResultDescription;
+            this.Type = cal.Type;
+            this.Description = cal.Description;
+        }
+
+        public decimal Result
         {
             get;
             set;
@@ -34,6 +76,23 @@ namespace easyMedicine
 
         public const string ChangeFavouriteStatusPropertyName = "ChangeFavouriteStatus";
 
+
+        private ICommand _CalculateDoseCommand;
+
+        public ICommand CalculateDoseCommand
+        {
+            get
+            {
+                return _CalculateDoseCommand;
+            }
+            set
+            {
+                _CalculateDoseCommand = value;
+                OnPropertyChanged(CalculateDoseCommandPropertyName);
+            }
+        }
+
+        public const string CalculateDoseCommandPropertyName = "CalculateDoseCommand";
 
         private ICommand _ReportErrorCommand;
 
@@ -57,8 +116,12 @@ namespace easyMedicine
             _drugsDataServ = drugServ;
             _navigator = navigator;
             Indications = new ObservableCollection<IndicationViewModel>();
+            Variables = new ObservableCollection<VariableViewModel>();
+            Calculations = new ObservableCollection<CalculationViewModel>();
 
             ChangeFavouriteStatus = new Command(FavouriteStatusChange);
+
+            CalculateDoseCommand = new Command(CalculateDoses);
 
             ReportErrorCommand = new Command(async () => await ReportErrorTapped());
         }
@@ -124,6 +187,7 @@ namespace easyMedicine
             {
                 _Drug = value;
                 OnPropertyChanged(DrugPropertyName);
+                OnPropertyChanged(CanCalculateDosePropertyName);
             }
         }
 
@@ -161,6 +225,54 @@ namespace easyMedicine
 
         public const string FavouriteIconPropertyName = "FavouriteIcon";
 
+        private ObservableCollection<VariableViewModel> _Variables;
+
+        public ObservableCollection<VariableViewModel> Variables
+        {
+            get
+            {
+                return _Variables;
+            }
+            set
+            {
+                _Variables = value;
+                OnPropertyChanged(VariablesPropertyName);
+            }
+        }
+
+        public const string VariablesPropertyName = "Variables";
+
+        public bool CanCalculateDose
+        {
+            get
+            {
+                if (Drug == null || Drug.Variables == null || Drug.Variables.Count == 0 || Drug.Calculations == null || Drug.Calculations.Count == 0)
+                    return false;
+
+                return true;
+            }
+
+        }
+
+        public const string CanCalculateDosePropertyName = "CanCalculateDose";
+
+        private ObservableCollection<CalculationViewModel> _Calculations;
+
+        public ObservableCollection<CalculationViewModel> Calculations
+        {
+            get
+            {
+                return _Calculations;
+            }
+            set
+            {
+                _Calculations = value;
+                OnPropertyChanged(CalculationsPropertyName);
+            }
+        }
+
+        public const string CalculationsPropertyName = "Calculations";
+
 
         void FavouriteStatusChange()
         {
@@ -174,6 +286,42 @@ namespace easyMedicine
             }
             IsFavourite = Settings.IsFavourite(Drug.Id.ToString());
 
+        }
+
+        private decimal CalculateDose(CalculationViewModel cal)
+        {
+            var eng = new Engine();
+
+            foreach (var varis in Variables)
+            {
+                eng.SetValue(varis.Id, varis.Value);
+            }
+
+            var res = eng.Execute(cal.Function).GetCompletionValue().AsNumber();
+
+            return (decimal)res;
+
+        }
+
+        void CalculateDoses()
+        {
+            var calcstemp = new List<CalculationViewModel>();
+
+            for (int i = 0; i < Calculations.Count; i++)
+            {
+                var caltmp = Calculations[i];
+
+                caltmp.Result = CalculateDose(caltmp);
+
+                calcstemp.Add(caltmp);
+
+            }
+            Calculations.Clear();
+
+            foreach (var cal in calcstemp)
+            {
+                Calculations.Add(cal);
+            }
         }
 
 
@@ -198,7 +346,22 @@ namespace easyMedicine
                 Indications.Add(idvm);
             }
 
+            Variables.Clear();
+
+            foreach (var varia in Drug.Variables)
+            {
+                Variables.Add(new VariableViewModel(varia));
+            }
+
+            Calculations.Clear();
+
+            foreach (var cal in Drug.Calculations)
+            {
+                Calculations.Add(new CalculationViewModel(cal));
+            }
         }
+
+
 
 
     }

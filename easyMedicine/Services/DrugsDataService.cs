@@ -231,6 +231,16 @@ namespace easyMedicine.Services
             ret.SubCategories = await database.QueryAsync<SubCategory>("select a.* from SubCategory a inner join DrugCategory b on a.Id = b.SubCategoryId " +
                                                                 "\twhere b.DrugId = ? order by Description", drugId);
 
+
+
+            ret.Variables = await database.QueryAsync<Variable>("select a.* from Variable a inner join VariableDrug b on a.Id = b.VariableId" +
+                                                                "\twhere b.DrugId = ? order by a.Description", drugId);
+
+
+            ret.Calculations = (await database.QueryAsync<Calculation>("select a.* from Calculation a " +
+                                                                      "\twhere a.DrugId = ? order by ResultDescription", drugId));
+
+
             return ret;
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using easyMedicine.Core.Views;
 using easyMedicine.Pages;
 using Xamarin.Forms;
 
@@ -129,6 +130,18 @@ namespace easyMedicine
             lstView.Header = layoutHeader;
 
 
+
+            var footerLayout = new StackLayout
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.Start,
+            };
+
+            var calculationView = GetCalculationView();
+
+            footerLayout.Children.Add(calculationView);
+
+
             var btnReportProblem = new Button()
             {
                 BindingContext = Model,
@@ -140,13 +153,77 @@ namespace easyMedicine
 
             btnReportProblem.SetBinding(Button.CommandProperty, DrugPageModel.ReportErrorCommandPropertyName);
 
+            footerLayout.Children.Add(btnReportProblem);
 
-            lstView.Footer = btnReportProblem;
-
-            //layout.Children.Add(lstView);
+            lstView.Footer = footerLayout;
 
             Content = lstView;
 
+        }
+
+
+        private View GetCalculationView()
+        {
+            //var stackCalculation = new StackLayout()
+            //{
+            //    BindingContext = Model,
+            //    BackgroundColor = Color.Yellow
+            //};
+            //stackCalculation.SetBinding(StackLayout.IsVisibleProperty, DrugPageModel.CanCalculateDosePropertyName);
+
+            var lstView = new ListView()
+            {
+            };
+            lstView.SetBinding(ListView.ItemsSourceProperty, DrugPageModel.VariablesPropertyName);
+            lstView.SeparatorVisibility = SeparatorVisibility.None;
+            lstView.ItemTemplate = new DataTemplate(typeof(VariableCell));
+            lstView.ItemTemplate.SetBinding(VariableCell.DescriptionProperty, "Description");
+            lstView.ItemTemplate.SetBinding(VariableCell.UnitProperty, "IdUnit");
+            lstView.ItemTemplate.SetBinding(VariableCell.ValueProperty, "Value");
+            lstView.SetBinding(ListView.IsVisibleProperty, DrugPageModel.CanCalculateDosePropertyName);
+
+            //stackCalculation.Children.Add(lstView);
+
+            var resultStack = new StackLayout
+            {
+                Orientation = StackOrientation.Horizontal,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                VerticalOptions = LayoutOptions.Start,
+            };
+
+
+            var lstResults = new ListView()
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.FillAndExpand,
+            };
+            lstResults.SetBinding(ListView.ItemsSourceProperty, DrugPageModel.CalculationsPropertyName);
+            lstView.SeparatorVisibility = SeparatorVisibility.None;
+            lstResults.ItemTemplate = new DataTemplate(typeof(DoseResultCell));
+            lstResults.ItemTemplate.SetBinding(DoseResultCell.DescriptionProperty, "Description");
+            lstResults.ItemTemplate.SetBinding(DoseResultCell.UnitProperty, "ResultIdUnit");
+            lstResults.ItemTemplate.SetBinding(DoseResultCell.ValueProperty, "Result");
+
+            resultStack.Children.Add(lstResults);
+
+
+            //stackCalculation.Children.Add(resultStack);
+
+            var btnCalculate = new Button()
+            {
+                BindingContext = Model,
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Text = "Calcular Dose",
+                Style = (Style)Application.Current.Resources[Styles.Style_ButtonMediumNegStyle],
+            };
+            btnCalculate.SetBinding(Button.CommandProperty, DrugPageModel.CalculateDoseCommandPropertyName);
+
+            lstResults.Footer = btnCalculate;
+
+            lstView.Footer = resultStack;
+
+            return lstView;
         }
     }
 }

@@ -4,39 +4,41 @@ using SQLite.Net.Attributes;
 
 namespace easyMedicine.Models
 {
-	public class Category
-	{
-		[PrimaryKey]
-		public int Id {
-			get;
-			set;
-		}
-
-		public string Description{ get; set; }
-	}
-
-	[Table ("ClinicalCategory")]
-	public class ClinicalCategory : Category
-	{
-		
-	}
-
-	[Table ("SubCategory")]
-	public class SubCategory : Category
-	{
-		[Indexed]
-		public int CategoryId {
-			get;
-			set;
-		}
-	}
-
-	[Table ("Drug")]
-	public class Drug
+    public class Category
     {
-		
+        [PrimaryKey]
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		[PrimaryKey]
+        public string Description { get; set; }
+    }
+
+    [Table("ClinicalCategory")]
+    public class ClinicalCategory : Category
+    {
+
+    }
+
+    [Table("SubCategory")]
+    public class SubCategory : Category
+    {
+        [Indexed]
+        public int CategoryId
+        {
+            get;
+            set;
+        }
+    }
+
+    [Table("Drug")]
+    public class Drug
+    {
+
+
+        [PrimaryKey]
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -51,14 +53,14 @@ namespace easyMedicine.Models
 
         public string Presentation { get; set; }
 
-		[Ignore]
-		public string Detail { get; set; }
+        [Ignore]
+        public string Detail { get; set; }
 
     }
-    [Table ("Dose")]
+    [Table("Dose")]
     public class Dose
     {
-		[PrimaryKey]
+        [PrimaryKey]
         public int Id { get; set; }
 
         public int IndicationId { get; set; }
@@ -83,69 +85,129 @@ namespace easyMedicine.Models
 
 
     }
-	[Table ("DrugCategory")]
+    [Table("DrugCategory")]
     public class DrugCategory
     {
-		[PrimaryKey]
+        [PrimaryKey]
         public int DrugId { get; set; }
-		[PrimaryKey]
+        [PrimaryKey]
         public int SubCategoryId { get; set; }
 
     }
-	[Table ("Indication")]
+    [Table("Indication")]
     public class Indication
     {
-		[PrimaryKey]
+        [PrimaryKey]
         public int Id { get; set; }
 
         public int DrugId { get; set; }
-		public string IndicationText { get; set; }
+        public string IndicationText { get; set; }
 
     }
 
-    
-[Table ("Unity")]
+
+    [Table("Unity")]
     public class Unity
     {
-		[PrimaryKey]
+        [PrimaryKey]
         public string Id { get; set; }
     }
-[Table ("Via")]
+    [Table("Via")]
     public class Via
     {
-		[PrimaryKey]
+        [PrimaryKey]
         public string Id { get; set; }
     }
 
+    [Table("Variable")]
+    public class Variable
+    {
+        [PrimaryKey]
+        public string Id { get; set; }
 
-	public class IndicationFull 
-	{
-		public Indication Indication
-		{
-			get;
-			set;
-		}
-		public List<Dose> Doses
-		{
-			get;
-			set;
-		}
-	}
+        public string Description { get; set; }
 
-	public class DrugFull :Drug
-	{
-		
-		public List<SubCategory> SubCategories
-		{
-			get;
-			set;
-		}
+        public string IdUnit { get; set; }
 
-		public List<IndicationFull> Indications
-		{
-			get;set;
-		}
+    }
 
-	}
+    [Table("VariableDrug")]
+    public class VariableDrug
+    {
+        [PrimaryKey]
+        public string Id { get; set; }
+
+        public int DrugId { get; set; }
+
+        public string VariableId { get; set; }
+
+        public string Type { get; set; }
+
+    }
+
+    [Table("Calculation")]
+    public class Calculation
+    {
+        [PrimaryKey]
+        public string Id { get; set; }
+
+        public int DrugId { get; set; }
+
+        public string Type { get; set; }
+
+        public string Function { get; set; }
+
+        public string ResultDescription { get; set; }
+
+        public string ResultIdUnit { get; set; }
+
+        public string Description { get; set; }
+
+    }
+
+    public class IndicationFull
+    {
+        public Indication Indication
+        {
+            get;
+            set;
+        }
+        public List<Dose> Doses
+        {
+            get;
+            set;
+        }
+    }
+
+    public class DrugFull : Drug
+    {
+
+        public List<SubCategory> SubCategories
+        {
+            get;
+            set;
+        }
+
+        public List<IndicationFull> Indications
+        {
+            get; set;
+        }
+
+        public List<Variable> Variables
+        {
+            get;
+            set;
+        }
+
+        public List<Calculation> Calculations
+        {
+            get;
+            set;
+        }
+    }
+
+
+
+
 }
 
