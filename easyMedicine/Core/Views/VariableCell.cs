@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace easyMedicine.Core.Views
@@ -17,6 +18,10 @@ namespace easyMedicine.Core.Views
 
         public static readonly BindableProperty ValueProperty =
             BindableProperty.Create("Value", typeof(decimal), typeof(VariableCell), default(decimal), BindingMode.TwoWay);
+
+        public static readonly BindableProperty InputChangedCommandProperty =
+            BindableProperty.Create("InputChangedCommand", typeof(ICommand), typeof(VariableCell), default(ICommand), BindingMode.TwoWay);
+
 
 
         public string Description
@@ -37,6 +42,20 @@ namespace easyMedicine.Core.Views
             set { SetValue(ValueProperty, value); }
         }
 
+        public ICommand InputChangedCommand
+        {
+            get
+            {
+                return (ICommand)GetValue(InputChangedCommandProperty);
+            }
+            set
+            {
+                SetValue(InputChangedCommandProperty, value);
+            }
+        }
+
+
+
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
@@ -52,35 +71,54 @@ namespace easyMedicine.Core.Views
 
         public VariableCell()
         {
+
+            Grid grid = new Grid
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Padding = new Thickness(5),
+                RowDefinitions =
+                {
+                    new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+                },
+                ColumnDefinitions =
+                {
+                    new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) },
+                }
+            };
             DescriptionLabel = new Label()
             {
                 Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
+                HorizontalTextAlignment = TextAlignment.Start,
+                VerticalTextAlignment = TextAlignment.Center
             };
+
+            grid.Children.Add(DescriptionLabel, 0, 0);
+
+            ValueInput = new Entry()
+            {
+                Keyboard = Keyboard.Numeric,
+                HorizontalTextAlignment = TextAlignment.End,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                BackgroundColor = Color.WhiteSmoke
+
+            };
+            ValueInput.PropertyChanged += EntryPropertyChanged;
+
+            grid.Children.Add(ValueInput, 1, 0);
 
             UnitLabel = new Label()
             {
                 Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
+                HorizontalTextAlignment = TextAlignment.Start,
+                VerticalTextAlignment = TextAlignment.Center,
+
             };
 
-            ValueInput = new Entry()
-            {
-                Keyboard = Keyboard.Numeric
-            };
-            ValueInput.PropertyChanged += EntryPropertyChanged;
+            grid.Children.Add(UnitLabel, 2, 0);
 
-            var layout = new StackLayout()
-            {
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                VerticalOptions = LayoutOptions.FillAndExpand,
-                Orientation = StackOrientation.Horizontal,
-                Padding = new Thickness(5),
-            };
-
-            layout.Children.Add(DescriptionLabel);
-            layout.Children.Add(ValueInput);
-            layout.Children.Add(UnitLabel);
-
-            View = layout;
+            View = grid;
         }
 
         private void EntryPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -95,7 +133,18 @@ namespace easyMedicine.Core.Views
                 decimal val = 0;
                 decimal.TryParse(entry.Text, out val);
                 Value = val;
+
+                if (InputChangedCommand == null)
+                {
+                    return;
+                }
+                if (InputChangedCommand.CanExecute(this))
+                {
+                    InputChangedCommand.Execute(this);
+                }
             }
         }
+
+
     }
 }

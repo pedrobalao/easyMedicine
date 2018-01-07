@@ -29,17 +29,20 @@ namespace easyMedicine
     public class VariableViewModel : Variable
     {
         public VariableViewModel() { }
-        public VariableViewModel(Variable vari)
+        public VariableViewModel(Variable vari, ICommand command)
         {
             this.Description = vari.Description;
             this.Id = vari.Id;
             this.IdUnit = vari.IdUnit;
+            this.ValueChangedCommand = command;
         }
         public decimal Value
         {
             get;
             set;
         }
+
+        public ICommand ValueChangedCommand { get; set; }
 
     }
 
@@ -350,7 +353,7 @@ namespace easyMedicine
 
             foreach (var varia in Drug.Variables)
             {
-                Variables.Add(new VariableViewModel(varia));
+                Variables.Add(new VariableViewModel(varia, CalculateDoseCommand));
             }
 
             Calculations.Clear();

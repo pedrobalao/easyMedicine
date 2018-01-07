@@ -57,27 +57,38 @@ namespace easyMedicine.Core.Views
 
             ValueLabel = new Label()
             {
-                Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincTitleStyle],
+                HorizontalTextAlignment = TextAlignment.End,
             };
 
             UnitLabel = new Label()
             {
                 Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
+                HorizontalTextAlignment = TextAlignment.Start
             };
 
-            var layout = new StackLayout()
+            Grid grid = new Grid
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                VerticalOptions = LayoutOptions.FillAndExpand,
-                Orientation = StackOrientation.Horizontal,
                 Padding = new Thickness(5),
+                RowDefinitions =
+                {
+                    new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+                },
+                ColumnDefinitions =
+                {
+                    new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) },
+                }
             };
 
-            layout.Children.Add(DescriptionLabel);
-            layout.Children.Add(ValueLabel);
-            layout.Children.Add(UnitLabel);
 
-            View = layout;
+            grid.Children.Add(DescriptionLabel, 0, 0);
+            grid.Children.Add(ValueLabel, 1, 0);
+            grid.Children.Add(UnitLabel, 2, 0);
+
+            View = grid;
         }
     }
 }

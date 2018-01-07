@@ -33,6 +33,9 @@ namespace easyMedicine
             this.ToolbarItems.Add(favButton);
 
 
+
+
+
             var layoutHeader = new StackLayout()
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -42,6 +45,20 @@ namespace easyMedicine
 
             var lbtname = new LabelValue("Nome", "Drug.Name");
             layoutHeader.Children.Add(lbtname);
+
+
+            var labelDoseCalc = new Label()
+            {
+                Text = "Cálculo de Doses",
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
+            };
+            layoutHeader.Children.Add(labelDoseCalc);
+
+
+            var calculationView = GetCalculationView();
+            layoutHeader.Children.Add(calculationView);
+
+
             //var lbtbrand = new LabelValue("Marca Comercial", "Drug.CommercialBrand");
             //layoutHeader.Children.Add(lbtbrand);
             var lbtConterIndications = new LabelValue("Contra-Indicações", "Drug.ConterIndications");
@@ -58,7 +75,7 @@ namespace easyMedicine
 
             //layout.Children.Add(layoutHeader);
 
-            var lstView = new ListView()
+            var lstView = new UnselectListView()
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand,
@@ -127,19 +144,22 @@ namespace easyMedicine
                 return new ViewCell() { View = ghlayout, };
             });
 
+
+
             lstView.Header = layoutHeader;
 
 
 
-            var footerLayout = new StackLayout
-            {
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                VerticalOptions = LayoutOptions.Start,
-            };
 
-            var calculationView = GetCalculationView();
+            //var calculationView = GetCalculationView();
 
-            footerLayout.Children.Add(calculationView);
+            //var footerLayout = new StackLayout
+            //{
+            //    HorizontalOptions = LayoutOptions.FillAndExpand,
+            //    VerticalOptions = LayoutOptions.Start,
+            //};
+
+            //footerLayout.Children.Add(calculationView);
 
 
             var btnReportProblem = new Button()
@@ -153,9 +173,9 @@ namespace easyMedicine
 
             btnReportProblem.SetBinding(Button.CommandProperty, DrugPageModel.ReportErrorCommandPropertyName);
 
-            footerLayout.Children.Add(btnReportProblem);
+            //footerLayout.Children.Add(btnReportProblem);
 
-            lstView.Footer = footerLayout;
+            lstView.Footer = btnReportProblem; //footerLayout;
 
             Content = lstView;
 
@@ -164,66 +184,52 @@ namespace easyMedicine
 
         private View GetCalculationView()
         {
-            //var stackCalculation = new StackLayout()
-            //{
-            //    BindingContext = Model,
-            //    BackgroundColor = Color.Yellow
-            //};
-            //stackCalculation.SetBinding(StackLayout.IsVisibleProperty, DrugPageModel.CanCalculateDosePropertyName);
+            var stackCalculation = new StackLayout()
+            {
+                BindingContext = Model,
+                BackgroundColor = Styles.BLUE_COLOR
+            };
+            stackCalculation.SetBinding(StackLayout.IsVisibleProperty, DrugPageModel.CanCalculateDosePropertyName);
 
-            var lstView = new ListView()
+            var lstView = new Repeater()
             {
             };
-            lstView.SetBinding(ListView.ItemsSourceProperty, DrugPageModel.VariablesPropertyName);
-            lstView.SeparatorVisibility = SeparatorVisibility.None;
+            lstView.SetBinding(Repeater.ItemsSourceProperty, DrugPageModel.VariablesPropertyName);
+            //lstView.SeparatorVisibility = SeparatorVisibility.None;
             lstView.ItemTemplate = new DataTemplate(typeof(VariableCell));
             lstView.ItemTemplate.SetBinding(VariableCell.DescriptionProperty, "Description");
             lstView.ItemTemplate.SetBinding(VariableCell.UnitProperty, "IdUnit");
             lstView.ItemTemplate.SetBinding(VariableCell.ValueProperty, "Value");
-            lstView.SetBinding(ListView.IsVisibleProperty, DrugPageModel.CanCalculateDosePropertyName);
+            lstView.ItemTemplate.SetBinding(VariableCell.InputChangedCommandProperty, "ValueChangedCommand");
+            //lstView.SetBinding(ListView.IsVisibleProperty, DrugPageModel.CanCalculateDosePropertyName);
 
-            //stackCalculation.Children.Add(lstView);
+            //var resultStack = new StackLayout
+            //{
+            //    Orientation = StackOrientation.Horizontal,
+            //    HorizontalOptions = LayoutOptions.CenterAndExpand,
+            //    VerticalOptions = LayoutOptions.Start,
+            //};
+            stackCalculation.Children.Add(lstView);
 
-            var resultStack = new StackLayout
-            {
-                Orientation = StackOrientation.Horizontal,
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
-                VerticalOptions = LayoutOptions.Start,
-            };
-
-
-            var lstResults = new ListView()
+            var lstResults = new Repeater()
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand,
             };
-            lstResults.SetBinding(ListView.ItemsSourceProperty, DrugPageModel.CalculationsPropertyName);
-            lstView.SeparatorVisibility = SeparatorVisibility.None;
+            lstResults.SetBinding(Repeater.ItemsSourceProperty, DrugPageModel.CalculationsPropertyName);
+
             lstResults.ItemTemplate = new DataTemplate(typeof(DoseResultCell));
             lstResults.ItemTemplate.SetBinding(DoseResultCell.DescriptionProperty, "Description");
             lstResults.ItemTemplate.SetBinding(DoseResultCell.UnitProperty, "ResultIdUnit");
             lstResults.ItemTemplate.SetBinding(DoseResultCell.ValueProperty, "Result");
 
-            resultStack.Children.Add(lstResults);
+
+            stackCalculation.Children.Add(lstResults);
 
 
-            //stackCalculation.Children.Add(resultStack);
+            //lstView.Footer = lstResults;
 
-            var btnCalculate = new Button()
-            {
-                BindingContext = Model,
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                Text = "Calcular Dose",
-                Style = (Style)Application.Current.Resources[Styles.Style_ButtonMediumNegStyle],
-            };
-            btnCalculate.SetBinding(Button.CommandProperty, DrugPageModel.CalculateDoseCommandPropertyName);
-
-            lstResults.Footer = btnCalculate;
-
-            lstView.Footer = resultStack;
-
-            return lstView;
+            return stackCalculation;
         }
     }
 }
