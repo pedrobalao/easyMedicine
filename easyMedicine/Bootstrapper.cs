@@ -52,7 +52,7 @@ namespace easyMedicine
             viewFactory.Register<RootPageModel, RootPage>();
             viewFactory.Register<AboutPageModel, AboutPage>();
             viewFactory.Register<ReportErrorPageModel, ReportErrorPage>();
-
+            viewFactory.Register<CalculatorListPageModel, CalculatorListPage>();
         }
 
 

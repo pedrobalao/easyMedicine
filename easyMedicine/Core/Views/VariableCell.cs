@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -101,7 +102,7 @@ namespace easyMedicine.Core.Views
                 Keyboard = Keyboard.Numeric,
                 HorizontalTextAlignment = TextAlignment.End,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                BackgroundColor = Color.WhiteSmoke
+                Style = (Style)Application.Current.Resources[Styles.Style_VariablesEntryStyle],
 
             };
             ValueInput.PropertyChanged += EntryPropertyChanged;
@@ -121,6 +122,8 @@ namespace easyMedicine.Core.Views
             View = grid;
         }
 
+
+
         private void EntryPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == Entry.TextProperty.PropertyName)
@@ -130,9 +133,28 @@ namespace easyMedicine.Core.Views
                 {
                     Value = 0;
                 }
+
                 decimal val = 0;
-                decimal.TryParse(entry.Text, out val);
+                CultureInfo cult;
+                if (entry.Text.Contains("."))
+                {
+                    cult = new CultureInfo("en-US");
+                }
+                else
+                {
+                    cult = new CultureInfo("pt-PT");
+                }
+
+
+
+                //var valText = entry.Text.Replace(',', '.');
+                var valid = decimal.TryParse(entry.Text, NumberStyles.Number, cult.NumberFormat, out val);
                 Value = val;
+
+                if (valid && !entry.Text.EndsWith(cult.NumberFormat.NumberDecimalSeparator, StringComparison.CurrentCulture))
+                {
+                    entry.Text = Value.ToString(cult.NumberFormat);
+                }
 
                 if (InputChangedCommand == null)
                 {

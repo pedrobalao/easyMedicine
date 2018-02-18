@@ -56,6 +56,12 @@ namespace easyMedicine
             builder.RegisterType<AboutPage>()
                 .SingleInstance();
 
+            builder.RegisterType<CalculatorListPageModel>()
+                .SingleInstance();
+            builder.RegisterType<CalculatorListPage>()
+               .SingleInstance();
+
+
 
         }
     }

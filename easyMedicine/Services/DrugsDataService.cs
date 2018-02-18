@@ -184,6 +184,15 @@ namespace easyMedicine.Services
         }
 
 
+        public async Task<IEnumerable<Drug>> GetDrugsWithCalc()
+        {
+            var drugs2 = await database.QueryAsync<Drug>("select distinct a.* from Drug a " +
+                                                         "where a.Id in (select DrugId from Calculation) order by a.Name");
+
+            return await CompleteDrugsInfo(drugs2);
+        }
+
+
         public async Task<DrugFull> GetDrug(int drugId)
         {
 

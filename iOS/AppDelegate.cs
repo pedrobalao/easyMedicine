@@ -11,6 +11,7 @@ using System.IO;
 using UserNotifications;
 using Firebase.CloudMessaging;
 using System;
+using System.Globalization;
 //using Acr.UserDialogs;
 
 namespace easyMedicine.iOS
@@ -18,6 +19,8 @@ namespace easyMedicine.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate, IUNUserNotificationCenterDelegate
     {
+
+
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             //MobileCenter.Start("f4b28f29-a8b8-4197-870e-35aec416753a",

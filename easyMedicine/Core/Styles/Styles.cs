@@ -51,6 +51,7 @@ namespace easyMedicine
 
         public static string Style_ButtonMediumNegStyle = "ButtonMediumNegStyle";
 
+        public static string Style_VariablesEntryStyle = "VariablesEntryStyle";
 
 
 
@@ -368,7 +369,21 @@ namespace easyMedicine
                     },
                 }
             };
+            Application.Current.Resources.Add(entryStyle);
 
+            var variablesEntryStyle = new Style(typeof(Entry))
+            {
+                BasedOn = entryStyle,
+                Setters = {
+                    new Setter {
+                        Property = Button.BackgroundColorProperty, Value =  BLUE_COLOR//Color.White
+                    },
+                    new Setter {
+                        Property = Button.TextColorProperty, Value = WHITE_COLOR
+                    },
+                }
+            };
+            Application.Current.Resources.Add(Style_VariablesEntryStyle, variablesEntryStyle);
 
             /*Application.Current.Resources.Add (stackLayoutStyle);
             Application.Current.Resources.Add (relativeLayoutStyle);*/
@@ -395,6 +410,7 @@ namespace easyMedicine
             Application.Current.Resources.Add(Style_LabelIndincTitleStyle, labelIndincTitleStyle);
             Application.Current.Resources.Add(Style_LabelIndincValueStyle, labelIndincValueStyle);
             Application.Current.Resources.Add(Style_ButtonMediumNegStyle, buttonMediumLargeNegStyle);
+
 
 
 

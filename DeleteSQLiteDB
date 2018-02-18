@@ -1,13 +1,16 @@
-delete from Indication;
+select replace(replace(replace(scriptText,'[smartwalletservice].[',''),']',''),'[','')    +';' from smartwalletservice.easyMedScript a where a.dataversion = 102 order by orderexec;
+
+--substituir "INSERT ... "
+
+
+delete from Calculation;
+delete from VariableDrug;
+delete from Variable;
 delete from Dose;
+delete from Indication;
 delete from DrugCategory;
 delete from SubCategory;
 delete from Unity;
-
 delete from Via;
 delete from Drug;
 delete from ClinicalCategory;
-
-
-
-

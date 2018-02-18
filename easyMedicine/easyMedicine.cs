@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
@@ -17,10 +18,18 @@ namespace easyMedicine
         {
             //GmsDirection.Init ("AIzaSyAzlgYgYEQFVR-j2t6auJuXUoF3Y6s1Efk");
             Styles.LoadStyles();
+            SetCultureToUSEnglish();
             this.BootStrapper = new Bootstrapper(this);
 
 
             //System.AppDomain.UnhandledException+=
+        }
+
+
+        private void SetCultureToUSEnglish()
+        {
+            CultureInfo englishUSCulture = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentCulture = englishUSCulture;
         }
 
         protected override void OnStart()

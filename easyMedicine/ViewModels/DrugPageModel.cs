@@ -293,14 +293,21 @@ namespace easyMedicine
 
         private decimal CalculateDose(CalculationViewModel cal)
         {
+            if (!_DataLoaded)
+                return 0;
+
             var eng = new Engine();
 
+            Debug.WriteLine("---NEW");
             foreach (var varis in Variables)
             {
                 eng.SetValue(varis.Id, varis.Value);
+                Debug.WriteLine("var - " + varis.Id);
             }
+            Debug.WriteLine("function - " + cal.Function);
 
             var res = eng.Execute(cal.Function).GetCompletionValue().AsNumber();
+            Debug.WriteLine("---END");
 
             return (decimal)res;
 
@@ -331,6 +338,14 @@ namespace easyMedicine
         protected override async System.Threading.Tasks.Task Started()
         {
             await base.Started();
+            await Load();
+        }
+
+        private volatile bool _DataLoaded = false;
+
+        async Task Load()
+        {
+            _DataLoaded = false;
             IsFavourite = Settings.IsFavourite(DrugId.ToString());
 
             Drug = await _drugsDataServ.GetDrug(DrugId);
@@ -362,10 +377,16 @@ namespace easyMedicine
             {
                 Calculations.Add(new CalculationViewModel(cal));
             }
+            _DataLoaded = true;
         }
 
 
+        protected override Task Deactivated()
+        {
+            _DataLoaded = false;
+            return base.Deactivated();
 
+        }
 
     }
 }

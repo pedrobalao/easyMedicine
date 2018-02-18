@@ -47,12 +47,7 @@ namespace easyMedicine
             layoutHeader.Children.Add(lbtname);
 
 
-            var labelDoseCalc = new Label()
-            {
-                Text = "Cálculo de Doses",
-                Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
-            };
-            layoutHeader.Children.Add(labelDoseCalc);
+
 
 
             var calculationView = GetCalculationView();
@@ -184,12 +179,30 @@ namespace easyMedicine
 
         private View GetCalculationView()
         {
+            var mainLayout = new StackLayout() { };
+            mainLayout.SetBinding(StackLayout.IsVisibleProperty, DrugPageModel.CanCalculateDosePropertyName);
+
+
+            var labelDoseCalc = new Label()
+            {
+                Text = "Cálculo de Doses",
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
+            };
+            mainLayout.Children.Add(labelDoseCalc);
+
+            var frame = new Frame()
+            {
+                OutlineColor = Styles.BLUE_COLOR,
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                HasShadow = false,
+                CornerRadius = 0,
+            };
             var stackCalculation = new StackLayout()
             {
                 BindingContext = Model,
-                BackgroundColor = Styles.BLUE_COLOR
+
             };
-            stackCalculation.SetBinding(StackLayout.IsVisibleProperty, DrugPageModel.CanCalculateDosePropertyName);
 
             var lstView = new Repeater()
             {
@@ -222,14 +235,16 @@ namespace easyMedicine
             lstResults.ItemTemplate.SetBinding(DoseResultCell.DescriptionProperty, "Description");
             lstResults.ItemTemplate.SetBinding(DoseResultCell.UnitProperty, "ResultIdUnit");
             lstResults.ItemTemplate.SetBinding(DoseResultCell.ValueProperty, "Result");
+            lstResults.ItemTemplate.SetBinding(DoseResultCell.ExtraInfoProperty, "ResultDescription");
 
 
             stackCalculation.Children.Add(lstResults);
 
 
             //lstView.Footer = lstResults;
-
-            return stackCalculation;
+            frame.Content = stackCalculation;
+            mainLayout.Children.Add(frame);
+            return mainLayout;
         }
     }
 }

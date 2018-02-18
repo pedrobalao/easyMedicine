@@ -4,9 +4,11 @@ using System.IO;
 using Xamarin.Forms;
 using SQLite.Net;
 using SQLite.Net.Async;
-using SQLite.Net.Platform.XamarinAndroid;
 using easyMedicine.Models;
 using Android.App;
+using SQLite.Net.Platform.XamarinAndroid;
+using Plugin.DeviceInfo;
+using SQLite.Net.Interop;
 
 namespace easyMedicine.Droid.Data
 {
@@ -43,7 +45,14 @@ namespace easyMedicine.Droid.Data
             //}
 
             var param = new SQLiteConnectionString(path, false);
-            var connection = new SQLiteAsyncConnection(() => new SQLiteConnectionWithLock(new SQLitePlatformAndroid(), param));
+
+            ISQLitePlatform plat;
+            if (CrossDeviceInfo.Current.VersionNumber.Major < 7)
+                plat = new SQLitePlatformAndroid();
+            else
+                plat = new SQLitePlatformAndroidN();
+
+            var connection = new SQLiteAsyncConnection(() => new SQLiteConnectionWithLock(plat, param));
 
             // Return the database connection 
             return connection;

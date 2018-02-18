@@ -40,7 +40,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignKey>iPhone Distribution: Pedro Rocha (F39T9H2Q78)</CodesignKey>
-    <CodesignProvision>easyMedicine.PP.Prod</CodesignProvision>
+    <CodesignProvision></CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -296,14 +296,16 @@
     <BundleResource Include="Resources\ic_local_hospital_white_18pt.png" />
     <BundleResource Include="Resources\ic_local_hospital_white_18pt%402x.png" />
     <BundleResource Include="Resources\ic_local_hospital_white_18pt%403x.png" />
+    <BundleResource Include="Resources\ic_opacity_white%402x.png" />
+    <BundleResource Include="Resources\ic_opacity_white%403x.png" />
+    <BundleResource Include="Resources\ic_opacity_white.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\eMedicineDBV04.sqlite" />
-    <Content Include="Resources\eMedicineDBV05.sqlite" />
+    <Content Include="Resources\eMedicineDBV08.sqlite" />
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Build.Download.0.4.6\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.6\build\Xamarin.Build.Download.targets')" />
   <Import Project="..\packages\Xamarin.Firebase.iOS.Core.4.0.3\build\Xamarin.Firebase.iOS.Core.targets" Condition="Exists('..\packages\Xamarin.Firebase.iOS.Core.4.0.3\build\Xamarin.Firebase.iOS.Core.targets')" />

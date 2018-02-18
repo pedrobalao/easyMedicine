@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using Android.App;
+using Android.Content;
 using Android.Views;
 using easymedicine.Droid.Renderers;
 using easyMedicine;
@@ -13,6 +14,10 @@ namespace easymedicine.Droid.Renderers
 {
     public class CustomEditorRenderer : EditorRenderer
     {
+        public CustomEditorRenderer(Context context) : base(context)
+        {
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Editor> e)
         {
             base.OnElementChanged(e);
@@ -25,7 +30,7 @@ namespace easymedicine.Droid.Renderers
                 this.Control.SetBackgroundColor(Android.Graphics.Color.Transparent);
                 this.Control.SetCursorVisible(true);
                 this.Control.SetTextColor(Android.Graphics.Color.ParseColor("#505050"));
-                this.Control.Background = this.Resources.GetDrawable(Resource.Drawable.withBorderEditor);
+                this.Control.Background = this.Resources.GetDrawable(id: Resource.Drawable.withBorderEditor);
             }
             Control.FocusChange += Control_FocusChange;
         }
@@ -39,18 +44,18 @@ namespace easymedicine.Droid.Renderers
                     int ct = Convert.ToInt32(App.Current.Properties["count"]);
                     if (ct > 1)
                     {
-                        (Forms.Context as Activity).Window.SetSoftInputMode(SoftInput.AdjustPan);
+                        (Context as Activity).Window.SetSoftInputMode(SoftInput.AdjustPan);
                     }
                     else
                     {
-                        (Forms.Context as Activity).Window.SetSoftInputMode(SoftInput.AdjustResize);
+                        (Context as Activity).Window.SetSoftInputMode(SoftInput.AdjustResize);
                     }
                 }
 
             }
             else
             {
-                (Forms.Context as Activity).Window.SetSoftInputMode(SoftInput.AdjustNothing);
+                (Context as Activity).Window.SetSoftInputMode(SoftInput.AdjustNothing);
             }
         }
 

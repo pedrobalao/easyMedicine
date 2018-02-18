@@ -22,11 +22,8 @@ namespace easyMedicine.ViewModels
             var favsModel = _navigatorService.PushTab<FavouritesPageModel>("Favourites");
             _navigatorService.PushTab<SearchPageModel>("Search");
             _navigatorService.PushTab<ExplorePageModel>("Explore");
+            _navigatorService.PushTab<CalculatorListPageModel>("Calculator");
             _navigatorService.PushTab<AboutPageModel>("About");
-
-
-
-
 
         }
     }

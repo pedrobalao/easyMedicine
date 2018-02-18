@@ -5,16 +5,27 @@ namespace easyMedicine.Core.Views
 {
     public class DoseResultCell : ViewCell
     {
-        Label DescriptionLabel, ValueLabel, UnitLabel;
+        Label DescriptionLabel, ExtraInfoLabel, ValueLabel, UnitLabel;
 
         public static readonly BindableProperty DescriptionProperty =
             BindableProperty.Create("Description", typeof(string), typeof(VariableCell), String.Empty);
+
+
+        public static readonly BindableProperty ExtraInfoProperty =
+            BindableProperty.Create("ExtraInfo", typeof(string), typeof(VariableCell), String.Empty);
 
         public static readonly BindableProperty UnitProperty =
             BindableProperty.Create("Unit", typeof(string), typeof(VariableCell), String.Empty);
 
         public static readonly BindableProperty ValueProperty =
             BindableProperty.Create("ValueLabel", typeof(string), typeof(VariableCell), String.Empty);
+
+
+        public string ExtraInfo
+        {
+            get { return (string)GetValue(ExtraInfoProperty); }
+            set { SetValue(ExtraInfoProperty, value); }
+        }
 
 
         public string Description
@@ -45,15 +56,26 @@ namespace easyMedicine.Core.Views
                 UnitLabel.Text = Unit;
                 ValueLabel.Text = Value;
             }
+            ExtraInfoLabel.Text = ExtraInfo;
         }
 
 
         public DoseResultCell()
         {
+            var infoLayout = new StackLayout() { };
+
             DescriptionLabel = new Label()
             {
                 Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
             };
+
+            ExtraInfoLabel = new Label()
+            {
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle]
+            };
+
+            infoLayout.Children.Add(DescriptionLabel);
+            infoLayout.Children.Add(ExtraInfoLabel);
 
             ValueLabel = new Label()
             {
@@ -63,7 +85,7 @@ namespace easyMedicine.Core.Views
 
             UnitLabel = new Label()
             {
-                Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincTitleStyle],
                 HorizontalTextAlignment = TextAlignment.Start
             };
 
@@ -84,7 +106,7 @@ namespace easyMedicine.Core.Views
             };
 
 
-            grid.Children.Add(DescriptionLabel, 0, 0);
+            grid.Children.Add(infoLayout, 0, 0);
             grid.Children.Add(ValueLabel, 1, 0);
             grid.Children.Add(UnitLabel, 2, 0);
 
