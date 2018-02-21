@@ -36,7 +36,7 @@ namespace easyMedicine
             this.IdUnit = vari.IdUnit;
             this.ValueChangedCommand = command;
         }
-        public decimal Value
+        public decimal? Value
         {
             get;
             set;

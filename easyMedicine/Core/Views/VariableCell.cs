@@ -18,7 +18,7 @@ namespace easyMedicine.Core.Views
             BindableProperty.Create("Unit", typeof(string), typeof(VariableCell), String.Empty);
 
         public static readonly BindableProperty ValueProperty =
-            BindableProperty.Create("Value", typeof(decimal), typeof(VariableCell), default(decimal), BindingMode.TwoWay);
+            BindableProperty.Create("Value", typeof(decimal?), typeof(VariableCell), null, BindingMode.TwoWay);
 
         public static readonly BindableProperty InputChangedCommandProperty =
             BindableProperty.Create("InputChangedCommand", typeof(ICommand), typeof(VariableCell), default(ICommand), BindingMode.TwoWay);
@@ -37,9 +37,9 @@ namespace easyMedicine.Core.Views
             set { SetValue(UnitProperty, value); }
         }
 
-        public decimal Value
+        public decimal? Value
         {
-            get { return (decimal)GetValue(ValueProperty); }
+            get { return (decimal?)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
         }
 
@@ -131,30 +131,31 @@ namespace easyMedicine.Core.Views
                 var entry = (Entry)sender;
                 if (string.IsNullOrEmpty(entry.Text))
                 {
-                    Value = 0;
-                }
-
-                decimal val = 0;
-                CultureInfo cult;
-                if (entry.Text.Contains("."))
-                {
-                    cult = new CultureInfo("en-US");
+                    Value = null;
                 }
                 else
                 {
-                    cult = new CultureInfo("pt-PT");
+                    decimal val = 0;
+                    CultureInfo cult;
+                    if (entry.Text.Contains("."))
+                    {
+                        cult = new CultureInfo("en-US");
+                    }
+                    else
+                    {
+                        cult = new CultureInfo("pt-PT");
+                    }
+
+                    //var valText = entry.Text.Replace(',', '.');
+                    var valid = decimal.TryParse(entry.Text, NumberStyles.Number, cult.NumberFormat, out val);
+                    Value = val;
+
+                    if (valid && !entry.Text.EndsWith(cult.NumberFormat.NumberDecimalSeparator, StringComparison.CurrentCulture))
+                    {
+                        entry.Text = Value.Value.ToString(cult.NumberFormat);
+                    }
                 }
 
-
-
-                //var valText = entry.Text.Replace(',', '.');
-                var valid = decimal.TryParse(entry.Text, NumberStyles.Number, cult.NumberFormat, out val);
-                Value = val;
-
-                if (valid && !entry.Text.EndsWith(cult.NumberFormat.NumberDecimalSeparator, StringComparison.CurrentCulture))
-                {
-                    entry.Text = Value.ToString(cult.NumberFormat);
-                }
 
                 if (InputChangedCommand == null)
                 {
