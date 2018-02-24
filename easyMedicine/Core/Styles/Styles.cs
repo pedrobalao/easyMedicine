@@ -376,11 +376,12 @@ namespace easyMedicine
                 BasedOn = entryStyle,
                 Setters = {
                     new Setter {
-                        Property = Button.BackgroundColorProperty, Value =  BLUE_COLOR//Color.White
+                        Property = Entry.BackgroundColorProperty, Value =  BLUE_COLOR//Color.White
                     },
                     new Setter {
-                        Property = Button.TextColorProperty, Value = WHITE_COLOR
+                        Property = Entry.TextColorProperty, Value = Color.White
                     },
+
                 }
             };
             Application.Current.Resources.Add(Style_VariablesEntryStyle, variablesEntryStyle);

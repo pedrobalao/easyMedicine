@@ -17,6 +17,7 @@ namespace easyMedicine.iOS.Renderers
             if (this.Control == null) return;
 
             this.Control.BorderStyle = UITextBorderStyle.None;
+            this.Control.TintColor = UIColor.Black;
         }
     }
 }
