@@ -11,6 +11,7 @@ using easyMedicine.Models;
 using easyMedicine.Services;
 using easyMedicine.ViewModels;
 using Jint;
+using Microsoft.Azure.Mobile.Analytics;
 using Xamarin.Forms;
 
 namespace easyMedicine
@@ -282,10 +283,18 @@ namespace easyMedicine
             if (IsFavourite)
             {
                 Settings.RemoveFavourite(Drug.Id.ToString());
+                Analytics.TrackEvent("Removed Favourites", new Dictionary<string, string> {
+                { "DrugId", DrugId.ToString() },
+                { "DrugName", Drug.Name}
+            });
             }
             else
             {
                 Settings.AddFavourite(Drug.Id.ToString());
+                Analytics.TrackEvent("Added Favourites", new Dictionary<string, string> {
+                { "DrugId", DrugId.ToString() },
+                { "DrugName", Drug.Name}
+            });
             }
             IsFavourite = Settings.IsFavourite(Drug.Id.ToString());
 
@@ -308,6 +317,16 @@ namespace easyMedicine
 
             var res = eng.Execute(cal.Function).GetCompletionValue().AsNumber();
             Debug.WriteLine("---END");
+
+            if (res != 0 && !_DoseCalculated)
+            {
+                _DoseCalculated = true;
+                Analytics.TrackEvent("Dose Calculated", new Dictionary<string, string> {
+                    { "DrugId", DrugId.ToString() },
+                    { "DrugName", Drug.Name}
+                });
+            }
+
 
             return (decimal)res;
 
@@ -343,8 +362,11 @@ namespace easyMedicine
 
         private volatile bool _DataLoaded = false;
 
+        private volatile bool _DoseCalculated = false;
+
         async Task Load()
         {
+            _DoseCalculated = false;
             _DataLoaded = false;
             IsFavourite = Settings.IsFavourite(DrugId.ToString());
 
@@ -378,6 +400,12 @@ namespace easyMedicine
                 Calculations.Add(new CalculationViewModel(cal));
             }
             _DataLoaded = true;
+
+
+            Analytics.TrackEvent("DrugPage Opened", new Dictionary<string, string> {
+                { "DrugId", DrugId.ToString() },
+                { "DrugName", Drug.Name}
+            });
         }
 
 
