@@ -11,6 +11,9 @@ easyMedicine is an opensource medical application for IOS and Android. The drugs
   - [Google Material Icons](https://design.google.com/icons/)
 
 ###Current State
-  - IOS - Testing
-  - Android - Working in Progress
+  - IOS - In Production
+  - Android - In Production
   - Database - Working in Progress
+
+###Android Build Status
+[![Build status](https://build.appcenter.ms/v0.1/apps/25e2f8bd-9679-4df3-9365-7c018e5af5ea/branches/master/badge)](https://appcenter.ms)
