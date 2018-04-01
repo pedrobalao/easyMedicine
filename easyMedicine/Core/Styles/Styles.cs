@@ -53,6 +53,12 @@ namespace easyMedicine
 
         public static string Style_VariablesEntryStyle = "VariablesEntryStyle";
 
+        public static string Style_LabelResultValueStyle = "LabelResultValueStyle";
+        public static string Style_LabelResultUnitStyle = "LabelResultUnitStyle";
+
+
+
+
 
 
 
@@ -161,6 +167,45 @@ namespace easyMedicine
                     },
                 }
             };
+
+
+            var labelResultValueStyle = new Style(typeof(Label))
+            {
+                BasedOn = labelContrastBaseStyle,
+                Setters = {
+                    new Setter {
+                        Property = Label.TextColorProperty, Value = BLUE_COLOR,
+                    },
+                    new Setter {
+                        Property = Label.HorizontalTextAlignmentProperty, Value = TextAlignment.Start
+                    },
+
+                    new Setter {
+                        Property = Label.FontSizeProperty, Value = LargeFontSize
+                    },
+                }
+            };
+
+            Application.Current.Resources.Add(Style_LabelResultValueStyle, labelResultValueStyle);
+
+            var labelResultUnitStyle = new Style(typeof(Label))
+            {
+                BasedOn = labelContrastBaseStyle,
+                Setters = {
+                    new Setter {
+                        Property = Label.TextColorProperty, Value = GRAY_COLOR,
+                    },
+                    new Setter {
+                        Property = Label.HorizontalTextAlignmentProperty, Value = TextAlignment.Start
+                    },
+
+                    new Setter {
+                        Property = Label.FontSizeProperty, Value = MediumFontSize
+                    },
+                }
+            };
+
+            Application.Current.Resources.Add(Style_LabelResultUnitStyle, labelResultUnitStyle);
 
             var labelIndincTitleStyle = new Style(typeof(Label))
             {

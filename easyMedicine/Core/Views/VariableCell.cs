@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Input;
@@ -10,6 +11,7 @@ namespace easyMedicine.Core.Views
     {
         Label DescriptionLabel, UnitLabel;
         Entry ValueInput;
+        Picker ValuePicker;
 
         public static readonly BindableProperty DescriptionProperty =
             BindableProperty.Create("Description", typeof(string), typeof(VariableCell), String.Empty);
@@ -22,6 +24,19 @@ namespace easyMedicine.Core.Views
 
         public static readonly BindableProperty InputChangedCommandProperty =
             BindableProperty.Create("InputChangedCommand", typeof(ICommand), typeof(VariableCell), default(ICommand), BindingMode.TwoWay);
+
+        public static readonly BindableProperty ValuesProperty =
+            BindableProperty.Create("Values", typeof(List<string>), typeof(VariableCell), default(List<string>));
+
+        public static readonly BindableProperty HasFixedValuesProperty =
+            BindableProperty.Create("HasFixedValues", typeof(bool), typeof(VariableCell), default(bool));
+
+        public static readonly BindableProperty TypeProperty =
+            BindableProperty.Create("Type", typeof(string), typeof(VariableCell), string.Empty);
+
+        public static readonly BindableProperty ValueStrProperty =
+            BindableProperty.Create("ValueStr", typeof(string), typeof(VariableCell), string.Empty, BindingMode.TwoWay);
+
 
 
 
@@ -41,6 +56,30 @@ namespace easyMedicine.Core.Views
         {
             get { return (decimal?)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
+        }
+
+        public string ValueStr
+        {
+            get { return (string)GetValue(ValueStrProperty); }
+            set { SetValue(ValueStrProperty, value); }
+        }
+
+        public List<string> Values
+        {
+            get { return (List<string>)GetValue(ValuesProperty); }
+            set { SetValue(ValuesProperty, value); }
+        }
+
+        public bool HasFixedValues
+        {
+            get { return (bool)GetValue(HasFixedValuesProperty); }
+            set { SetValue(HasFixedValuesProperty, value); }
+        }
+
+        public string Type
+        {
+            get { return (string)GetValue(TypeProperty); }
+            set { SetValue(TypeProperty, value); }
         }
 
         public ICommand InputChangedCommand
@@ -64,8 +103,26 @@ namespace easyMedicine.Core.Views
             if (BindingContext != null)
             {
                 DescriptionLabel.Text = Description;
-                UnitLabel.Text = Unit;
-                ValueInput.Text = Value.ToString();
+                UnitLabel.Text = Unit == "NA" ? String.Empty : Unit;
+
+
+                if (HasFixedValues)
+                {
+                    ValueInput.IsVisible = false;
+                    ValuePicker.IsVisible = true;
+                    if (Values != null && ValuePicker.ItemsSource == null)
+                    {
+                        ValuePicker.ItemsSource = Values;
+                        ValuePicker.SelectedIndex = 0;
+                    }
+
+                }
+                else
+                {
+                    ValueInput.IsVisible = true;
+                    ValuePicker.IsVisible = false;
+                    ValueInput.Text = Value.ToString();
+                }
             }
         }
 
@@ -103,11 +160,19 @@ namespace easyMedicine.Core.Views
                 HorizontalTextAlignment = TextAlignment.End,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Style = (Style)Application.Current.Resources[Styles.Style_VariablesEntryStyle],
-
             };
             ValueInput.PropertyChanged += EntryPropertyChanged;
-
             grid.Children.Add(ValueInput, 1, 0);
+
+            ValuePicker = new Picker()
+            {
+                BackgroundColor = Color.FromHex("0078D7"),
+                TextColor = Color.White
+
+            };
+
+            ValuePicker.PropertyChanged += PickerPropertyChanged;
+            grid.Children.Add(ValuePicker, 1, 0);
 
             UnitLabel = new Label()
             {
@@ -122,7 +187,23 @@ namespace easyMedicine.Core.Views
             View = grid;
         }
 
+        private void PickerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == Picker.SelectedItemProperty.PropertyName)
+            {
+                var picker = (Picker)sender;
+                ValueStr = (string)picker.SelectedItem;
 
+                if (InputChangedCommand == null)
+                {
+                    return;
+                }
+                if (InputChangedCommand.CanExecute(this))
+                {
+                    InputChangedCommand.Execute(this);
+                }
+            }
+        }
 
         private void EntryPropertyChanged(object sender, PropertyChangedEventArgs e)
         {

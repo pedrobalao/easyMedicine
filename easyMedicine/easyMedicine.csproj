@@ -88,6 +88,13 @@
     <Compile Include="Core\Views\Repeater.cs" />
     <Compile Include="ViewModels\CalculatorListPageModel.cs" />
     <Compile Include="Pages\CalculatorListPage.cs" />
+    <Compile Include="ViewModels\MedicalCalculationListPageModel.cs" />
+    <Compile Include="Pages\MedicalCalculationListPage.cs" />
+    <Compile Include="ViewModels\MedicalCalculationPageModel.cs" />
+    <Compile Include="Pages\MedicalCalculationPage.cs" />
+    <Compile Include="Core\Views\ResultView.cs" />
+    <Compile Include="Core\Views\ExternalViews\PSCControls.cs" />
+    <Compile Include="Core\Converters\UnitVariableString.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.12.3\build\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.12.3\build\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.targets')" />
@@ -217,6 +224,7 @@
     <Folder Include="Services\" />
     <Folder Include="Core\Styles\" />
     <Folder Include="Core\Converters\" />
+    <Folder Include="Core\Views\ExternalViews\" />
   </ItemGroup>
   <Import Project="..\packages\NETStandard.Library.2.0.0\build\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.0\build\NETStandard.Library.targets')" />
   <Import Project="..\packages\Xamarin.Forms.2.5.0.122203\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.5.0.122203\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />

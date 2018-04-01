@@ -30,18 +30,54 @@ namespace easyMedicine
     public class VariableViewModel : Variable
     {
         public VariableViewModel() { }
-        public VariableViewModel(Variable vari, ICommand command)
+        public VariableViewModel(Variable vari, ICommand command, bool optional = false)
         {
             this.Description = vari.Description;
             this.Id = vari.Id;
             this.IdUnit = vari.IdUnit;
             this.ValueChangedCommand = command;
+            this.Optional = optional;
+            this.Values = new List<string>();
+            this.HasFixedValues = false;
+            this.Type = vari.Type;
         }
+
+        public VariableViewModel(Variable vari, ICommand command, List<string> Values, bool optional = false)
+        {
+            this.Description = vari.Description;
+            this.Id = vari.Id;
+            this.IdUnit = vari.IdUnit;
+            this.ValueChangedCommand = command;
+            this.Optional = optional;
+            this.Values = Values;
+            this.HasFixedValues = Values.Count > 0 ? true : false;
+            this.Type = vari.Type;
+        }
+
         public decimal? Value
         {
             get;
             set;
         }
+
+        public string ValueStr
+        {
+            get;
+            set;
+        }
+
+        public List<string> Values { get; set; }
+
+        public bool HasFixedValues
+        {
+            get; private set;
+        }
+
+        public bool Optional
+        {
+            get; set;
+        }
+
 
         public ICommand ValueChangedCommand { get; set; }
 

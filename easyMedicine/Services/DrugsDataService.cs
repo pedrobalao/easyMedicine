@@ -193,6 +193,61 @@ namespace easyMedicine.Services
         }
 
 
+
+        public async Task<List<VariableMedicalCalculationFull>> GetVariableMedicalCalculationFull(int medicalCalculationId)
+        {
+
+            var ret = new List<VariableMedicalCalculationFull>();
+
+            var vmcs = await database.Table<VariableMedicalCalculation>().Where(x => x.MedicalCalculationId == medicalCalculationId).ToListAsync();
+
+            var varids = vmcs.Select(x => x.VariableId);
+
+            var valuesVars = await database.Table<VariableValues>().Where(x => varids.Contains(x.VariableId)).ToListAsync();
+
+            var variables = await database.Table<Variable>().Where(x => varids.Contains(x.Id)).ToListAsync();
+
+            foreach (var vmc in vmcs)
+            {
+                ret.Add(new VariableMedicalCalculationFull()
+                {
+                    Variable = variables.First(x => x.Id == vmc.VariableId),
+                    VariableMedicalCalculation = vmc,
+                    Values = valuesVars.Where(y => y.VariableId == vmc.VariableId).Select(x => x.Value).OrderBy(y => y).ToList()
+                });
+            }
+
+            return ret;
+
+        }
+
+
+        public async Task<MedicalCalculationFull> GetMedicalCalculation(int medicalCalculationId)
+        {
+
+            var ret = new MedicalCalculationFull();
+
+            ret.Calculation = await database.Table<MedicalCalculation>().Where(x => x.Id == medicalCalculationId).FirstAsync();
+
+            ret.Group = await database.Table<MedicalCalculationGroup>().Where(x => x.Id == ret.Calculation.CalculationGroupId).FirstOrDefaultAsync();
+
+            ret.Variables = await GetVariableMedicalCalculationFull(medicalCalculationId);
+
+            return ret;
+
+        }
+
+        public async Task<IEnumerable<MedicalCalculation>> GetMedicalCalculations()
+        {
+            var mcs = await database.QueryAsync<MedicalCalculation>("select a.* from MedicalCalculation a " +
+                                                         "order by a.Description");
+
+            return mcs;
+        }
+
+
+
+
         public async Task<DrugFull> GetDrug(int drugId)
         {
 

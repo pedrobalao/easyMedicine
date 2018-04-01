@@ -21,6 +21,10 @@ namespace easyMedicine.Services
         Task<DrugFull> GetDrug(int drugId);
 
         Task<IEnumerable<Drug>> GetDrugsWithCalc();
+
+        Task<IEnumerable<MedicalCalculation>> GetMedicalCalculations();
+
+        Task<MedicalCalculationFull> GetMedicalCalculation(int medicalCalculationId);
     }
 }
 

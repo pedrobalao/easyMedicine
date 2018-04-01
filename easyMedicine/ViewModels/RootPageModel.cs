@@ -23,7 +23,10 @@ namespace easyMedicine.ViewModels
             _navigatorService.PushTab<SearchPageModel>("Search");
             _navigatorService.PushTab<ExplorePageModel>("Explore");
             _navigatorService.PushTab<CalculatorListPageModel>("Calculator");
+            _navigatorService.PushTab<MedicalCalculationListPageModel>("Calculator");
+
             _navigatorService.PushTab<AboutPageModel>("About");
+
 
         }
     }

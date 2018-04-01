@@ -129,7 +129,22 @@ namespace easyMedicine.Models
 
         public string IdUnit { get; set; }
 
+        public string Type { get; set; }
+
     }
+
+    [Table("VariableValues")]
+    public class VariableValues
+    {
+        [PrimaryKey]
+        public Int64 Id { get; set; }
+
+        public string VariableId { get; set; }
+
+        public string Value { get; set; }
+
+    }
+
 
     [Table("VariableDrug")]
     public class VariableDrug
@@ -163,6 +178,67 @@ namespace easyMedicine.Models
 
         public string Description { get; set; }
 
+    }
+
+
+    [Table("MedicalCalculation")]
+    public class MedicalCalculation
+    {
+        [PrimaryKey]
+        public int Id { get; set; }
+
+        public string Description { get; set; }
+
+        public string Formula { get; set; }
+
+        public string ResultUnitId { get; set; }
+
+        public string Observation { get; set; }
+
+        public int CalculationGroupId { get; set; }
+
+    }
+
+    [Table("MedicalCalculationGroup")]
+    public class MedicalCalculationGroup
+    {
+        [PrimaryKey]
+        public int Id { get; set; }
+
+        public string Description { get; set; }
+    }
+
+    [Table("VariableMedicalCalculation")]
+    public class VariableMedicalCalculation
+    {
+        [PrimaryKey]
+        public int Id { get; set; }
+        public string VariableId { get; set; }
+        public int MedicalCalculationId { get; set; }
+        public int Optional { get; set; }
+    }
+
+    public class MedicalCalculationFull
+    {
+        public MedicalCalculation Calculation { get; set; }
+        public MedicalCalculationGroup Group { get; set; }
+        public List<VariableMedicalCalculationFull> Variables { get; set; }
+
+    }
+
+    public class VariableMedicalCalculationFull
+    {
+        public VariableMedicalCalculation VariableMedicalCalculation { get; set; }
+        public Variable Variable
+        {
+            get;
+            set;
+        }
+        public List<string> Values
+        {
+            get;
+            set;
+        }
     }
 
     public class IndicationFull
