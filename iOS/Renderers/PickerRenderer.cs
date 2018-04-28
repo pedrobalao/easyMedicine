@@ -20,7 +20,10 @@ namespace easyMedicine.iOS.Renderers
 
                 Control.Font = UIFont.FromName("Avenir-Book", 17f);
                 Control.TextAlignment = UITextAlignment.Right;
-                Control.BorderStyle = UITextBorderStyle.None;
+
+                this.Control.Layer.BorderWidth = 1;
+                this.Control.Layer.BorderColor = ExtensionMethods.ToUIColor(Styles.BLUE_COLOR_HEX).CGColor;
+                //Control.BorderStyle = UITextBorderStyle.None;
                 //Control.TextColor = UIColor.Purple;
             }
         }

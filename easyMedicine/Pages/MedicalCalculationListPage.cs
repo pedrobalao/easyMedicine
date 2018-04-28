@@ -25,10 +25,6 @@ namespace easyMedicine.Pages
 
             };
 
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                layout.Padding = new Thickness(0, 50, 0, 0);
-            }
 
             var cell = new DataTemplate(typeof(CustomCell));
             cell.SetBinding(CustomCell.NameProperty, "Description");
@@ -40,6 +36,7 @@ namespace easyMedicine.Pages
                 ItemTemplate = cell,
                 HasUnevenRows = true,
                 SeparatorColor = Styles.BLUE_COLOR,
+
             };
             list.SetBinding(ListView.ItemsSourceProperty, MedicalCalculationListPageModel.MedicalCalculationsPropertyName);
 

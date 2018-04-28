@@ -197,6 +197,18 @@ namespace easyMedicine.Models
 
         public int CalculationGroupId { get; set; }
 
+        public string ResultType
+        {
+            get;
+            set;
+        }
+
+        public int? Precision
+        {
+            get;
+            set;
+        }
+
     }
 
     [Table("MedicalCalculationGroup")]

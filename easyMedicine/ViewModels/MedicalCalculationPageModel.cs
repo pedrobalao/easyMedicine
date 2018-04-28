@@ -164,9 +164,9 @@ namespace easyMedicine.ViewModels
         }
 
 
-        private decimal _Result;
+        private string _Result;
 
-        public decimal Result
+        public string Result
         {
             get
             {
@@ -181,11 +181,21 @@ namespace easyMedicine.ViewModels
 
         public const string ResultPropertyName = "Result";
 
+
+        private string GetDefaultResult()
+        {
+            if (MedicalCalculationFull.Calculation.ResultType == "NUMBER")
+                return "0";
+            else
+                return "";
+        }
+
         private void Calculate()
         {
             if (!_DataLoaded)
             {
-                Result = 0;
+
+                Result = GetDefaultResult();
                 return;
             }
 
@@ -197,7 +207,7 @@ namespace easyMedicine.ViewModels
                 if (((varis.Type == "NUMBER" && varis.Value == null) || (varis.Type == "STRING" && string.IsNullOrWhiteSpace(varis.ValueStr)))
                      && !varis.Optional)
                 {
-                    Result = 0;
+                    Result = GetDefaultResult();
                     return;
                 }
 
@@ -209,21 +219,23 @@ namespace easyMedicine.ViewModels
             }
             Debug.WriteLine("function - " + MedicalCalculationFull.Calculation.Formula);
 
-            var res = eng.Execute(MedicalCalculationFull.Calculation.Formula).GetCompletionValue().AsNumber();
+
+            if (MedicalCalculationFull.Calculation.ResultType == "NUMBER")
+            {
+                var res = eng.Execute(MedicalCalculationFull.Calculation.Formula).GetCompletionValue().AsNumber();
+                if (MedicalCalculationFull.Calculation.Precision.HasValue)
+                    res = Math.Round(res, MedicalCalculationFull.Calculation.Precision.Value);
+                Result = res.ToString();
+            }
+            else
+            {
+                var res = eng.Execute(MedicalCalculationFull.Calculation.Formula).GetCompletionValue().AsString();
+                Result = res;
+            }
+
             Debug.WriteLine("---END");
 
-            /*
-            if (res != 0 && !_DoseCalculated)
-            {
-                _DoseCalculated = true;
-                Analytics.TrackEvent("Dose Calculated", new Dictionary<string, string> {
-                    { "DrugId", DrugId.ToString() },
-                    { "DrugName", Drug.Name}
-                });
-            }*/
 
-
-            Result = (decimal)res;
 
         }
 

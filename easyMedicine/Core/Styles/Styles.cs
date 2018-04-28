@@ -21,7 +21,8 @@ namespace easyMedicine
         public static string BASE_COLOR_HEX = "252628";
         public static Color BASE_COLOR = Color.FromHex(BASE_COLOR_HEX);
         //Cinzento
-        public static Color LETTER_COLOR = Color.FromHex("666666");
+        public static string LETTER_COLOR_HEX = "666666";
+        public static Color LETTER_COLOR = Color.FromHex(LETTER_COLOR_HEX);
         //Verde
         public static Color CONTRAST_LETTER_COLOR = Color.FromHex("698335");
 
@@ -30,8 +31,9 @@ namespace easyMedicine
         public static Color PLACEHOLDER_COLOR = Color.FromHex(PLACEHOLDER_COLOR_HEX);
 
 
+        public static string BLUE_COLOR_HEX = "0078D7";
+        public static Color BLUE_COLOR = Color.FromHex(BLUE_COLOR_HEX);
 
-        public static Color BLUE_COLOR = Color.FromHex("0078D7");
         public static Color LIGHT_BLUE_COLOR = Color.FromHex("3393DE");
         public static Color WHITE_COLOR = Color.White;
         public static Color GRAY_COLOR = Color.FromHex("666666");
@@ -421,10 +423,10 @@ namespace easyMedicine
                 BasedOn = entryStyle,
                 Setters = {
                     new Setter {
-                        Property = Entry.BackgroundColorProperty, Value =  BLUE_COLOR//Color.White
+                        Property = Entry.BackgroundColorProperty, Value =  Color.White
                     },
                     new Setter {
-                        Property = Entry.TextColorProperty, Value = Color.White
+                        Property = Entry.TextColorProperty, Value = BLUE_COLOR
                     },
 
                 }

@@ -1,19 +1,38 @@
 ﻿<Properties StartupConfiguration="{EFD4C86B-439D-4EEF-AC7B-E67CF9574F78}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="easyMedicine/Core/Converters/StringToBoolConverter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/Renderers/EntryRenderer.cs">
     <Files>
-      <File FileName="easyMedicine/Core/Views/VariableCell.cs" Line="10" Column="18" />
-      <File FileName="easyMedicine/Pages/MedicalCalculationPage.cs" Line="62" Column="94" />
-      <File FileName="easyMedicine/ViewModels/MedicalCalculationPageModel.cs" Line="197" Column="1" />
-      <File FileName="easyMedicine/Services/DrugsDataService.cs" Line="210" Column="1" />
+      <File FileName="easyMedicine/Core/Views/VariableCell.cs" Line="162" Column="80" />
+      <File FileName="easyMedicine/Pages/MedicalCalculationPage.cs" Line="62" Column="75" />
+      <File FileName="easyMedicine/ViewModels/MedicalCalculationPageModel.cs" Line="237" Column="13" />
+      <File FileName="easyMedicine/Services/DrugsDataService.cs" Line="230" Column="56" />
       <File FileName="easyMedicine/ViewModels/DrugPageModel.cs" Line="54" Column="35" />
       <File FileName="iOS/Renderers/PickerRenderer.cs" Line="21" Column="65" />
       <File FileName="iOS/Renderers/SearchBarRenderer.cs" Line="8" Column="1" />
-      <File FileName="iOS/Renderers/EntryRenderer.cs" Line="19" Column="13" />
-      <File FileName="easyMedicine/Models/DrugDB.cs" Line="229" Column="5" />
-      <File FileName="easyMedicine/Pages/DrugPage.cs" Line="1" Column="1" />
-      <File FileName="easyMedicine/Core/Converters/StringToBoolConverter.cs" Line="7" Column="40" />
+      <File FileName="iOS/Renderers/EntryRenderer.cs" Line="20" Column="69" />
+      <File FileName="easyMedicine/Models/DrugDB.cs" Line="235" Column="32" />
+      <File FileName="easyMedicine/Pages/DrugPage.cs" Line="123" Column="17" />
+      <File FileName="easyMedicine/Core/Converters/StringToBoolConverter.cs" Line="17" Column="30" />
       <File FileName="easyMedicine/Core/Views/LabelValue.cs" Line="66" Column="95" />
       <File FileName="easyMedicine/Core/Converters/UnitVariableString.cs" Line="1" Column="1" />
+      <File FileName="easyMedicine/Pages/CalculatorListPage.cs" Line="1" Column="1" />
+      <File FileName="easyMedicine/Pages/MoreMenuPage.cs" Line="30" Column="68" />
+      <File FileName="easyMedicine/Pages/MedicalCalculationListPage.cs" Line="29" Column="51" />
+      <File FileName="easyMedicine/ViewModels/MenuMorePageModel.cs" Line="46" Column="14" />
+      <File FileName="easyMedicine/ViewModels/MedicalCalculationListPageModel.cs" Line="14" Column="33" />
+      <File FileName="easyMedicine/Core/Views/CustomCell.cs" Line="53" Column="61" />
+      <File FileName="easyMedicine/ViewModels/AboutPageModel.cs" Line="1" Column="1" />
+      <File FileName="easyMedicine/Pages/AboutPage.cs" Line="23" Column="44" />
+      <File FileName="easyMedicine/AppModule.cs" Line="74" Column="51" />
+      <File FileName="easyMedicine/Bootstrapper.cs" Line="62" Column="9" />
+      <File FileName="easyMedicine/ViewModels/RootPageModel.cs" Line="30" Column="13" />
+      <File FileName="iOS/Main.cs" Line="17" Column="1" />
+      <File FileName="easyMedicine/Core/Styles/Styles.cs" Line="34" Column="44" />
+      <File FileName="iOS/Data/IOSSQLite.cs" Line="24" Column="55" />
+      <File FileName="easyMedicine/Models/Configurations.cs" Line="9" Column="1" />
+      <File FileName="easyMedicine/Pages/ExplorePage.cs" Line="1" Column="1" />
+      <File FileName="iOS/Renderers/CustomListViewRenderer.cs" Line="25" Column="37" />
+      <File FileName="iOS/Renderers/CustomEditorRenderer.cs" Line="33" Column="47" />
+      <File FileName="iOS/Helpers/ExtensionMethods.cs" Line="10" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

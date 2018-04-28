@@ -281,9 +281,6 @@
     <BundleResource Include="Resources\tb_ic_favorite_border_white_48px%403x.png" />
     <BundleResource Include="Resources\tb_ic_favorite_white_48px%402x.png" />
     <BundleResource Include="Resources\tb_ic_favorite_white_48px%403x.png" />
-    <BundleResource Include="Resources\ic_info_outline_white_48pt.png" />
-    <BundleResource Include="Resources\ic_info_outline_white_48pt%402x.png" />
-    <BundleResource Include="Resources\ic_info_outline_white_48pt%403x.png" />
     <BundleResource Include="GoogleService-Info.plist" />
     <BundleResource Include="Resources\ic_error_white_18pt%402x.png" />
     <BundleResource Include="Resources\ic_error_white_18pt%403x.png" />
@@ -300,6 +297,18 @@
     <BundleResource Include="Resources\ic_opacity_white%402x.png" />
     <BundleResource Include="Resources\ic_opacity_white%403x.png" />
     <BundleResource Include="Resources\ic_opacity_white.png" />
+    <BundleResource Include="Resources\ic_more_horiz_white%403x.png" />
+    <BundleResource Include="Resources\ic_more_horiz_white%402x.png" />
+    <BundleResource Include="Resources\ic_more_horiz_white.png" />
+    <BundleResource Include="Resources\ic_info%403x.png" />
+    <BundleResource Include="Resources\ic_info%402x.png" />
+    <BundleResource Include="Resources\ic_info.png" />
+    <BundleResource Include="Resources\ic_poll%403x.png" />
+    <BundleResource Include="Resources\ic_poll%402x.png" />
+    <BundleResource Include="Resources\ic_poll.png" />
+    <BundleResource Include="Resources\ic_info_outline_white.png" />
+    <BundleResource Include="Resources\ic_info_outline_white%402x.png" />
+    <BundleResource Include="Resources\ic_info_outline_white%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
@@ -307,6 +316,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\eMedicineDBV08.sqlite" />
+    <Content Include="Resources\eMedicineDBV11.sqlite" />
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Build.Download.0.4.6\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.6\build\Xamarin.Build.Download.targets')" />
   <Import Project="..\packages\Xamarin.Firebase.iOS.Core.4.0.3\build\Xamarin.Firebase.iOS.Core.targets" Condition="Exists('..\packages\Xamarin.Firebase.iOS.Core.4.0.3\build\Xamarin.Firebase.iOS.Core.targets')" />

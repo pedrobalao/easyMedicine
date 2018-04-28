@@ -140,9 +140,9 @@ namespace easyMedicine.Core.Views
                 },
                 ColumnDefinitions =
                 {
+                    new ColumnDefinition { Width = new GridLength(5, GridUnitType.Star) },
                     new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },
-                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) },
+                    new ColumnDefinition { Width = new GridLength(2, GridUnitType.Auto) },
                 }
             };
             DescriptionLabel = new Label()
@@ -166,8 +166,8 @@ namespace easyMedicine.Core.Views
 
             ValuePicker = new Picker()
             {
-                BackgroundColor = Color.FromHex("0078D7"),
-                TextColor = Color.White
+                //BackgroundColor = Color.FromHex("0078D7"),
+                TextColor = Styles.BLUE_COLOR
 
             };
 

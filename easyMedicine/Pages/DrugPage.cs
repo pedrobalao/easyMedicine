@@ -118,7 +118,7 @@ namespace easyMedicine
                 var img = new Image()
                 {
                     HorizontalOptions = LayoutOptions.EndAndExpand,
-                    Source = "ic_info_outline_white_48pt.png"
+                    Source = "ic_info_outline_white.png"
                 };
 
                 var tapImage = new TapGestureRecognizer();

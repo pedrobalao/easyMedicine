@@ -22,6 +22,7 @@ namespace easyMedicine.iOS
             if (Control != null)
             {
                 Control.TableFooterView = new UIKit.UIView();
+                Control.TintColor = ExtensionMethods.ToUIColor(Styles.LETTER_COLOR_HEX);
 
             }
 

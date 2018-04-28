@@ -55,6 +55,8 @@ namespace easyMedicine
             viewFactory.Register<CalculatorListPageModel, CalculatorListPage>();
             viewFactory.Register<MedicalCalculationListPageModel, MedicalCalculationListPage>();
             viewFactory.Register<MedicalCalculationPageModel, MedicalCalculationPage>();
+            viewFactory.Register<MenuMorePageModel, MenuMorePage>();
+
 
         }
 
