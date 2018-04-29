@@ -66,14 +66,19 @@ namespace easyMedicine
 
 #if __ANDROID__
         public const int SmallFontSize = 10;
-#else 
-        public const int SmallFontSize = 12;
-#endif
-
         public const int SmallMediumFontSize = 14;
         public const int MediumFontSize = 18;
         public const int MediumLargeFontSize = 25;
         public const int LargeFontSize = 35;
+#else 
+        public const int SmallFontSize = 14;
+        public const int SmallMediumFontSize = 16;
+        public const int MediumFontSize = 20;
+        public const int MediumLargeFontSize = 27;
+        public const int LargeFontSize = 35;
+#endif
+
+
         //@TODO Font Size
         //https://github.com/XLabs/Xamarin-Forms-Labs/blob/master/Samples/XLabs.Sample/Pages/Services/FontManagerPage.cs
         //https://github.com/XLabs/Xamarin-Forms-Labs/blob/master/src/Forms/XLabs.Forms.Droid/Services/FontManager.cs
