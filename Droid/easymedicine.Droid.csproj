@@ -10,7 +10,7 @@
 		<OutputType>Library</OutputType>
 		<RootNamespace>easymedicine.Droid</RootNamespace>
 		<AssemblyName>easymedicine.Droid</AssemblyName>
-		<TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+		<TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
 		<AndroidApplication>True</AndroidApplication>
 		<AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
 		<AndroidResgenClass>Resource</AndroidResgenClass>
@@ -322,6 +322,22 @@
 		<AndroidResource Include="Resources\drawable-xhdpi\ic_opacity_white.png" />
 		<AndroidResource Include="Resources\drawable-xxhdpi\ic_opacity_white.png" />
 		<AndroidResource Include="Resources\drawable\ic_opacity_white.png" />
+		<AndroidResource Include="Resources\drawable-hdpi\ic_more_horiz_white.png" />
+		<AndroidResource Include="Resources\drawable\ic_more_horiz_white.png" />
+		<AndroidResource Include="Resources\drawable-xhdpi\ic_more_horiz_white.png" />
+		<AndroidResource Include="Resources\drawable-xxhdpi\ic_more_horiz_white.png" />
+		<AndroidResource Include="Resources\drawable-hdpi\ic_poll.png" />
+		<AndroidResource Include="Resources\drawable\ic_poll.png" />
+		<AndroidResource Include="Resources\drawable-xhdpi\ic_poll.png" />
+		<AndroidResource Include="Resources\drawable-xxhdpi\ic_poll.png" />
+		<AndroidResource Include="Resources\drawable\ic_info.png" />
+		<AndroidResource Include="Resources\drawable-hdpi\ic_info.png" />
+		<AndroidResource Include="Resources\drawable-xhdpi\ic_info.png" />
+		<AndroidResource Include="Resources\drawable-xxhdpi\ic_info.png" />
+		<AndroidResource Include="Resources\drawable\ic_info_outline_white.png" />
+		<AndroidResource Include="Resources\drawable-hdpi\ic_info_outline_white.png" />
+		<AndroidResource Include="Resources\drawable-xhdpi\ic_info_outline_white.png" />
+		<AndroidResource Include="Resources\drawable-xxhdpi\ic_info_outline_white.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\easyMedicine\easyMedicine.csproj">
@@ -346,8 +362,8 @@
 	  <AndroidAsset Remove="..\iOS\Resources\eMedicineDBV01.sqlite" />
 	</ItemGroup>
 	<ItemGroup>
-	  <AndroidAsset Include="..\iOS\Resources\eMedicineDBV08.sqlite">
-	    <Link>Assets\eMedicineDBV08.sqlite</Link>
+	  <AndroidAsset Include="..\iOS\Resources\eMedicineDBV13.sqlite">
+	    <Link>Assets\eMedicineDBV13.sqlite</Link>
 	  </AndroidAsset>
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

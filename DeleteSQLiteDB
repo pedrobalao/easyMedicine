@@ -4,13 +4,17 @@ select replace(replace(replace(scriptText,'[smartwalletservice].[',''),']',''),'
 
 
 delete from Calculation;
+delete from VariableValues;
+delete from VariableMedicalCalculation;
 delete from VariableDrug;
 delete from Variable;
 delete from Dose;
 delete from Indication;
 delete from DrugCategory;
 delete from SubCategory;
-delete from Unity;
 delete from Via;
 delete from Drug;
 delete from ClinicalCategory;
+delete from MedicalCalculation;
+delete from MedicalCalculationGroup;
+delete from Unity;
