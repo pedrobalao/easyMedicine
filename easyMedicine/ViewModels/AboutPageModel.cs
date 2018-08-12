@@ -72,7 +72,7 @@ namespace easyMedicine.ViewModels
         public AboutPageModel(INavigatorService navigator, IDrugsDataService drugsDataServ)
         {
             _navigator = navigator;
-            Credits = "Ruben Rocha\nAna Reis Melo\nClaudia Teles Silva\nJoão Sarmento\nMariana Adrião\nMarta Rosário\nSofia Ferreira\nSónia Silva";
+            Credits = "Ruben Rocha\nAna Reis Melo\nClaudia Teles Silva\nJoão Sarmento\nMariana Adrião\nMarta Rosário\nRuben Pinheiro\nSofia Ferreira\nSónia Silva";
             Discloser = "Esta aplicação pretende ser um auxilio na prescrição médica pediatrica. Todos os fármacos foram inseridos com o máximo rigor e precaução, todavia é impossível assegurar a ausência total de erros. Assim sendo, os autores declinam qualquer responsabilidade na utilização da mesma, devendo qualquer dose ou indicação ser confirmada em documentos de referencia atualizados aquando da prescrição. " +
                 "Pretendemos que a aplicação seja revista periodicamente para se manter atualizada. Qualquer erro relativo aos fármacos pode e deve ser reportado no espaço próprio de cada fármaco. Qualquer sugestão de adição de fármacos ou outra sugestão é bem-vinda e pode ser reportada do mesmo modo que os fármacos. ";
             Biblio = "Takemoto CK, Hodding JH, Kraus, DM. Pediatric & Neonatal Dosage Handbook, 21st ed. Hudson, Ohio, Lexi-Comp, Inc. 2014" +

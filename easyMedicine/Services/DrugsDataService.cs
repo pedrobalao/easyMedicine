@@ -245,6 +245,12 @@ namespace easyMedicine.Services
             return mcs;
         }
 
+        public async Task<MedicalInfo> GetMedicalInfos(string Id)
+        {
+            var mi = await database.Table<MedicalInfo>().Where(x => x.ID == Id).FirstAsync();
+
+            return mi;
+        }
 
 
 

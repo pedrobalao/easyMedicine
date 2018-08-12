@@ -45,6 +45,7 @@ namespace easyMedicine.ViewModels
             MenuItems = new ObservableCollection<MenuItem>
             {
                 new MenuItem("CALCULATIONS", "Cálculos", "ic_poll.png"),
+                new MenuItem("SURGERIES", "Cirurgias", "ic_poll.png"),
                 new MenuItem("ABOUT", "Sobre", "ic_info.png"),
             };
 
@@ -58,6 +59,9 @@ namespace easyMedicine.ViewModels
                         break;
                     case "CALCULATIONS":
                         await _navigator.PushAsync<MedicalCalculationListPageModel>("Calculations", (model) => { });
+                        break;
+                    case "SURGERIES":
+                        await _navigator.PushAsync<SurgeriesReferralPageModel>("Surgeries", (model) => { });
                         break;
                     default:
                         throw new NotImplementedException("Menu desconhecido: " + SelectedItem.Id);

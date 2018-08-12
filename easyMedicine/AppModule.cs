@@ -76,6 +76,15 @@ namespace easyMedicine
             builder.RegisterType<MenuMorePage>()
                .SingleInstance();
 
+            builder.RegisterType<SurgeriesReferralPageModel>()
+                .SingleInstance();
+            builder.RegisterType<SurgeriesReferralPage>()
+               .SingleInstance();
+
+            builder.RegisterType<SurgeryReferralPageModel>()
+                .SingleInstance();
+            builder.RegisterType<SurgeryReferralPage>()
+               .SingleInstance();
 
 
 

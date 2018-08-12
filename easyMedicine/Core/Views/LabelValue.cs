@@ -30,12 +30,12 @@ namespace easyMedicine
                 Width = new GridLength(1, GridUnitType.Star)
             });
 
-            var titleHeight = 10;
+            var titleHeight = 15;
 
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    titleHeight = 10;
+                    titleHeight = 15;
                     break;
                 case Device.Android:
                     titleHeight = 15;

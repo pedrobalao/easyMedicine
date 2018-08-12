@@ -97,6 +97,12 @@
     <Compile Include="Core\Converters\UnitVariableString.cs" />
     <Compile Include="Pages\MoreMenuPage.cs" />
     <Compile Include="ViewModels\MenuMorePageModel.cs" />
+    <Compile Include="ViewModels\SurgeriesReferralPageModel.cs" />
+    <Compile Include="Models\SurgeriesReferral.cs" />
+    <Compile Include="Pages\SurgerIesReferralPage.cs" />
+    <Compile Include="ViewModels\SurgeryReferralPageModel.cs" />
+    <Compile Include="Pages\SurgeryReferralPage.cs" />
+    <Compile Include="Core\Views\SimpleTextCell.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.12.3\build\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.12.3\build\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.targets')" />

@@ -294,6 +294,16 @@ namespace easyMedicine.Models
         }
     }
 
+    [Table("MedicalInfo")]
+    public class MedicalInfo
+    {
+        [PrimaryKey]
+        public string ID { get; set; }
+
+        public string DATA { get; set; }
+
+    }
+
 
 
 

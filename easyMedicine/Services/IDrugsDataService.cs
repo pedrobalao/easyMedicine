@@ -25,6 +25,8 @@ namespace easyMedicine.Services
         Task<IEnumerable<MedicalCalculation>> GetMedicalCalculations();
 
         Task<MedicalCalculationFull> GetMedicalCalculation(int medicalCalculationId);
+
+        Task<MedicalInfo> GetMedicalInfos(string Id);
     }
 }
 
