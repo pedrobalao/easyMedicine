@@ -40,7 +40,7 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchFloat32>true</MtouchFloat32>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignKey>iPhone Distribution: Pedro Rocha (F39T9H2Q78)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -309,6 +309,9 @@
     <BundleResource Include="Resources\ic_info_outline_white.png" />
     <BundleResource Include="Resources\ic_info_outline_white%402x.png" />
     <BundleResource Include="Resources\ic_info_outline_white%403x.png" />
+    <BundleResource Include="Resources\round_verified_user_black_24pt.png" />
+    <BundleResource Include="Resources\round_verified_user_black_24pt%402x.png" />
+    <BundleResource Include="Resources\round_verified_user_black_24pt%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

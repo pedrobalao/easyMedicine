@@ -10,7 +10,7 @@
 		<OutputType>Library</OutputType>
 		<RootNamespace>easymedicine.Droid</RootNamespace>
 		<AssemblyName>easymedicine.Droid</AssemblyName>
-		<TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+		<TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
 		<AndroidApplication>True</AndroidApplication>
 		<AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
 		<AndroidResgenClass>Resource</AndroidResgenClass>
@@ -338,6 +338,10 @@
 		<AndroidResource Include="Resources\drawable-hdpi\ic_info_outline_white.png" />
 		<AndroidResource Include="Resources\drawable-xhdpi\ic_info_outline_white.png" />
 		<AndroidResource Include="Resources\drawable-xxhdpi\ic_info_outline_white.png" />
+		<AndroidResource Include="Resources\drawable\round_verified_user_black_24pt.png" />
+		<AndroidResource Include="Resources\drawable-hdpi\round_verified_user_black_24pt.png" />
+		<AndroidResource Include="Resources\drawable-xhdpi\round_verified_user_black_24pt.png" />
+		<AndroidResource Include="Resources\drawable-xxhdpi\round_verified_user_black_24pt.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\easyMedicine\easyMedicine.csproj">
@@ -362,8 +366,8 @@
 	  <AndroidAsset Remove="..\iOS\Resources\eMedicineDBV01.sqlite" />
 	</ItemGroup>
 	<ItemGroup>
-	  <AndroidAsset Include="..\iOS\Resources\eMedicineDBV13.sqlite">
-	    <Link>Assets\eMedicineDBV13.sqlite</Link>
+	  <AndroidAsset Include="..\iOS\Resources\eMedicineDBV14.sqlite">
+	    <Link>Assets\eMedicineDBV14.sqlite</Link>
 	  </AndroidAsset>
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

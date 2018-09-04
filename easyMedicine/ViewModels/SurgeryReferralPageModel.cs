@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using easyMedicine.Core.Models;
 using easyMedicine.Core.Services;
 using easyMedicine.Models;
 using easyMedicine.Services;
+using Microsoft.Azure.Mobile.Analytics;
 
 namespace easyMedicine.ViewModels
 {
@@ -124,6 +126,10 @@ namespace easyMedicine.ViewModels
                 }
 
                 OnPropertyChanged(SurgeryPropertyName);
+
+                Analytics.TrackEvent("SugeryReferral Opened", new Dictionary<string, string> {
+                    { "Surgery", _Surgery.Scope }
+                });
             }
         }
 

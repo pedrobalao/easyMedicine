@@ -5,8 +5,10 @@ namespace easyMedicine.Core.Views
 {
     public class CustomEditor : Editor
     {
+
         public static readonly BindableProperty PlaceholderProperty =
-          BindableProperty.Create<CustomEditor, string>(view => view.Placeholder, String.Empty);
+            BindableProperty.Create("Placeholder", typeof(string), typeof(CustomEditor), String.Empty);
+
 
         public string Placeholder
         {

@@ -13,10 +13,8 @@ namespace easyMedicine.ViewModels
 {
     public class CalculatorListPageModel : PageModelBase
     {
-        bool _isFirstRun;
         public CalculatorListPageModel(INavigatorService navigator, IDrugsDataService drugsDataServ)
         {
-            _isFirstRun = true;
             _drugsDataServ = drugsDataServ;
             _navigator = navigator;
 
@@ -25,10 +23,10 @@ namespace easyMedicine.ViewModels
             DrugSelectedCommand = new Command<Drug>(async (cat) => await DrugSelected(cat));
         }
 
-        bool _isLoadRunning;
+
         public async Task Load()
         {
-            _isLoadRunning = true;
+
             Drugs.Clear();
 
             var data = await _drugsDataServ.GetDrugsWithCalc();

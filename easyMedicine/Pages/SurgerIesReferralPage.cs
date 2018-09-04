@@ -18,7 +18,7 @@ namespace easyMedicine.Pages
 
         public SurgeriesReferralPage(SurgeriesReferralPageModel model) : base(model)
         {
-            Title = "Cirurgias";
+            Title = "Referenciação Cirúrgica";
             Icon = "ic_explore_white_48px.png";
             var layout = new StackLayout()
             {
@@ -72,6 +72,8 @@ namespace easyMedicine.Pages
             lbFooter.SetBinding(Label.TextProperty, SurgeriesReferralPageModel.FooterInfoPropertyName);
 
             footerSL.Children.Add(lbFooter);
+
+
 
             var lbMemorium = new Label()
             {

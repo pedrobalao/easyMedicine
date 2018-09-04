@@ -21,7 +21,7 @@ namespace easyMedicine.Pages
         {
             this.BindingContext = Model;
             //this.SetBinding(Page.TitleProperty, "Surgery.Scope");
-            Title = "Referenciação Cirurgica";
+            Title = "Referenciação Cirúrgica";
 
 
             var layoutHeader = new StackLayout()

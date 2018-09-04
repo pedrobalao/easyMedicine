@@ -76,10 +76,27 @@ namespace easyMedicine.Pages
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += (s, e) =>
             {
-                Device.OpenUri(new Uri(@"https://www.facebook.com/EasyPed"));
+                Device.OpenUri(new Uri(@"https://www.facebook.com/easyPed"));
             };
             fbLink.GestureRecognizers.Add(tapGestureRecognizer);
             layout.Children.Add(fbLink);
+
+
+            var siteLink = new Label()
+            {
+                Text = "easyped.eu",
+                HorizontalTextAlignment = TextAlignment.Center,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelMediumStyle],
+
+            };
+            var siteLinktapGestureRecognizer = new TapGestureRecognizer();
+            siteLinktapGestureRecognizer.Tapped += (s, e) =>
+            {
+                Device.OpenUri(new Uri(@"http://www.easyped.eu"));
+            };
+            siteLink.GestureRecognizers.Add(siteLinktapGestureRecognizer);
+            layout.Children.Add(siteLink);
 
 
             var labelAbout = new Label()

@@ -45,7 +45,7 @@ namespace easyMedicine.ViewModels
             MenuItems = new ObservableCollection<MenuItem>
             {
                 new MenuItem("CALCULATIONS", "Cálculos", "ic_poll.png"),
-                new MenuItem("SURGERIES", "Cirurgias", "ic_poll.png"),
+                new MenuItem("SURGERIES", "Referenciação Cirúrgica", "round_verified_user_black_24pt.png"),
                 new MenuItem("ABOUT", "Sobre", "ic_info.png"),
             };
 

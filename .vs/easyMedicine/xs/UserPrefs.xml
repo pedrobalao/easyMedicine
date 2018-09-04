@@ -1,25 +1,35 @@
-﻿<Properties StartupConfiguration="{EFD4C86B-439D-4EEF-AC7B-E67CF9574F78}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="easyMedicine/ViewModels/AboutPageModel.cs">
+﻿<Properties StartupConfiguration="{21709F14-BE5A-4249-B23C-8280754D829B}|Default">
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="easyMedicine/Pages/SurgeryReferralPage.cs" Line="99" Column="71" />
-      <File FileName="easyMedicine/ViewModels/SurgeryReferralPageModel.cs" Line="119" Column="38" />
+      <File FileName="easyMedicine/Pages/SurgeryReferralPage.cs" Line="22" Column="41" />
+      <File FileName="easyMedicine/ViewModels/SurgeryReferralPageModel.cs" Line="130" Column="17" />
       <File FileName="easyMedicine/Models/SurgeriesReferral.cs" Line="27" Column="47" />
-      <File FileName="iOS/Main.cs" Line="17" Column="1" />
-      <File FileName="easyMedicine/Core/Factory/ViewFactory.cs" Line="43" Column="3" />
-      <File FileName="easyMedicine/ViewModels/SurgeriesReferralPageModel.cs" Line="41" Column="1" />
-      <File FileName="easyMedicine/ViewModels/DrugPageModel.cs" Line="55" Column="10" />
+      <File FileName="iOS/Main.cs" Line="22" Column="1" />
+      <File FileName="easyMedicine/Core/Factory/ViewFactory.cs" Line="39" Column="1" />
+      <File FileName="easyMedicine/ViewModels/SurgeriesReferralPageModel.cs" Line="22" Column="13" />
+      <File FileName="easyMedicine/ViewModels/DrugPageModel.cs" Line="444" Column="16" />
       <File FileName="easyMedicine/Pages/DrugPage.cs" Line="46" Column="37" />
       <File FileName="easyMedicine/Core/Views/Repeater.cs" Line="8" Column="18" />
-      <File FileName="easyMedicine/Pages/SurgerIesReferralPage.cs" Line="8" Column="32" />
+      <File FileName="easyMedicine/Pages/SurgerIesReferralPage.cs" Line="84" Column="15" />
       <File FileName="easyMedicine/Core/Views/LabelValue.cs" Line="60" Column="96" />
       <File FileName="easyMedicine/Core/Views/CustomCell.cs" Line="70" Column="1" />
-      <File FileName="easyMedicine/Core/Views/SimpleTextCell.cs" Line="49" Column="44" />
+      <File FileName="easyMedicine/Core/Views/SimpleTextCell.cs" Line="44" Column="17" />
       <File FileName="easyMedicine/Core/Styles/Styles.cs" Line="16" Column="51" />
-      <File FileName="easyMedicine/Pages/AboutPage.cs" Line="1" Column="1" />
-      <File FileName="easyMedicine/ViewModels/AboutPageModel.cs" Line="75" Column="146" />
+      <File FileName="easyMedicine/Pages/AboutPage.cs" Line="73" Column="59" />
+      <File FileName="easyMedicine/ViewModels/AboutPageModel.cs" Line="75" Column="133" />
+      <File FileName="easyMedicine/ViewModels/MenuMorePageModel.cs" Line="53" Column="14" />
+      <File FileName="easyMedicine/Core/Views/CustomEditor.cs" Line="14" Column="10" />
+      <File FileName="easyMedicine/Core/Views/DoseResultCell.cs" Line="12" Column="1" />
+      <File FileName="easyMedicine/Core/Views/DoseCell.cs" Line="126" Column="10" />
+      <File FileName="iOS/AppDelegate.cs" Line="123" Column="35" />
+      <File FileName="easyMedicine/ViewModels/CalculatorListPageModel.cs" Line="30" Column="13" />
+      <File FileName="easyMedicine/Pages/RootPage.cs" Line="1" Column="1" />
+      <File FileName="easyMedicine/Pages/MoreMenuPage.cs" Line="1" Column="1" />
+      <File FileName="easyMedicine/ViewModels/MedicalCalculationPageModel.cs" Line="238" Column="1" />
+      <File FileName="iOS/Info.plist" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/pedrorocha/Projects/easyMedicine/easyMedicine/Core/Views/ResultView.cs" relfile="easyMedicine/Core/Views/ResultView.cs" line="72" column="1" />
@@ -27,7 +37,7 @@
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.easymedicine.Droid PreferredExecutionTarget="Android.Android07" />
+  <MonoDevelop.Ide.ItemProperties.easymedicine.Droid PreferredExecutionTarget="Android.486a8967ce40" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.easyMedicine.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.7467bc2a1052ca406a9d9bf069c8775a4291da45" automaticSigning="False" />
+  <MonoDevelop.Ide.ItemProperties.easyMedicine.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.ED38D391-1485-4B3A-B8FD-DABE569FB14C" automaticSigning="False" />
 </Properties>

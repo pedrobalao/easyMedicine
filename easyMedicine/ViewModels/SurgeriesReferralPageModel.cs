@@ -15,10 +15,10 @@ namespace easyMedicine.ViewModels
 {
     public class SurgeriesReferralPageModel : PageModelBase
     {
-        bool _isFirstRun;
+
         public SurgeriesReferralPageModel(INavigatorService navigator, IDrugsDataService drugsDataServ)
         {
-            _isFirstRun = true;
+
             _drugsDataServ = drugsDataServ;
             _navigator = navigator;
 

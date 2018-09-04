@@ -18,3 +18,4 @@ delete from ClinicalCategory;
 delete from MedicalCalculation;
 delete from MedicalCalculationGroup;
 delete from Unity;
+delete from MedicalInfo;
