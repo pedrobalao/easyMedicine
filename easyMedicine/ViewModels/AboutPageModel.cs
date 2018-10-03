@@ -72,9 +72,20 @@ namespace easyMedicine.ViewModels
         public AboutPageModel(INavigatorService navigator, IDrugsDataService drugsDataServ)
         {
             _navigator = navigator;
-            Credits = "Ruben Rocha\nAna Reis Melo\nClaudia Teles Silva\nJoão Sarmento\nMariana Adrião\nMarta Rosário\nRuben Pinheiro\nSofia Ferreira\nSónia Silva";
-            Discloser = "Esta aplicação pretende ser um auxilio na prescrição médica pediatrica. Todos os fármacos foram inseridos com o máximo rigor e precaução, todavia é impossível assegurar a ausência total de erros. Assim sendo, os autores declinam qualquer responsabilidade na utilização da mesma, devendo qualquer dose ou indicação ser confirmada em documentos de referencia atualizados aquando da prescrição. " +
-                "Pretendemos que a aplicação seja revista periodicamente para se manter atualizada. Qualquer erro relativo aos fármacos pode e deve ser reportado no espaço próprio de cada fármaco. Qualquer sugestão de adição de fármacos ou outra sugestão é bem-vinda e pode ser reportada do mesmo modo que os fármacos. ";
+            Credits = "Dr. Ruben Rocha - Pediatra\n" +
+                "Dra. Ana Reis Melo - Interna de Pediatria\n" +
+                "Dra. Claudia Teles Silva - Interna de Pediatria\n" +
+                "Dr. João Sarmento - Interno de Cardiologia Pediátrica\n" +
+                "Dra. Mariana Adrião - Interna de Pediatria\n" +
+                "Dra. Marta Rosário - Interna de Pediatria\n" +
+                "Dr. Ruben Pinheiro - Cirurgião Pediátrico\n" +
+                "Dra. Sofia Ferreira - Interna de Pediatria\n" +
+                "Dra. Sónia Silva - Interna de Pediatria";
+
+            Discloser = "Esta aplicação é dirigida a profissionais de saúde. Pretende ser um auxilio à prática da medicina pediátrica. Todos os dados foram inseridos e validados por médicos do corpo clínico do Centro Materno Infantil do Norte e Centro Hospitalar São João. " +
+                "Embora envidemos todos os esforços razoáveis para garantir que as informações contidas na easyPed sejam corretas, esteja ciente de que as informações podem estar incompletas, imprecisas ou desatualizadas e não podem ser garantidas. Assim, está excluída a garantia ou responsabilidade de qualquer tipo. Os autores declinam qualquer responsabilidade na utilização da mesma, devendo qualquer dose ou indicação ser confirmada em documentos de referencia atualizados aquando da prescrição. " +
+                "Qualquer erro relativo aos fármacos pode e deve ser reportado no espaço próprio de cada fármaco. Qualquer sugestão de adição de fármacos ou outra sugestão é bem-vinda e pode ser reportada do mesmo modo que os fármacos. ";
+
             Biblio = "Takemoto CK, Hodding JH, Kraus, DM. Pediatric & Neonatal Dosage Handbook, 21st ed. Hudson, Ohio, Lexi-Comp, Inc. 2014" +
                     "\nProntuário terapêutico. Infarmed. Versão on-line. Acedida no ano 2016 - 2017." + "European medicines agency database. Acesso online. Ano 2016 - 2017" +
                     "\nFormulário hospitalar nacional do medicamento. Infarmed. Versão on-line. Acedida no ano 2016 - 2017." +

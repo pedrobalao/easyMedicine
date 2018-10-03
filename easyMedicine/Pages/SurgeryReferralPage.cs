@@ -31,8 +31,10 @@ namespace easyMedicine.Pages
                 Padding = new Thickness(5),
             };
 
-            var lbtname = new LabelValue("Cirurgia", "Surgery.Scope");
-            lbtname.Padding = new Thickness(0, 5, 0, 5);
+            var lbtname = new LabelValue("Cirurgia", "Surgery.Scope")
+            {
+                Padding = new Thickness(0, 5, 0, 5)
+            };
             layoutHeader.Children.Add(lbtname);
 
 
@@ -43,8 +45,10 @@ namespace easyMedicine.Pages
             var obsView = GetObservationsView();
             layoutHeader.Children.Add(obsView);
 
-            var sv = new ScrollView();
-            sv.Content = layoutHeader;
+            var sv = new ScrollView
+            {
+                Content = layoutHeader
+            };
 
             Content = sv;
 

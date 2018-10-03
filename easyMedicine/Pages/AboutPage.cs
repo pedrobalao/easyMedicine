@@ -32,29 +32,6 @@ namespace easyMedicine.Pages
                 Padding = new Thickness(5, 20),
             };
 
-            var labelAuthors = new Label()
-            {
-                Text = "Autores",
-                HorizontalTextAlignment = TextAlignment.Start,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
-
-            };
-            layout.Children.Add(labelAuthors);
-
-            var labelNames = new Label()
-            {
-                HorizontalTextAlignment = TextAlignment.Center,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                Style = (Style)Application.Current.Resources[Styles.Style_LabelMediumStyle],
-
-            };
-
-            labelNames.SetBinding(Label.TextProperty, AboutPageModel.CreditsPropertyName);
-            layout.Children.Add(labelNames);
-
-
-
             var labelfb = new Label()
             {
                 Text = "Entra em contato connosco",
@@ -99,9 +76,33 @@ namespace easyMedicine.Pages
             layout.Children.Add(siteLink);
 
 
+
+            var labelAuthors = new Label()
+            {
+                Text = "Autores",
+                HorizontalTextAlignment = TextAlignment.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
+
+            };
+            layout.Children.Add(labelAuthors);
+
+            var labelNames = new Label()
+            {
+                HorizontalTextAlignment = TextAlignment.Center,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyleNormal],
+
+            };
+
+            labelNames.SetBinding(Label.TextProperty, AboutPageModel.CreditsPropertyName);
+            layout.Children.Add(labelNames);
+
+
+
             var labelAbout = new Label()
             {
-                Text = "Sobre",
+                Text = "Isenção de Responsabilidade",
                 HorizontalTextAlignment = TextAlignment.Start,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],

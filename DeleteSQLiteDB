@@ -1,6 +1,6 @@
 select replace(replace(replace(scriptText,'[smartwalletservice].[',''),']',''),'[','')    +';' from smartwalletservice.easyMedScript a where a.dataversion = 102 order by orderexec;
 
---substituir "INSERT ... "
+--substituir "INSERT ... ", "" -> "
 
 
 delete from Calculation;

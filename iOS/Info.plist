@@ -7,7 +7,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.easymedicine</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.7</string>
+	<string>1.8</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -40,11 +40,11 @@
 	<string>easyPed</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcon-1.appiconset</string>
-	<key>CFBundleVersion</key>
-	<string>28</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>30</string>
 </dict>
 </plist>
