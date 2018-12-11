@@ -85,9 +85,10 @@ namespace easyMedicine
                 .SingleInstance();
             builder.RegisterType<SurgeryReferralPage>()
                .SingleInstance();
-
-
-
+            builder.RegisterType<PercentilesPageModel>()
+               .SingleInstance();
+            builder.RegisterType<PercentilesPage>()
+               .SingleInstance();
 
         }
     }

@@ -15,8 +15,6 @@ using Xamarin.Forms;
 namespace easyMedicine.ViewModels
 {
 
-
-
     public class MedicalCalculationPageModel : PageModelBase
     {
 

@@ -15,6 +15,7 @@ namespace easyMedicine
 
         public static string Style_LabelSmallStyle = "LabelSmallStyle";
         public static string Style_LabelMediumStyle = "LabelMediumStyle";
+        public static string Style_LabelMediumNegativeStyle = "LabelMediumNegativeStyle";
         public static string Style_LabelSmallStyleNormal = "LabelSmallStyleNormal";
 
         //Preto esbatido
@@ -39,6 +40,8 @@ namespace easyMedicine
         public static Color GRAY_COLOR = Color.FromHex("666666");
 
         public static Color NEGATIVE_COLOR = Color.FromHex("651F06");
+        public static Color SUCCESS_COLOR = Color.FromHex("28a745");
+
 
 
 
@@ -52,6 +55,7 @@ namespace easyMedicine
         public static string Style_LabelIndincValueStyle = "LabelIndincValueStyle";
 
         public static string Style_ButtonMediumNegStyle = "ButtonMediumNegStyle";
+        public static string Style_ButtonMediumSuccessStyle = "ButtonMediumSuccessgStyle";
 
         public static string Style_VariablesEntryStyle = "VariablesEntryStyle";
 
@@ -175,13 +179,23 @@ namespace easyMedicine
                 }
             };
 
+            var labelMediumNegativeStyle = new Style(typeof(Label))
+            {
+                BasedOn = labelMediumStyle,
+                Setters = {
+                    new Setter {
+                        Property = Label.TextColorProperty, Value = NEGATIVE_COLOR,
+                    },
+                }
+            };
+
 
             var labelResultValueStyle = new Style(typeof(Label))
             {
                 BasedOn = labelContrastBaseStyle,
                 Setters = {
                     new Setter {
-                        Property = Label.TextColorProperty, Value = BLUE_COLOR,
+                        Property = Label.TextColorProperty, Value = SUCCESS_COLOR,
                     },
                     new Setter {
                         Property = Label.HorizontalTextAlignmentProperty, Value = TextAlignment.Start
@@ -368,7 +382,7 @@ namespace easyMedicine
                         Property = Button.BorderColorProperty, Value = CONTRAST_LETTER_COLOR
                     },
                     new Setter {
-                        Property = Button.BorderRadiusProperty, Value = /*(Device.OS == TargetPlatform.iOS) ?*/ 0// : 45
+                        Property = Button.CornerRadiusProperty, Value = /*(Device.OS == TargetPlatform.iOS) ?*/ 0// : 45
                     },
 
                 }
@@ -383,6 +397,19 @@ namespace easyMedicine
                     },
                     new Setter {
                         Property = Button.BorderColorProperty, Value = NEGATIVE_COLOR
+                    },
+                }
+            };
+
+            var buttonMediumLargeSuccesStyle = new Style(typeof(Button))
+            {
+                BasedOn = buttonMediumLargeStyle,
+                Setters = {
+                    new Setter {
+                        Property = Button.BackgroundColorProperty, Value =  SUCCESS_COLOR//Color.White
+                    },
+                    new Setter {
+                        Property = Button.BorderColorProperty, Value = SUCCESS_COLOR
                     },
                 }
             };
@@ -459,11 +486,14 @@ namespace easyMedicine
             Application.Current.Resources.Add(Style_LabelSmallStyle, labelSmallStyle);
             Application.Current.Resources.Add(Style_LabelSmallStyleNormal, labelSmallStyleNormal);
             Application.Current.Resources.Add(Style_LabelMediumStyle, labelMediumStyle);
+            Application.Current.Resources.Add(Style_LabelMediumNegativeStyle, labelMediumNegativeStyle);
+
+
             Application.Current.Resources.Add(Style_LabelMediumBackgroundStyle, labelMediumBackgroundStyle);
             Application.Current.Resources.Add(Style_LabelIndincTitleStyle, labelIndincTitleStyle);
             Application.Current.Resources.Add(Style_LabelIndincValueStyle, labelIndincValueStyle);
             Application.Current.Resources.Add(Style_ButtonMediumNegStyle, buttonMediumLargeNegStyle);
-
+            Application.Current.Resources.Add(Style_ButtonMediumSuccessStyle, buttonMediumLargeSuccesStyle);
 
 
 

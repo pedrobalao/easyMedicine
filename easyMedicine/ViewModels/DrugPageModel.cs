@@ -12,6 +12,8 @@ using easyMedicine.Services;
 using easyMedicine.ViewModels;
 using Jint;
 using Microsoft.Azure.Mobile.Analytics;
+using Plugin.Share;
+using Plugin.Share.Abstractions;
 using Xamarin.Forms;
 
 namespace easyMedicine
@@ -149,7 +151,26 @@ namespace easyMedicine
             }
         }
 
+
         public const string ReportErrorCommandPropertyName = "ReportErrorCommand";
+
+        private ICommand _GotoWebsiteCommand;
+
+        public ICommand GotoWebsiteCommand
+        {
+            get
+            {
+                return _GotoWebsiteCommand;
+            }
+            set
+            {
+                _GotoWebsiteCommand = value;
+                OnPropertyChanged(GotoWebsiteCommandPropertyName);
+            }
+        }
+
+
+        public const string GotoWebsiteCommandPropertyName = "GotoWebsiteCommand";
 
         public DrugPageModel(INavigatorService navigator, IDrugsDataService drugServ)
         {
@@ -164,7 +185,44 @@ namespace easyMedicine
             CalculateDoseCommand = new Command(CalculateDoses);
 
             ReportErrorCommand = new Command(async () => await ReportErrorTapped());
+
+            GotoWebsiteCommand = new Command(async () => await GotoWebsiteTapped());
         }
+
+        async Task GotoWebsiteTapped()
+        {
+
+            string url = "https://easyped.eu/#/drug/" + this.Drug.Id;
+            if (!CrossShare.IsSupported)
+            {
+                Device.OpenUri(new Uri(url));
+                return;
+            }
+
+            var options = new BrowserOptions
+            {
+                UseSafariWebViewController = false
+            };
+            await CrossShare.Current.OpenBrowser(url, options);
+
+        }
+
+        public string GotoWebMessage
+        {
+            get
+            {
+                if (Drug != null)
+                    return "Ver " + Drug.Name + " online";
+                else
+                    return String.Empty;
+            }
+            set
+            {
+            }
+        }
+
+        public const string GotoWebMessagePropertyName = "GotoWebMessage";
+
 
 
         async Task ReportErrorTapped()
@@ -228,6 +286,8 @@ namespace easyMedicine
                 _Drug = value;
                 OnPropertyChanged(DrugPropertyName);
                 OnPropertyChanged(CanCalculateDosePropertyName);
+                OnPropertyChanged(GotoWebMessagePropertyName);
+
             }
         }
 

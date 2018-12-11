@@ -1,4 +1,5 @@
 ﻿using System;
+using easyMedicine.Core.Views;
 using easyMedicine.ViewModels;
 using Xamarin.Forms;
 
@@ -24,7 +25,7 @@ namespace easyMedicine.Pages
                 VerticalOptions = LayoutOptions.FillAndExpand,
             };
 
-            SearchBar sbar = new SearchBar()
+            var sbar = new SearchBarDelayChange()
             {
                 BindingContext = Model,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -40,7 +41,7 @@ namespace easyMedicine.Pages
             }
             //sbar.SetBinding(SearchBar.SearchCommandProperty, SearchPageModel.SearchStringPropertyName, BindingMode.TwoWay);
 
-            sbar.TextChanged += async (sender, e) => await Model.FilterDrugs();
+            sbar.DelayedTextChanged += async (sender, e) => await Model.FilterDrugs();
             sbar.SearchButtonPressed += async (sender, e) =>
             {
                 await Model.FilterDrugs();

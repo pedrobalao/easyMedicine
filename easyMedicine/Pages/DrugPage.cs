@@ -33,9 +33,6 @@ namespace easyMedicine
             this.ToolbarItems.Add(favButton);
 
 
-
-
-
             var layoutHeader = new StackLayout()
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -48,11 +45,16 @@ namespace easyMedicine
 
 
 
-
-
-            var calculationView = GetCalculationView();
-            layoutHeader.Children.Add(calculationView);
-
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                var calculationView = GetCalculationView();
+                layoutHeader.Children.Add(calculationView);
+            }
+            else
+            {
+                var gotowebView = GetSiteLinkView();
+                layoutHeader.Children.Add(gotowebView);
+            }
 
             //var lbtbrand = new LabelValue("Marca Comercial", "Drug.CommercialBrand");
             //layoutHeader.Children.Add(lbtbrand);
@@ -143,20 +145,6 @@ namespace easyMedicine
 
             lstView.Header = layoutHeader;
 
-
-
-
-            //var calculationView = GetCalculationView();
-
-            //var footerLayout = new StackLayout
-            //{
-            //    HorizontalOptions = LayoutOptions.FillAndExpand,
-            //    VerticalOptions = LayoutOptions.Start,
-            //};
-
-            //footerLayout.Children.Add(calculationView);
-
-
             var btnReportProblem = new Button()
             {
                 BindingContext = Model,
@@ -176,6 +164,46 @@ namespace easyMedicine
 
         }
 
+        private View GetSiteLinkView()
+        {
+            var mainLayout = new StackLayout() { };
+            mainLayout.SetBinding(StackLayout.IsVisibleProperty, DrugPageModel.CanCalculateDosePropertyName);
+
+            var frame = new Frame()
+            {
+                BorderColor = Styles.BLUE_COLOR,
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                HasShadow = false,
+                CornerRadius = 0,
+            };
+
+            var stackCalculation = new StackLayout()
+            {
+                BindingContext = Model,
+
+            };
+            var labelInfo = new Label()
+            {
+                Text = "Tenha acesso a todas as features através do nosso site.",
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
+            };
+            stackCalculation.Children.Add(labelInfo);
+
+            var buttonGo = new Button()
+            {
+
+                Style = (Style)Application.Current.Resources[Styles.Style_ButtonMediumSuccessStyle]
+            };
+            buttonGo.SetBinding(Button.TextProperty, DrugPageModel.GotoWebMessagePropertyName);
+            buttonGo.SetBinding(Button.CommandProperty, DrugPageModel.GotoWebsiteCommandPropertyName);
+            stackCalculation.Children.Add(buttonGo);
+
+            frame.Content = stackCalculation;
+            mainLayout.Children.Add(frame);
+
+            return mainLayout;
+        }
 
         private View GetCalculationView()
         {
@@ -192,7 +220,7 @@ namespace easyMedicine
 
             var frame = new Frame()
             {
-                OutlineColor = Styles.BLUE_COLOR,
+                BorderColor = Styles.BLUE_COLOR,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 HasShadow = false,

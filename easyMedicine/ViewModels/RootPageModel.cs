@@ -22,7 +22,9 @@ namespace easyMedicine.ViewModels
             var favsModel = _navigatorService.PushTab<FavouritesPageModel>("Favourites");
             _navigatorService.PushTab<SearchPageModel>("Search");
             _navigatorService.PushTab<ExplorePageModel>("Explore");
-            _navigatorService.PushTab<CalculatorListPageModel>("Calculator");
+            if (Device.RuntimePlatform == Device.Android)
+                _navigatorService.PushTab<CalculatorListPageModel>("Calculator");
+            _navigatorService.PushTab<PercentilesPageModel>("Percentiles");
             _navigatorService.PushTab<MenuMorePageModel>("MenuMore");
 
             //_navigatorService.PushTab<MedicalCalculationListPageModel>("Calculator");

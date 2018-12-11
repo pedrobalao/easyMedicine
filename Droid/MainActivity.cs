@@ -25,8 +25,8 @@ namespace easymedicine.Droid
             base.OnCreate(bundle);
             Window.SetSoftInputMode(Android.Views.SoftInput.AdjustResize);
 
-
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            Xamarin.Essentials.Platform.Init(this, bundle);
 
             var app = new App();
             RegisterComponents(app.BootStrapper);
@@ -59,6 +59,13 @@ namespace easymedicine.Droid
         protected override void OnDestroy()
         {
             base.OnDestroy();
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 
