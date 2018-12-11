@@ -186,3 +186,9 @@ FakesAssemblies/
 
 .DS_Store
 PediatricSurgeriesReferral.json
+easyMedicine.ipa
+.vs/easyMedicine/xs/sqlite3/db.lock
+.vs/easyMedicine/xs/sqlite3/storage.ide
+.vs/easyMedicine/xs/sqlite3/storage.ide-shm
+.vs/easyMedicine/xs/sqlite3/storage.ide-wal
+iOS/Resources/eMedicineDBV14.sqlite
