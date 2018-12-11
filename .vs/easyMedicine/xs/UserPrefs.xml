@@ -1,35 +1,14 @@
 ﻿<Properties StartupConfiguration="{EFD4C86B-439D-4EEF-AC7B-E67CF9574F78}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
   <MonoDevelop.Ide.ItemProperties.easymedicine.Droid PreferredExecutionTarget="Android.Android07" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="easyMedicine/Models/Configurations.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="easyMedicine/Pages/PercentilesPage.cs" Line="25" Column="64" />
-      <File FileName="easyMedicine/ViewModels/PercentilesPageModel.cs" Line="331" Column="18" />
-      <File FileName="packages/Xamarin.Essentials.0.11.0-preview/readme.txt" Line="11" Column="1" />
-      <File FileName="Droid/MainActivity.cs" Line="38" Column="72" />
-      <File FileName="Droid/MainApplication.cs" Line="1" Column="1" />
-      <File FileName="easyMedicine/Services/PercentileService.cs" Line="22" Column="103" />
-      <File FileName="easyMedicine/ViewModels/DrugPageModel.cs" Line="203" Column="14" />
-      <File FileName="easyMedicine/ViewModels/ReportErrorPageModel.cs" Line="45" Column="60" />
-      <File FileName="easyMedicine/Core/Styles/Styles.cs" Line="489" Column="77" />
-      <File FileName="easyMedicine/Core/Converters/StringToBoolConverter.cs" Line="9" Column="37" />
-      <File FileName="easyMedicine/Pages/DrugPage.cs" Line="179" Column="15" />
       <File FileName="iOS/Entitlements.plist" />
-      <File FileName="easyMedicine/ViewModels/MedicalCalculationPageModel.cs" Line="205" Column="1" />
-      <File FileName="easyMedicine/Core/Services/Settings.cs" Line="1" Column="1" />
-      <File FileName="easyMedicine/Core/Services/Navigator.cs" Line="1" Column="1" />
-      <File FileName="easyMedicine/Core/Services/CallerService.cs" Line="1" Column="1" />
-      <File FileName="easyMedicine/Helpers/Settings.cs" Line="1" Column="1" />
-      <File FileName="easyMedicine/Services/ApiClient.cs" Line="50" Column="10" />
-      <File FileName="easyMedicine/Services/ISQLite.cs" Line="1" Column="1" />
-      <File FileName="easyMedicine/Services/DrugsDataService.cs" Line="248" Column="40" />
-      <File FileName="easyMedicine/Services/IDrugsDataService.cs" Line="1" Column="1" />
-      <File FileName="Droid/Data/AndroidSQLite.cs" Line="29" Column="54" />
-      <File FileName="easyMedicine/Models/Configurations.cs" Line="9" Column="1" />
+      <File FileName="iOS/Info.plist" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.easyMedicine.iOS automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.E06D3DC0-0E82-484D-AFDB-8153CF58A50A" />
+  <MonoDevelop.Ide.ItemProperties.easyMedicine.iOS automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.7467bc2a1052ca406a9d9bf069c8775a4291da45" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

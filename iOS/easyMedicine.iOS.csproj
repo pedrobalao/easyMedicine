@@ -325,12 +325,12 @@
     <BundleResource Include="Resources\baseline_supervised_user_circle_black_24pt.png" />
     <BundleResource Include="Resources\baseline_supervised_user_circle_black_24pt%402x.png" />
     <BundleResource Include="Resources\baseline_supervised_user_circle_black_24pt%403x.png" />
+    <BundleResource Include="GoogleService-Info.plist" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\eMedicineDBV14.sqlite" />
     <Content Include="Resources\eMedicineDBV15.sqlite" />
   </ItemGroup>
   <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
