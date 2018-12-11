@@ -192,3 +192,4 @@ easyMedicine.ipa
 .vs/easyMedicine/xs/sqlite3/storage.ide-shm
 .vs/easyMedicine/xs/sqlite3/storage.ide-wal
 iOS/Resources/eMedicineDBV14.sqlite
+iOS/GoogleService-Info.plist
