@@ -1,14 +1,13 @@
 ﻿using System;
-using SQLite.Net;
-using SQLite.Net.Async;
+using SQLite;
 
 namespace easyMedicine.Services
 {
-	
-	public interface ISQLite
-	{
-		SQLiteAsyncConnection GetConnection ();
-	}
+
+    public interface ISQLite
+    {
+        SQLiteAsyncConnection GetConnection();
+    }
 
 }
 

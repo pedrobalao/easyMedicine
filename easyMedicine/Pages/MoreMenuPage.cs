@@ -24,10 +24,22 @@ namespace easyMedicine.Pages
 
             };
 
-            var cell = new DataTemplate(typeof(ImageCell));
-            cell.SetBinding(ImageCell.TextProperty, "Title");
-            cell.Values[ImageCell.TextColorProperty] = Styles.LETTER_COLOR;
-            cell.SetBinding(ImageCell.ImageSourceProperty, "Icon");
+            DataTemplate cell;
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                cell = new DataTemplate(typeof(ImageCell));
+                cell.SetBinding(ImageCell.TextProperty, "Title");
+                cell.Values[ImageCell.TextColorProperty] = Styles.LETTER_COLOR;
+                cell.SetBinding(ImageCell.ImageSourceProperty, "Icon");
+            }
+            else
+            {
+                cell = new DataTemplate(typeof(CustomCell));
+                cell.SetBinding(CustomCell.NameProperty, "Title");
+                //cell.SetBinding(CustomCell.DetailProperty, "Detail");
+            }
+
+
 
             var list = new ListView()
             {

@@ -41,7 +41,7 @@ namespace easyMedicine
 
         public static Color NEGATIVE_COLOR = Color.FromHex("651F06");
         public static Color SUCCESS_COLOR = Color.FromHex("28a745");
-
+        public static Color WARNING_COLOR = Color.FromHex("ffc107");
 
 
 
@@ -60,11 +60,29 @@ namespace easyMedicine
         public static string Style_VariablesEntryStyle = "VariablesEntryStyle";
 
         public static string Style_LabelResultValueStyle = "LabelResultValueStyle";
+        public static string Style_LabelSuccessResultValueStyle = "LabelSuccessResultValueStyle";
+        public static string Style_LabelDangerResultValueStyle = "LabelDangerResultValueStyle";
+        public static string Style_LabelWarningResultValueStyle = "LabelWarningResultValueStyle";
+
         public static string Style_LabelResultUnitStyle = "LabelResultUnitStyle";
 
 
 
+        public static string FontFamily
+        {
+            get
+            {
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                    return "Avenir-Book";
+                }
+                else
+                {
+                    return "Roboto-Regular.ttf#Regular";
+                }
+            }
 
+        }
 
 
 
@@ -73,7 +91,8 @@ namespace easyMedicine
         public const int SmallMediumFontSize = 14;
         public const int MediumFontSize = 18;
         public const int MediumLargeFontSize = 25;
-        public const int LargeFontSize = 35;
+        public const int LargeFontSize = 33;
+
 #else 
         public const int SmallFontSize = 14;
         public const int SmallMediumFontSize = 16;
@@ -81,6 +100,8 @@ namespace easyMedicine
         public const int MediumLargeFontSize = 27;
         public const int LargeFontSize = 35;
 #endif
+
+
 
 
         //@TODO Font Size
@@ -110,7 +131,7 @@ namespace easyMedicine
                         Property = Label.VerticalTextAlignmentProperty, Value = TextAlignment.Center
                     },
                     new Setter {
-                        Property = Label.FontFamilyProperty, Value = "Avenir-Book"
+                        Property = Label.FontFamilyProperty, Value = FontFamily
                     },
                     new Setter {
                         Property = Label.TextColorProperty, Value = CONTRAST_LETTER_COLOR
@@ -208,6 +229,45 @@ namespace easyMedicine
             };
 
             Application.Current.Resources.Add(Style_LabelResultValueStyle, labelResultValueStyle);
+
+
+            var labelSuccessResultValueStyle = new Style(typeof(Label))
+            {
+                BasedOn = labelResultValueStyle,
+                Setters = {
+                    new Setter {
+                        Property = Label.TextColorProperty, Value = SUCCESS_COLOR,
+                    },
+                }
+            };
+
+            Application.Current.Resources.Add(Style_LabelSuccessResultValueStyle, labelSuccessResultValueStyle);
+
+            var labelWarningResultValueStyle = new Style(typeof(Label))
+            {
+                BasedOn = labelResultValueStyle,
+                Setters = {
+                    new Setter {
+                        Property = Label.TextColorProperty, Value = WARNING_COLOR,
+                    },
+                }
+            };
+
+            Application.Current.Resources.Add(Style_LabelWarningResultValueStyle, labelWarningResultValueStyle);
+
+
+            var labelDangerResultValueStyle = new Style(typeof(Label))
+            {
+                BasedOn = labelResultValueStyle,
+                Setters = {
+                    new Setter {
+                        Property = Label.TextColorProperty, Value = NEGATIVE_COLOR,
+                    },
+                }
+            };
+
+            Application.Current.Resources.Add(Style_LabelDangerResultValueStyle, labelDangerResultValueStyle);
+
 
             var labelResultUnitStyle = new Style(typeof(Label))
             {
@@ -320,7 +380,7 @@ namespace easyMedicine
                         Property = SearchBar.FontAttributesProperty, Value = FontAttributes.None
                     },
                     new Setter {
-                        Property = SearchBar.FontFamilyProperty, Value = "Avenir-Book"
+                        Property = SearchBar.FontFamilyProperty, Value = FontFamily
                     },
                     new Setter {
                         Property = SearchBar.TextColorProperty, Value = WHITE_COLOR
@@ -441,7 +501,7 @@ namespace easyMedicine
             {
                 Setters = {
                     new Setter {
-                        Property = Entry.FontFamilyProperty, Value = "Avenir-Book"
+                        Property = Entry.FontFamilyProperty, Value = FontFamily
                     },
                     new Setter {
                         Property = Entry.PlaceholderColorProperty, Value = PLACEHOLDER_COLOR

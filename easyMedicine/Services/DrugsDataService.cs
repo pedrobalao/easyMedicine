@@ -1,6 +1,4 @@
 ﻿using System;
-using SQLite.Net;
-using SQLite.Net.Async;
 using easyMedicine.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +6,10 @@ using System.Threading.Tasks;
 using System.Threading;
 using Nito.AsyncEx;
 using easyMedicine.Helpers;
+using SQLite;
 
 namespace easyMedicine.Services
 {
-
-
 
     public class DrugsDataService : IDrugsDataService
     {

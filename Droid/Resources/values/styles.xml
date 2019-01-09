@@ -1,35 +1,38 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <resources>
-	<color name="custom_theme_color">#0078d7</color>
-	<style name="MyTheme" parent="MyTheme.Base">
-	</style>
-	<!-- Base theme applied no matter what API -->
-	<style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
-		<!--If you are using revision 22.1 please use just windowNoTitle. Without android:-->
-		<item name="windowNoTitle">true</item>
-		<!--We will be using the toolbar so no need to show ActionBar-->
-		<item name="windowActionBar">false</item>
-		<!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette-->
-		<!-- colorPrimary is used for the default action bar background -->
-		<item name="colorPrimary">#2196F3</item>
-		<!-- colorPrimaryDark is used for the status bar -->
-		<item name="colorPrimaryDark">#1976D2</item>
-		<!-- colorAccent is used as the default value for colorControlActivated
+    <color name="custom_theme_color">#0078d7</color>
+    <style name="MyTheme" parent="MyTheme.Base">
+    </style>
+    <!-- Base theme applied no matter what API -->
+    <style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--If you are using revision 22.1 please use just windowNoTitle. Without android:-->
+        <item name="windowNoTitle">true</item>
+        <!--We will be using the toolbar so no need to show ActionBar-->
+        <item name="windowActionBar">false</item>
+        <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette-->
+        <!-- colorPrimary is used for the default action bar background -->
+        <item name="colorPrimary">#2196F3</item>
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">#1976D2</item>
+        <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
-		<item name="colorAccent">#252628</item>
-		<!-- You can also set colorControlNormal, colorControlActivated
+        <item name="colorAccent">#252628</item>
+        <!-- You can also set colorControlNormal, colorControlActivated
          colorControlHighlight and colorSwitchThumbNormal. -->
-		<item name="windowActionModeOverlay">true</item>
-		<item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
-	</style>
-	<style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
-		<item name="colorAccent">#252628</item>
-	</style>
-	<style name="MyTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
-		<item name="android:windowNoTitle">true</item>
-		<item name="android:windowFullscreen">true</item>
-		<item name="android:windowContentOverlay">@null</item>
-		<item name="android:windowBackground">@color/custom_theme_color</item>
-		<item name="android:colorBackground">@color/custom_theme_color</item>
-	</style>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+    </style>
+    <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">#252628</item>
+    </style>
+    <style name="MyTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@color/custom_theme_color</item>
+        <item name="android:colorBackground">@color/custom_theme_color</item>
+    </style>
+    <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">8sp</item>
+    </style>
 </resources>

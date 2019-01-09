@@ -268,6 +268,106 @@ namespace easyMedicine.ViewModels
         public const string HasWeightPercentilePropertyName = "HasWeightPercentile";
 
 
+        private decimal? _BMI;
+
+        public decimal? BMI
+        {
+            get
+            {
+                return _BMI;
+            }
+            set
+            {
+                _BMI = value;
+                OnPropertyChanged(BMIPropertyName);
+                OnPropertyChanged(HasBMIPropertyName);
+            }
+        }
+
+        public const string BMIPropertyName = "BMI";
+
+        public bool HasBMI
+        {
+            get
+            {
+                return BMI.HasValue;
+            }
+            set
+            {
+            }
+        }
+
+        public const string HasBMIPropertyName = "HasBMI";
+
+        private decimal? _BMIPercentile;
+
+        public decimal? BMIPercentile
+        {
+            get
+            {
+                return _BMIPercentile;
+            }
+            set
+            {
+                _BMIPercentile = value;
+                OnPropertyChanged(BMIPercentilePropertyName);
+                OnPropertyChanged(HasBMIPercentilePropertyName);
+            }
+        }
+
+        public const string BMIPercentilePropertyName = "BMIPercentile";
+
+
+        public bool HasBMIPercentile
+        {
+            get
+            {
+                return BMIPercentile.HasValue;
+            }
+            set
+            {
+            }
+        }
+
+        public const string HasBMIPercentilePropertyName = "HasBMIPercentile";
+
+        private string _BMIConclusion;
+
+        public string BMIConclusion
+        {
+            get
+            {
+                return _BMIConclusion;
+            }
+            set
+            {
+                _BMIConclusion = value;
+                OnPropertyChanged(BMIConclusionPropertyName);
+            }
+        }
+
+        public const string BMIConclusionPropertyName = "BMIConclusion";
+
+
+        private Color _BMIPercentilColor;
+
+        public Color BMIPercentilColor
+        {
+            get
+            {
+                return _BMIPercentilColor;
+            }
+            set
+            {
+                _BMIPercentilColor = value;
+                OnPropertyChanged(BMIPercentilColorPropertyName);
+            }
+        }
+
+        public const string BMIPercentilColorPropertyName = "BMIPercentilColor";
+
+
+
 
         private string _FooterInfo;
 
@@ -315,13 +415,14 @@ namespace easyMedicine.ViewModels
         {
             List<Task> tasks = new List<Task>();
             Task<Percentile> weightTask = null, heightTask = null;
-            bool calculateWeight = false, calculateHeight = false;
+            Task<decimal> bmiTask = null;
+            bool calculateWeight = false, calculateHeight = false, calculateBMI = false;
 
             ErrorMessage = String.Empty;
 
             try
             {
-                decimal weightDec;
+                decimal heightDec = 0, weightDec = 0;
 
                 if (!String.IsNullOrEmpty(Weight) && decimal.TryParse(Weight.Replace(',', '.'), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out weightDec) && weightDec > 0)
                 {
@@ -334,7 +435,7 @@ namespace easyMedicine.ViewModels
                     WeightPercentile = null;
                 }
 
-                decimal heightDec;
+                ;
                 if (!String.IsNullOrEmpty(Height) && decimal.TryParse(Height.Replace(',', '.'), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out heightDec) && heightDec > 0)
                 {
                     heightTask = _percentilesService.GetHeightPercentile(SelectedGenderValue, Birthdate, heightDec);
@@ -348,12 +449,23 @@ namespace easyMedicine.ViewModels
                 if (tasks.Count == 0)
                     return;
 
+
+                if (weightDec > 0 && heightDec > 0)
+                {
+                    calculateBMI = true;
+                    bmiTask = _percentilesService.GetBMI(weightDec, heightDec);
+                    tasks.Add(bmiTask);
+                }
+                else
+                {
+                    BMI = null;
+                    BMIPercentile = null;
+                    BMIConclusion = string.Empty;
+                }
+
                 await Task.WhenAll(tasks.ToArray());
 
-                if (calculateWeight)
-                {
-                    var res = weightTask.Result;
-                }
+
                 if (calculateWeight)
                 {
                     WeightPercentile = weightTask.Result.percentile;
@@ -364,6 +476,15 @@ namespace easyMedicine.ViewModels
                 {
                     HeightPercentile = heightTask.Result.percentile;
                     Debug.WriteLine("Height: " + HeightPercentile);
+                }
+
+                if (calculateBMI)
+                {
+                    BMI = Math.Round(bmiTask.Result, 2);
+                    var bmiPerc = await _percentilesService.GetBMIPercentile(SelectedGenderValue, Birthdate, BMI.Value);
+                    BMIPercentile = bmiPerc.percentile;
+                    BMIConclusion = TranslateToPT(bmiPerc.conclusion);
+                    BMIPercentilColor = TranslateToColor(bmiPerc.conclusion);
                 }
             }
             catch (Exception e1)
@@ -390,6 +511,53 @@ namespace easyMedicine.ViewModels
             }
         }
 
+        public Color TranslateToColor(string enStr)
+        {
+            if (enStr == "underweight")
+            {
+                return Styles.WARNING_COLOR;
+            }
+            else if (enStr == "healthy weight")
+            {
+                return Styles.SUCCESS_COLOR;
+            }
+            else if (enStr == "overweight")
+            {
+                return Styles.WARNING_COLOR;
+            }
+            else if (enStr == "obesity")
+            {
+                return Styles.NEGATIVE_COLOR;
+            }
+            else
+            {
+                return Styles.SUCCESS_COLOR;
+            }
+        }
+
+        public string TranslateToPT(string enStr)
+        {
+            if (enStr == "underweight")
+            {
+                return "Abaixo do peso";
+            }
+            else if (enStr == "healthy weight")
+            {
+                return "Peso saudável";
+            }
+            else if (enStr == "overweight")
+            {
+                return "Acima do peso";
+            }
+            else if (enStr == "obesity")
+            {
+                return "Obesidade";
+            }
+            else
+            {
+                return "";
+            }
+        }
 
         private string _ErrorMessage;
 

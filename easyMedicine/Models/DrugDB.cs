@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using SQLite.Net.Attributes;
+using SQLite;
 
 namespace easyMedicine.Models
 {

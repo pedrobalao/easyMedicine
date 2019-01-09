@@ -2,17 +2,14 @@
 using easyMedicine.Services;
 using System.IO;
 using Xamarin.Forms;
-using SQLite.Net;
-using SQLite.Net.Async;
+using SQLite;
 using easyMedicine.Models;
 using Android.App;
-using SQLite.Net.Platform.XamarinAndroid;
 using Plugin.DeviceInfo;
-using SQLite.Net.Interop;
 
 namespace easyMedicine.Droid.Data
 {
-    public class AndroidSQLite : ISQLite
+    public class AndroidSQLite : Services.ISQLite
     {
 
         #region ISQLite implementation
@@ -44,15 +41,15 @@ namespace easyMedicine.Droid.Data
             //    ReadWriteStream(s, writeStream);
             //}
 
-            var param = new SQLiteConnectionString(path, false);
+            //var param = new SQLiteConnectionString(path, false);
 
-            ISQLitePlatform plat;
-            if (CrossDeviceInfo.Current.VersionNumber.Major < 7)
-                plat = new SQLitePlatformAndroid();
-            else
-                plat = new SQLitePlatformAndroidN();
+            //ISQLitePlatform plat;
+            //if (CrossDeviceInfo.Current.VersionNumber.Major < 7)
+            //    plat = new SQLitePlatformAndroid();
+            //else
+            //plat = new SQLitePlatformAndroidN();
 
-            var connection = new SQLiteAsyncConnection(() => new SQLiteConnectionWithLock(plat, param));
+            var connection = new SQLiteAsyncConnection(path);
 
             // Return the database connection 
             return connection;

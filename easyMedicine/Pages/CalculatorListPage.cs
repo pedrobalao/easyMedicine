@@ -17,7 +17,7 @@ namespace easyMedicine.Pages
 
         public CalculatorListPage(CalculatorListPageModel model) : base(model)
         {
-            Title = "Calcular Doses";
+            Title = "Doses";
             Icon = "ic_opacity_white.png";
 
             var cell = new DataTemplate(typeof(CustomCell));

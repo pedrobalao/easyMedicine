@@ -39,5 +39,11 @@ namespace easyMedicine.Models
             get;
             set;
         }
+
+        public string conclusion
+        {
+            get;
+            set;
+        }
     }
 }

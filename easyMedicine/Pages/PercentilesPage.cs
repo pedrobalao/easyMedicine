@@ -25,6 +25,9 @@ namespace easyMedicine.Pages
             //this.SetBinding(Page.TitleProperty, "Percentis");
 
             Icon = "baseline_supervised_user_circle_black_24pt.png";
+
+            var scroll = new ScrollView();
+
             var layout = new StackLayout()
             {
                 Padding = new Thickness(5),
@@ -38,6 +41,8 @@ namespace easyMedicine.Pages
             layout.Children.Add(GetHeightResultView());
 
             layout.Children.Add(GetWeightResultView());
+            layout.Children.Add(GetBMIResultView());
+            layout.Children.Add(GetBMIPercentileResultView());
 
 
             var lbFooter = new Label()
@@ -49,7 +54,9 @@ namespace easyMedicine.Pages
             lbFooter.SetBinding(Label.TextProperty, PercentilesPageModel.FooterInfoPropertyName);
             layout.Children.Add(lbFooter);
 
-            Content = layout;
+            scroll.Content = layout;
+
+            Content = scroll;
         }
 
         private View GetErrorView()
@@ -245,6 +252,86 @@ namespace easyMedicine.Pages
 
             resStack.Children.Add(resultLabel);
 
+            stackCalculation.Children.Add(resStack);
+
+            return stackCalculation;
+        }
+
+        public View GetBMIResultView()
+        {
+            var stackCalculation = new StackLayout() { };
+            stackCalculation.SetBinding(StackLayout.IsVisibleProperty, PercentilesPageModel.HasBMIPropertyName);
+
+            var lbtRes = new Label()
+            {
+                Text = "IMC",
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
+            };
+            stackCalculation.Children.Add(lbtRes);
+
+            var resStack = new StackLayout()
+            {
+                Orientation = StackOrientation.Horizontal,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                VerticalOptions = LayoutOptions.EndAndExpand
+            };
+            var resultLabel = new Label()
+            {
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelResultValueStyle],
+                VerticalOptions = LayoutOptions.EndAndExpand
+            };
+            resultLabel.BindingContext = Model;
+            resultLabel.SetBinding(Label.TextProperty, PercentilesPageModel.BMIPropertyName);
+
+            resStack.Children.Add(resultLabel);
+
+            stackCalculation.Children.Add(resStack);
+
+            return stackCalculation;
+        }
+
+        public View GetBMIPercentileResultView()
+        {
+            var stackCalculation = new StackLayout() { };
+            stackCalculation.SetBinding(StackLayout.IsVisibleProperty, PercentilesPageModel.HasBMIPercentilePropertyName);
+
+            var lbtRes = new Label()
+            {
+                Text = "Percentil IMC",
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
+            };
+            stackCalculation.Children.Add(lbtRes);
+
+            var resStack = new StackLayout()
+            {
+                Orientation = StackOrientation.Vertical,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                VerticalOptions = LayoutOptions.EndAndExpand
+            };
+            var resultLabel = new Label()
+            {
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelResultValueStyle],
+                VerticalOptions = LayoutOptions.EndAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+            };
+            resultLabel.BindingContext = Model;
+            resultLabel.SetBinding(Label.TextProperty, PercentilesPageModel.BMIPercentilePropertyName);
+            resultLabel.SetBinding(Label.TextColorProperty, PercentilesPageModel.BMIPercentilColorPropertyName);
+
+
+            resStack.Children.Add(resultLabel);
+
+
+            var conclusionLabel = new Label()
+            {
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelResultValueStyle],
+                VerticalOptions = LayoutOptions.EndAndExpand,
+            };
+            conclusionLabel.BindingContext = Model;
+            conclusionLabel.SetBinding(Label.TextProperty, PercentilesPageModel.BMIConclusionPropertyName);
+            conclusionLabel.SetBinding(Label.TextColorProperty, PercentilesPageModel.BMIPercentilColorPropertyName);
+
+            resStack.Children.Add(conclusionLabel);
             stackCalculation.Children.Add(resStack);
 
             return stackCalculation;

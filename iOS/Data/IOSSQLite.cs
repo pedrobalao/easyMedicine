@@ -1,11 +1,9 @@
 ﻿using System;
 using easyMedicine.Services;
 using System.IO;
-using SQLite.Net.Async;
-using SQLite.Net;
-using SQLite.Net.Platform.XamarinIOS;
 using Foundation;
 using easyMedicine.Models;
+using SQLite;
 
 namespace easyMedicine.iOS.Data
 {
@@ -38,8 +36,8 @@ namespace easyMedicine.iOS.Data
 
             //var conn = new SQLite.Net.SQLiteConnection (path);
 
-            var param = new SQLiteConnectionString(path, false);
-            var connection = new SQLiteAsyncConnection(() => new SQLiteConnectionWithLock(new SQLitePlatformIOS(), param));
+            //var param = new SQLiteConnectionString(path, false);
+            var connection = new SQLiteAsyncConnection(path);
 
             // Return the database connection 
             return connection;
