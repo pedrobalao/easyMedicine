@@ -1,6 +1,6 @@
-﻿<Properties StartupConfiguration="{21709F14-BE5A-4249-B23C-8280754D829B}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
+﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{EFD4C86B-439D-4EEF-AC7B-E67CF9574F78}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
   <MonoDevelop.Ide.ItemProperties.easymedicine.Droid AndroidDesignerPreferredTheme="MyTheme" AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.android9" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/Data/IOSSQLite.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="easyMedicineApp Status">
     <Files>
       <File FileName="easyMedicine/Core/Styles/Styles.cs" Line="83" Column="14" />
       <File FileName="easyMedicine/Pages/CalculatorListPage.cs" Line="20" Column="11" />
@@ -8,16 +8,28 @@
       <File FileName="Droid/MainApplication.cs" Line="22" Column="54" />
       <File FileName="Droid/MainActivity.cs" Line="23" Column="13" />
       <File FileName="Droid/Data/AndroidSQLite.cs" Line="11" Column="2" />
-      <File FileName="Source Not Available" />
-      <File FileName="easyMedicine/Services/DrugsDataService.cs" Line="22" Column="9" />
+      <File FileName="easyMedicine/Services/DrugsDataService.cs" Line="22" Column="1" />
       <File FileName="easyMedicine/Services/ISQLite.cs" Line="10" Column="6" />
       <File FileName="easyMedicine/Models/DrugDB.cs" Line="7" Column="23" />
-      <File FileName="iOS/Data/IOSSQLite.cs" Line="1" Column="1" />
+      <File FileName="iOS/Data/IOSSQLite.cs" Line="18" Column="1" />
+      <File FileName="easyMedicine/ViewModels/PercentilesPageModel.cs" Line="427" Column="1" />
+      <File FileName="easyMedicineApp Status" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="easyMedicine" expanded="True" selected="True">
+            <Node name="easyMedicine.iOS" expanded="True">
+              <Node name="Data" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.easyMedicine.iOS automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.E06D3DC0-0E82-484D-AFDB-8153CF58A50A" />
+  <MonoDevelop.Ide.ItemProperties.easyMedicine.iOS automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.0F2FE250-ECF2-4DB4-9B2C-B9A6500DB555" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/pedrorocha/Projects/easyMedicine/easyMedicineApp/easyMedicine/ViewModels/PercentilesPageModel.cs" relfile="easyMedicine/ViewModels/PercentilesPageModel.cs" line="493" column="1" />

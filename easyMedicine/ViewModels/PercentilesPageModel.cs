@@ -396,7 +396,7 @@ namespace easyMedicine.ViewModels
             _drugsDataServ = drugsDataServ;
             _navigator = navigator;
             MaxDate = DateTime.Now.Date;
-            MinDate = DateTime.Now.AddDays(-1856).Date;
+            MinDate = DateTime.Now.AddYears(-18).Date;
             Birthdate = DateTime.Today;
             WeightUnit = "kg";
             HeightUnit = "cm";
@@ -407,7 +407,7 @@ namespace easyMedicine.ViewModels
             };
             SelectedGender = Genders.First();
 
-            FooterInfo = "Dados WHO Child Growth Standards";
+            FooterInfo = "Dados WHO Child Growth Standards. WHO Child Growth Standards não disponibiliza percentis de peso para idades superiores a 10 anos.";
             CalculateCommand = new Command(async () => await Calculate());
         }
 
@@ -424,7 +424,7 @@ namespace easyMedicine.ViewModels
             {
                 decimal heightDec = 0, weightDec = 0;
 
-                if (!String.IsNullOrEmpty(Weight) && decimal.TryParse(Weight.Replace(',', '.'), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out weightDec) && weightDec > 0)
+                if (!String.IsNullOrEmpty(Weight) && decimal.TryParse(Weight.Replace(',', '.'), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out weightDec) && weightDec > 0 && Birthdate > DateTime.Now.AddYears(-10))
                 {
                     weightTask = _percentilesService.GetWeightPercentile(SelectedGenderValue, Birthdate, weightDec);
                     tasks.Add(weightTask);
