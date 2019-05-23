@@ -10,6 +10,10 @@ using Android.OS;
 using easyMedicine;
 using easyMedicine.Services;
 using easyMedicine.Droid.Data;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Push;
 
 namespace easymedicine.Droid
 {
@@ -29,6 +33,7 @@ namespace easymedicine.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
+            AppCenter.Start("f883dc1d-c988-4a56-b2b8-1c4552c60c30", typeof(Analytics), typeof(Crashes), typeof(Push));
 
             var app = new App();
             RegisterComponents(app.BootStrapper);

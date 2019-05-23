@@ -9,7 +9,7 @@ using easyMedicine.Core.Services;
 using easyMedicine.Models;
 using easyMedicine.Services;
 using Jint;
-using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.AppCenter.Analytics;
 using Xamarin.Forms;
 
 namespace easyMedicine.ViewModels

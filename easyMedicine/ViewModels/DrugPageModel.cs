@@ -11,7 +11,7 @@ using easyMedicine.Models;
 using easyMedicine.Services;
 using easyMedicine.ViewModels;
 using Jint;
-using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Share;
 using Plugin.Share.Abstractions;
 using Xamarin.Forms;

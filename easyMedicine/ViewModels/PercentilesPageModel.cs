@@ -11,8 +11,8 @@ using System.Linq;
 using Xamarin.Forms;
 using System.Diagnostics;
 using Xamarin.Essentials;
-using Microsoft.Azure.Mobile.Analytics;
 using System.Globalization;
+using Microsoft.AppCenter.Analytics;
 
 namespace easyMedicine.ViewModels
 {

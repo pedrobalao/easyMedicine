@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Azure.Mobile;
-using Microsoft.Azure.Mobile.Analytics;
-using Microsoft.Azure.Mobile.Crashes;
+
 using Foundation;
 using UIKit;
 using easyMedicine.iOS.Data;
@@ -12,7 +10,10 @@ using UserNotifications;
 using Firebase.CloudMessaging;
 using System;
 using System.Globalization;
-//using Acr.UserDialogs;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Push;
 
 namespace easyMedicine.iOS
 {
@@ -31,7 +32,11 @@ namespace easyMedicine.iOS
 			var seedFile = Path.Combine (appdir, "data.sqlite");
 			if (!File.Exists (Database.DatabaseFilePath))
 				File.Copy (seedFile, Database.DatabaseFilePath);
+				
+				
 */
+
+            AppCenter.Start("f4b28f29-a8b8-4197-870e-35aec416753a", typeof(Analytics), typeof(Crashes), typeof(Push));
             global::Xamarin.Forms.Forms.Init();
 
             //UserDialogs.Init(() => (Activity)Forms.Context);

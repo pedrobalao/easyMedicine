@@ -6,7 +6,7 @@ using easyMedicine.Core.Models;
 using easyMedicine.Core.Services;
 using easyMedicine.Models;
 using easyMedicine.Services;
-using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.AppCenter.Analytics;
 
 namespace easyMedicine.ViewModels
 {

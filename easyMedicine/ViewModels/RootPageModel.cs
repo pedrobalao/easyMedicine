@@ -2,6 +2,9 @@
 using easyMedicine.Core.Services;
 using easyMedicine.Core.Models;
 using Xamarin.Forms;
+using System.Threading.Tasks;
+using easyMedicine.Services;
+using System.Diagnostics;
 
 namespace easyMedicine.ViewModels
 {
@@ -10,10 +13,12 @@ namespace easyMedicine.ViewModels
         private readonly INavigatorService _navigatorService;
 
 
+
         public RootPageModel(
             INavigatorService navigator)
         {
             _navigatorService = navigator;
+            Task.Run(new Action(async () => await InitializeAsync()));
 
         }
 
@@ -29,8 +34,21 @@ namespace easyMedicine.ViewModels
 
             //_navigatorService.PushTab<MedicalCalculationListPageModel>("Calculator");
             //_navigatorService.PushTab<AboutPageModel>("About");
+        }
 
+        private async Task InitializeAsync()
+        {
+            try
+            {
+                DatabaseService dbServ = new DatabaseService();
+                DatabaseService.Encrypt(17);
+                var version = await dbServ.GetLastestDBVersion();
 
+            }
+            catch (Exception e1)
+            {
+                Debug.WriteLine("Não foi possível actualizar a bd. " + e1.Message);
+            }
         }
     }
 }

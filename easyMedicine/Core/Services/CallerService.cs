@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Crashes;
 using Xamarin;
 
 namespace easyMedicine.Core.Services
@@ -17,18 +18,12 @@ namespace easyMedicine.Core.Services
             //using (UserDialogs.Instance.Loading ("Loading")) {
             try
             {
-                using (Insights.TrackTime("Call " + operation, new Dictionary<string, string> { {
-                            "Service",
-                            operation
-                        } }))
-                {
-                    ret = await func.Invoke();
-                }
+                ret = await func.Invoke();
+
             }
             catch (Exception e)
             {
-                //	UserDialogs.Instance.ShowError ("Error calling service " + operation);
-                Insights.Report(e, new Dictionary<string, string> {
+                Crashes.TrackError(e, new Dictionary<string, string> {
                         { "Call ", operation }
                     });
             }
