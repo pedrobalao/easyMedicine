@@ -1,6 +1,6 @@
 ﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{EFD4C86B-439D-4EEF-AC7B-E67CF9574F78}|Default">
   <MonoDevelop.Ide.ItemProperties.easymedicine.Droid AndroidDesignerPreferredTheme="MyTheme" AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.android9" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="easyMedicineApp Status">
+  <MonoDevelop.Ide.Workbench ActiveDocument="easyMedicine/Services/DatabaseService.cs">
     <Files>
       <File FileName="easyMedicine/Core/Styles/Styles.cs" Line="13" Column="24" />
       <File FileName="easyMedicine/Pages/CalculatorListPage.cs" Line="20" Column="11" />
@@ -16,10 +16,10 @@
       <File FileName="easyMedicine/Services/ErrorService.cs" Line="1" Column="1" />
       <File FileName="easyMedicine/Services/IDrugsDataService.cs" Line="1" Column="1" />
       <File FileName="easyMedicine/Services/PercentileService.cs" Line="19" Column="47" />
-      <File FileName="easyMedicine/Services/DatabaseService.cs" Line="60" Column="1" />
+      <File FileName="easyMedicine/Services/DatabaseService.cs" Line="63" Column="19" />
       <File FileName="easyMedicine/Models/Configurations.cs" Line="5" Column="6" />
       <File FileName="easyMedicine/ViewModels/CalculatorListPageModel.cs" Line="97" Column="65" />
-      <File FileName="easyMedicine/ViewModels/RootPageModel.cs" Line="50" Column="1" />
+      <File FileName="easyMedicine/ViewModels/RootPageModel.cs" Line="44" Column="1" />
       <File FileName="easyMedicine/ViewModels/DrugPageModel.cs" Line="404" Column="30" />
       <File FileName="easyMedicine/ViewModels/ExplorePageModel.cs" Line="1" Column="1" />
       <File FileName="easyMedicine/Bootstrapper.cs" Line="18" Column="1" />
@@ -41,12 +41,19 @@
       <File FileName="easyMedicine/Core/Services/CallerService.cs" Line="25" Column="14" />
       <File FileName="packages/Xam.Plugin.DeviceInfo.4.1.1/readme.txt" Line="1" Column="1" />
       <File FileName="packages/Xamarin.Essentials.1.1.0/readme.txt" Line="1" Column="1" />
-      <File FileName="easyMedicineApp Status" />
+      <File FileName="easyMedicine/Helpers/Encryption.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="easyMedicine" expanded="True" selected="True">
+          <Node name="easyMedicine" expanded="True">
+            <Node name="easyMedicine" expanded="True">
+              <Node name="Helpers" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="DatabaseService.cs" selected="True" />
+              </Node>
+              <Node name="ViewModels" expanded="True" />
+            </Node>
             <Node name="easyMedicine.iOS" expanded="True" />
           </Node>
         </State>
@@ -63,10 +70,9 @@
     <BreakpointStore>
       <Breakpoint file="/Users/pedrorocha/Projects/easyMedicine/easyMedicineApp/easyMedicine/ViewModels/PercentilesPageModel.cs" relfile="easyMedicine/ViewModels/PercentilesPageModel.cs" line="493" column="1" />
       <Breakpoint file="/Users/pedrorocha/Projects/easyMedicine/easyMedicineApp/easyMedicine/ViewModels/RootPageModel.cs" relfile="easyMedicine/ViewModels/RootPageModel.cs" line="44" column="1" />
-      <Breakpoint file="/Users/pedrorocha/Projects/easyMedicine/easyMedicineApp/easyMedicine/Services/DatabaseService.cs" relfile="easyMedicine/Services/DatabaseService.cs" line="34" column="1" />
-      <Breakpoint file="/Users/pedrorocha/Projects/easyMedicine/easyMedicineApp/easyMedicine/Services/DatabaseService.cs" relfile="easyMedicine/Services/DatabaseService.cs" line="55" column="1" />
-      <Breakpoint file="/Users/pedrorocha/Projects/easyMedicine/easyMedicineApp/easyMedicine/Services/DatabaseService.cs" relfile="easyMedicine/Services/DatabaseService.cs" line="54" column="1" />
       <Breakpoint file="/Users/pedrorocha/Projects/easyMedicine/easyMedicineApp/easyMedicine/ViewModels/RootPageModel.cs" relfile="easyMedicine/ViewModels/RootPageModel.cs" line="50" column="1" />
+      <Breakpoint file="/Users/pedrorocha/Projects/easyMedicine/easyMedicineApp/easyMedicine/Services/DatabaseService.cs" relfile="easyMedicine/Services/DatabaseService.cs" line="70" column="1" />
+      <Breakpoint file="/Users/pedrorocha/Projects/easyMedicine/easyMedicineApp/easyMedicine/Services/DatabaseService.cs" relfile="easyMedicine/Services/DatabaseService.cs" line="50" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

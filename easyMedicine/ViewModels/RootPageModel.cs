@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using easyMedicine.Services;
 using System.Diagnostics;
+using easyMedicine.Helpers;
 
 namespace easyMedicine.ViewModels
 {
@@ -41,8 +42,8 @@ namespace easyMedicine.ViewModels
             try
             {
                 DatabaseService dbServ = new DatabaseService();
-                DatabaseService.Encrypt(17);
-                var version = await dbServ.GetLastestDBVersion();
+
+                await dbServ.GetLatesDB(16);
 
             }
             catch (Exception e1)
