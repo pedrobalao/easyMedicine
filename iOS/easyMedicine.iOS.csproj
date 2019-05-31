@@ -328,6 +328,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\eMedicineDBV15.sqlite" />
+    <Content Include="..\easyPedDB\easyPedDBV16.db3">
+      <Link>Resources\easyPedDBV16.db3</Link>
+    </Content>
   </ItemGroup>
   <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
   <Import Project="..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets')" />

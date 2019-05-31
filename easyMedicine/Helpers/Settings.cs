@@ -4,6 +4,7 @@ using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 using System.Linq;
 using System.Text;
+using easyMedicine.Models;
 
 namespace easyMedicine.Helpers
 {
@@ -12,6 +13,8 @@ namespace easyMedicine.Helpers
     {
         private const string FavouriteSettingsKey = "Favourites";
         private static readonly string FavouriteSettingsDefault = string.Empty;
+
+        private const string DBVersionSettingsKey = "DBVersion";
 
         private static ISettings AppSettings => CrossSettings.Current;
 
@@ -71,6 +74,19 @@ namespace easyMedicine.Helpers
         public static bool IsFavourite(string drugId)
         {
             return FavouriteSettings.Contains(drugId);
+        }
+
+        public static int DBVersionSetting
+        {
+            get
+            {
+                var dbv = AppSettings.GetValueOrDefault(DBVersionSettingsKey, Configurations.INITIAL_DB_VERSION);
+                return dbv;
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(DBVersionSettingsKey, value);
+            }
         }
 
 

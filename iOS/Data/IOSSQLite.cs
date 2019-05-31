@@ -19,7 +19,7 @@ namespace easyMedicine.iOS.Data
 
         public SQLiteAsyncConnection GetConnection()
         {
-            var sqliteFilename = Configurations.DBFILE_NAME;
+            var sqliteFilename = Configurations.GetDBFileName();
             string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
             string libraryPath = Path.Combine(documentsPath, "..", "Library"); // Library folder
             var path = Path.Combine(libraryPath, sqliteFilename);
