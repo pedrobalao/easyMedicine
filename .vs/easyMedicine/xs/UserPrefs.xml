@@ -1,6 +1,6 @@
 ﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{EFD4C86B-439D-4EEF-AC7B-E67CF9574F78}|Default">
   <MonoDevelop.Ide.ItemProperties.easymedicine.Droid AndroidDesignerPreferredTheme="MyTheme" AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.android9" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="easyMedicine/Pages/MedicalCalculationPage.cs">
     <Files>
       <File FileName="easyMedicine/Pages/RootPage.cs" Line="20" Column="71" />
       <File FileName="easyMedicine/ViewModels/RootPageModel.cs" Line="48" Column="72" />
@@ -14,13 +14,27 @@
       <File FileName="iOS/AppDelegate.cs" Line="12" Column="28" />
       <File FileName="easyMedicine/AppModule.cs" Line="1" Column="1" />
       <File FileName="easyMedicine/Bootstrapper.cs" Line="1" Column="1" />
-      <File FileName="easyMedicine/Pages/DrugPage.cs" Line="151" Column="23" />
+      <File FileName="easyMedicine/Pages/DrugPage.cs" Line="43" Column="63" />
       <File FileName="iOS/Entitlements.plist" />
+      <File FileName="Droid/SplashActivity.cs" Line="1" Column="1" />
+      <File FileName="Droid/MainApplication.cs" Line="1" Column="1" />
+      <File FileName="Droid/MainActivity.cs" Line="1" Column="1" />
+      <File FileName="easyMedicine/Pages/MedicalCalculationPage.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="easyMedicine" expanded="True" selected="True" />
+          <Node name="easyMedicine" expanded="True">
+            <Node name="easyMedicine" expanded="True">
+              <Node name="Pages" expanded="True">
+                <Node name="MedicalCalculationPage.cs" selected="True" />
+              </Node>
+            </Node>
+            <Node name="easyMedicine.iOS" expanded="True">
+              <Node name="Data" expanded="True" />
+              <Node name="Renderers" expanded="True" />
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>

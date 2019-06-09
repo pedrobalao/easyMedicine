@@ -25,6 +25,10 @@ namespace easyMedicine.Pages
             this.SetBinding(Page.TitleProperty, "MedicalCalculationFull.Calculation.Description");
 
             Icon = "ic_explore_white_48px.png";
+
+            var scroll = new ScrollView();
+
+
             var layout = new StackLayout()
             {
 
@@ -33,7 +37,9 @@ namespace easyMedicine.Pages
             var calculationView = GetCalculationView();
             layout.Children.Add(calculationView);
 
-            Content = layout;
+            scroll.Content = layout;
+            Content = scroll;
+
         }
 
 

@@ -481,6 +481,9 @@
 	    <Link>Assets\eMedicineDBV15.sqlite</Link>
 	  </AndroidAsset>
 	  <AndroidAsset Include="Assets\Roboto-Regular.ttf" />
+	  <AndroidAsset Include="..\easyPedDB\easyPedDBV16.db3">
+	    <Link>Assets\easyPedDBV16.db3</Link>
+	  </AndroidAsset>
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 	<Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
