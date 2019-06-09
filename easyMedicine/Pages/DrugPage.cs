@@ -145,20 +145,20 @@ namespace easyMedicine
 
             lstView.Header = layoutHeader;
 
-            var btnReportProblem = new Button()
-            {
-                BindingContext = Model,
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                Text = "Reportar Erro",
-                Style = (Style)Application.Current.Resources[Styles.Style_ButtonMediumNegStyle],
-            };
+            //var btnReportProblem = new Button()
+            //{
+            //    BindingContext = Model,
+            //    VerticalOptions = LayoutOptions.CenterAndExpand,
+            //    HorizontalOptions = LayoutOptions.FillAndExpand,
+            //    Text = "Reportar Erro",
+            //    Style = (Style)Application.Current.Resources[Styles.Style_ButtonMediumNegStyle],
+            //};
 
-            btnReportProblem.SetBinding(Button.CommandProperty, DrugPageModel.ReportErrorCommandPropertyName);
+            //btnReportProblem.SetBinding(Button.CommandProperty, DrugPageModel.ReportErrorCommandPropertyName);
 
-            //footerLayout.Children.Add(btnReportProblem);
+            ////footerLayout.Children.Add(btnReportProblem);
 
-            lstView.Footer = btnReportProblem; //footerLayout;
+            //lstView.Footer = btnReportProblem; //footerLayout;
 
             Content = lstView;
 

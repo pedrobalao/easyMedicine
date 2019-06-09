@@ -7,7 +7,6 @@ using easyMedicine.Core.Services;
 using easyMedicine.Models;
 using easyMedicine.Services;
 using Plugin.Connectivity;
-using Plugin.Hud;
 using Xamarin.Forms;
 
 namespace easyMedicine.ViewModels
@@ -22,61 +21,61 @@ namespace easyMedicine.ViewModels
         {
             _navigator = navigator;
             _drugsDataServ = drugServ;
-            CommandReport = new Command(async () => await ReportErrorPressed());
+            // CommandReport = new Command(async () => await ReportErrorPressed());
         }
 
-        public async Task ReportErrorPressed()
-        {
+        //public async Task ReportErrorPressed()
+        //{
 
-            if (String.IsNullOrWhiteSpace(this.Email) || String.IsNullOrWhiteSpace(this.Name) || String.IsNullOrWhiteSpace(this.Text))
-            {
-                await Page.DisplayAlert("Reporte de erro", "Por favor preencha todos os campos.", "OK");
-                return;
-            }
+        //    if (String.IsNullOrWhiteSpace(this.Email) || String.IsNullOrWhiteSpace(this.Name) || String.IsNullOrWhiteSpace(this.Text))
+        //    {
+        //        await Page.DisplayAlert("Reporte de erro", "Por favor preencha todos os campos.", "OK");
+        //        return;
+        //    }
 
-            if (!Regex.IsMatch(this.Email, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"))
-            {
-                await Page.DisplayAlert("Reporte de erro", "Por favor introduza um email válido.", "OK");
-                return;
-            }
+        //    if (!Regex.IsMatch(this.Email, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"))
+        //    {
+        //        await Page.DisplayAlert("Reporte de erro", "Por favor introduza um email válido.", "OK");
+        //        return;
+        //    }
 
-            if (!CrossConnectivity.Current.IsConnected)
-            {
-                await Page.DisplayAlert("Reporte de erro", "Esta funcionalidade exige acesso à internet. Por favor valide que tem conectividade e tente novamente. Obrigado.", "OK");
-                return;
-            }
+        //    if (!CrossConnectivity.Current.IsConnected)
+        //    {
+        //        await Page.DisplayAlert("Reporte de erro", "Esta funcionalidade exige acesso à internet. Por favor valide que tem conectividade e tente novamente. Obrigado.", "OK");
+        //        return;
+        //    }
 
-            CrossHud.Current.Show("A submeter");
+        //    CrossHud.Current.Show("A submeter");
 
-            try
-            {
+        //    try
+        //    {
 
-                await ErrorService.InsertError(new ErrorItem()
-                {
-                    Date = DateTime.UtcNow,
-                    DrugId = Drug.Id.ToString(),
-                    DrugName = Drug.Name,
-                    Id = Guid.NewGuid().ToString(),
-                    Sender = this.Name + "#" + this.Email,
-                    Text = this.Text
-                });
+        //        await ErrorService.InsertError(new ErrorItem()
+        //        {
+        //            Date = DateTime.UtcNow,
+        //            DrugId = Drug.Id.ToString(),
+        //            DrugName = Drug.Name,
+        //            Id = Guid.NewGuid().ToString(),
+        //            Sender = this.Name + "#" + this.Email,
+        //            Text = this.Text
+        //        });
 
-                CrossHud.Current.Dismiss();
-                await Page.DisplayAlert("Reporte de erro", "Submetido com sucesso! Obrigado.", "OK");
-                //insert
-                //await Page.DisplayAlert("Reporte de erro", "Obrigado pela contribuição.", "Fechar");
-                await _navigator.PopAsync();
-            }
-            catch
-            {
-                CrossHud.Current.Dismiss();
-                await Page.DisplayAlert("Reporte de erro", "Erro ao submeter, por favor tente mais tarde. Obrigado.", "OK");
+        //        CrossHud.Current.Dismiss();
+        //        await Page.DisplayAlert("Reporte de erro", "Submetido com sucesso! Obrigado.", "OK");
+        //        //insert
+        //        //await Page.DisplayAlert("Reporte de erro", "Obrigado pela contribuição.", "Fechar");
+        //        await _navigator.PopAsync();
+        //    }
+        //    catch
+        //    {
+        //        CrossHud.Current.Dismiss();
+        //        await Page.DisplayAlert("Reporte de erro", "Erro ao submeter, por favor tente mais tarde. Obrigado.", "OK");
 
-            }
+        //    }
 
 
 
-        }
+        //}
 
         public Page Page
         {

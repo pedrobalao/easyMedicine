@@ -46,6 +46,11 @@ namespace easyMedicine.ViewModels
                 Variables.Add(new VariableViewModel(varmc.Variable, ChangedVariablesValueCommand, varmc.Values, varmc.VariableMedicalCalculation.Optional != 0 ? true : false));
             }
 
+            if (MedicalCalculationFull.Calculation.ResultUnitId == "NA")
+                MedicalCalculationFull.Calculation.ResultUnitId = String.Empty;
+
+            MedicalCalculationFull.Calculation.Observation = MedicalCalculationFull.Calculation.Observation.Replace("\n", System.Environment.NewLine);
+
             OnPropertyChanged(ResultUnitIdPropertyName);
 
             _DataLoaded = true;

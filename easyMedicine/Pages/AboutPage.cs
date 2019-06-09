@@ -14,15 +14,15 @@ namespace easyMedicine.Pages
             }
         }
 
-
+        [Obsolete]
         public AboutPage(AboutPageModel model) : base(model)
         {
             Title = "Sobre";
 
             if (Device.RuntimePlatform == Device.iOS)
-                Icon = "ic_error_white_18pt.png";
+                IconImageSource = "ic_error_white_18pt.png";
             else
-                Icon = "ic_error_white_48px.png";
+                IconImageSource = "ic_error_white_48px.png";
 
             var scroll = new ScrollView()
             { };
@@ -139,6 +139,33 @@ namespace easyMedicine.Pages
 
             labelBiblio.SetBinding(Label.TextProperty, AboutPageModel.BiblioPropertyName);
             layout.Children.Add(labelBiblio);
+
+
+
+
+            var bdLB = new Label()
+            {
+                Text = "Versão Base de Dados",
+                HorizontalTextAlignment = TextAlignment.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
+
+            };
+            layout.Children.Add(bdLB);
+
+            var bdVersion = new Label()
+            {
+                HorizontalTextAlignment = TextAlignment.Center,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Style = (Style)Application.Current.Resources[Styles.Style_LabelMediumStyle],
+
+            };
+            bdVersion.SetBinding(Label.TextProperty, AboutPageModel.BDVersionPropertyName);
+
+            layout.Children.Add(bdVersion);
+
+
+
 
             scroll.Content = layout;
             //var lbtCredits = new LabelValue("Créditos", AboutPageModel.CreditsPropertyName);

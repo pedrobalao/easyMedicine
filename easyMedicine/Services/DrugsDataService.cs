@@ -35,8 +35,11 @@ namespace easyMedicine.Services
         {
             _sqlLiteService = sqlLiteService;
             database = _sqlLiteService.GetConnection();
+        }
 
-
+        public void Reconnect()
+        {
+            database = _sqlLiteService.GetConnection();
         }
 
         public List<Via> Vias

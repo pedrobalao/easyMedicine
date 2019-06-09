@@ -7,7 +7,7 @@ using easyMedicine.iOS.Data;
 using easyMedicine.Services;
 using System.IO;
 using UserNotifications;
-using Firebase.CloudMessaging;
+//using Firebase.CloudMessaging;
 using System;
 using System.Globalization;
 using Microsoft.AppCenter;
@@ -41,7 +41,7 @@ namespace easyMedicine.iOS
 
             //UserDialogs.Init(() => (Activity)Forms.Context);
 
-            Firebase.Core.App.Configure();
+            //Firebase.Core.App.Configure();
             var app1 = new App();
 
 
@@ -105,35 +105,52 @@ namespace easyMedicine.iOS
 
         }
 
-        public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, System.Action<UIBackgroundFetchResult> completionHandler)
+        //public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, System.Action<UIBackgroundFetchResult> completionHandler)
+        //{
+
+        //    // If you are receiving a notification message while your app is in the background,
+        //    // this callback will not be fired 'till the user taps on the notification launching the application.
+
+        //    // Do your magic to handle the notification data
+        //    System.Console.WriteLine(userInfo);
+
+        //    base.DidReceiveRemoteNotification(application, userInfo, completionHandler);
+
+        //}
+
+        [Export("userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:")]
+        public void DidReceiveNotificationResponse(UNUserNotificationCenter center, UNNotificationResponse response, Action
+completionHandler)
         {
-
-            // If you are receiving a notification message while your app is in the background,
-            // this callback will not be fired 'till the user taps on the notification launching the application.
-
-            // Do your magic to handle the notification data
-            System.Console.WriteLine(userInfo);
-
-            base.DidReceiveRemoteNotification(application, userInfo, completionHandler);
-
+            completionHandler();
         }
 
 
+        [Export("userNotificationCenter:willPresentNotification:withCompletionHandler:")]
+        public void WillPresentNotification(UNUserNotificationCenter center, UNNotification notification,
+Action<UNNotificationPresentationOptions> completionHandler)
+        {
+            Console.WriteLine("Handling iOS 11 foreground notification");
+            completionHandler(UNNotificationPresentationOptions.Sound | UNNotificationPresentationOptions.Alert);
+        }
+
+        /*
         // To receive notifications in foreground on iOS 10 devices.
         [Export("userNotificationCenter:willPresentNotification:withCompletionHandler:")]
         public void WillPresentNotification(UNUserNotificationCenter center, UNNotification notification, Action<UNNotificationPresentationOptions> completionHandler)
         {
             // Do your magic to handle the notification data
             System.Console.WriteLine(notification.Request.Content.UserInfo);
-            UIAlertView avAlert = new UIAlertView(notification.Request.Content.Title, notification.Request.Content.Body, null, "OK", null);
-            avAlert.Show();
-        }
+            UIAlertView avAlert = new UIAlertView(notification.Request.Content.Title, notification.Request.Content.Body, null, "OK", null
+                );
 
+            avAlert.Show();
+        }*/
         // Receive data message on iOS 10 devices.
-        public void ApplicationReceivedRemoteMessage(RemoteMessage remoteMessage)
-        {
-            Console.WriteLine(remoteMessage.AppData);
-        }
+        //public void ApplicationReceivedRemoteMessage(RemoteMessage remoteMessage)
+        //{
+        //    Console.WriteLine(remoteMessage.AppData);
+        //}
     }
 
 

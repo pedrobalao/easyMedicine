@@ -12,35 +12,39 @@ using easyMedicine.Services;
 
 namespace easyMedicine.Core.Bootstrapping
 {
-	public class AutofacModule : Module
-	{
-		protected override void Load (ContainerBuilder builder)
-		{
-            
-			// service registration
-			builder.RegisterType<ViewFactory> ()
-                .As<IViewFactory> ()
-                .SingleInstance ();
+    public class AutofacModule : Module
+    {
+        protected override void Load(ContainerBuilder builder)
+        {
 
-			builder.RegisterType<Navigator> ()
-                .As<INavigatorService> ()
-                .SingleInstance ();
+            // service registration
+            builder.RegisterType<ViewFactory>()
+                .As<IViewFactory>()
+                .SingleInstance();
 
-
-			
+            builder.RegisterType<Navigator>()
+                .As<INavigatorService>()
+                .SingleInstance();
 
 
-			// navigation registration
-			builder.Register<INavigation> (context =>
-                ((TabbedPage)App.Current.MainPage).Navigation
-                
-			).SingleInstance ();
-
-			builder.RegisterType<DrugsDataService> ()
-				.As<IDrugsDataService> ()
-				.SingleInstance ();
 
 
-		}
-	}
+
+            // navigation registration
+            builder.Register<INavigation>(context =>
+               ((TabbedPage)App.Current.MainPage).Navigation
+
+            ).SingleInstance();
+
+            builder.RegisterType<DrugsDataService>()
+                .As<IDrugsDataService>()
+                .SingleInstance();
+
+            builder.RegisterType<DatabaseService>()
+                .As<IDatabaseService>()
+                .SingleInstance();
+
+
+        }
+    }
 }

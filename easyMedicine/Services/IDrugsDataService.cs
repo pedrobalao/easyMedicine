@@ -27,6 +27,8 @@ namespace easyMedicine.Services
         Task<MedicalCalculationFull> GetMedicalCalculation(int medicalCalculationId);
 
         Task<MedicalInfo> GetMedicalInfos(string Id);
+
+        void Reconnect();
     }
 }
 

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using easyMedicine.Services;
 using System.Diagnostics;
 using easyMedicine.Helpers;
+using Microsoft.AppCenter.Analytics;
+using System.Collections.Generic;
+using Xamarin.Essentials;
 
 namespace easyMedicine.ViewModels
 {
@@ -13,12 +16,13 @@ namespace easyMedicine.ViewModels
     {
         private readonly INavigatorService _navigatorService;
 
-
+        private readonly IDatabaseService _databaseService;
 
         public RootPageModel(
-            INavigatorService navigator)
+            INavigatorService navigator, IDatabaseService databaseService)
         {
             _navigatorService = navigator;
+            _databaseService = databaseService;
             Task.Run(new Action(async () => await InitializeAsync()));
 
         }
@@ -41,13 +45,23 @@ namespace easyMedicine.ViewModels
         {
             try
             {
-                DatabaseService dbServ = new DatabaseService();
+                if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+                {
+                    var newVersion = await _databaseService.GetLatesDB();
+                    if (newVersion > -1)
+                    {
+                        Analytics.TrackEvent("Database Updated", new Dictionary<string, string> {
+                        { "New Version", newVersion.ToString() }});
 
-                await dbServ.GetLatesDB(16);
-
+                        MessagingCenter.Send<RootPageModel, string>(this, "Alert", "A base de dados da sua easyPed foi atualizada.");
+                    }
+                }
             }
             catch (Exception e1)
             {
+                Analytics.TrackEvent("Error Updating Database", new Dictionary<string, string> {
+                    { "", e1.Message.ToString() + ":" + e1.InnerException != null ? e1.InnerException.Message : ""}
+                });
                 Debug.WriteLine("Não foi possível actualizar a bd. " + e1.Message);
             }
         }

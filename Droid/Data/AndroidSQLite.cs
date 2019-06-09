@@ -23,31 +23,29 @@ namespace easyMedicine.Droid.Data
 
         public SQLiteAsyncConnection GetConnection()
         {
-            var sqliteFilename = Configurations.DBFILE_NAME;
-            string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal); // Documents folder
 
-            var path = FileAccessHelper.GetLocalFilePath(sqliteFilename);
-            //var path = Path.Combine(documentsPath, sqliteFilename);
+            var sqliteFilename = Configurations.GetDBFileName(out bool initialDb);
+
+            string path;
+            if (initialDb)
+            {
+
+                //var sqliteFilename = Configurations.DBFILE_NAME;
+                //string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal); // Documents folder
+
+                path = FileAccessHelper.GetLocalFilePath(sqliteFilename);
+
+            }
+            else
+            {
+                path = sqliteFilename;
+            }
 
             // This is where we copy in the prepopulated database
-            //Console.WriteLine(path);
-            //if (!File.Exists(path))
-            //{
-            //    var s = Forms.Context.Resources.OpenRawResource(Resource.Raw.TodoSQLite);  // RESOURCE NAME ###
+            Console.WriteLine(path);
 
-            //    // create a write stream
-            //    FileStream writeStream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
-            //    // write to the stream
-            //    ReadWriteStream(s, writeStream);
-            //}
 
-            //var param = new SQLiteConnectionString(path, false);
 
-            //ISQLitePlatform plat;
-            //if (CrossDeviceInfo.Current.VersionNumber.Major < 7)
-            //    plat = new SQLitePlatformAndroid();
-            //else
-            //plat = new SQLitePlatformAndroidN();
 
             var connection = new SQLiteAsyncConnection(path);
 

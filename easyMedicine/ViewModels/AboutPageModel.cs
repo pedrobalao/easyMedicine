@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using easyMedicine.Helpers;
 
 namespace easyMedicine.ViewModels
 {
@@ -92,6 +93,19 @@ namespace easyMedicine.ViewModels
                     "\nAnjos R, Bandeira T, Marques JG. Formulário de Pediatria. 3 edição." +
                 "\nMedscape drug database. Acesso online. Ano 2016 - 2017";
         }
+
+        public int BDVersion
+        {
+            get
+            {
+                Settings.GetDB(out int dbVersion, out string dbFile, out bool initalDB);
+                return dbVersion;
+            }
+
+        }
+
+        public const string BDVersionPropertyName = "BDVersion";
+
 
 
 

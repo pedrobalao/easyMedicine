@@ -19,10 +19,19 @@ namespace easyMedicine.iOS.Data
 
         public SQLiteAsyncConnection GetConnection()
         {
-            var sqliteFilename = Configurations.GetDBFileName();
-            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
-            string libraryPath = Path.Combine(documentsPath, "..", "Library"); // Library folder
-            var path = Path.Combine(libraryPath, sqliteFilename);
+            var sqliteFilename = Configurations.GetDBFileName(out bool initialDb);
+
+            string path;
+            if (initialDb)
+            {
+                string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
+                string libraryPath = Path.Combine(documentsPath, "..", "Library"); // Library folder
+                path = Path.Combine(libraryPath, sqliteFilename);
+            }
+            else
+            {
+                path = sqliteFilename;
+            }
 
             // This is where we copy in the prepopulated database
             Console.WriteLine(path);

@@ -15,6 +15,7 @@ namespace easyMedicine.Helpers
         private static readonly string FavouriteSettingsDefault = string.Empty;
 
         private const string DBVersionSettingsKey = "DBVersion";
+        private const string DBFileSettingsKey = "DBFile";
 
         private static ISettings AppSettings => CrossSettings.Current;
 
@@ -76,7 +77,21 @@ namespace easyMedicine.Helpers
             return FavouriteSettings.Contains(drugId);
         }
 
-        public static int DBVersionSetting
+        private static string DBFileSetting
+        {
+            get
+            {
+                var dbv = AppSettings.GetValueOrDefault(DBFileSettingsKey, Configurations.INITIAL_DB_FILE);
+                return dbv;
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(DBFileSettingsKey, value);
+            }
+        }
+
+
+        private static int DBVersionSetting
         {
             get
             {
@@ -87,6 +102,32 @@ namespace easyMedicine.Helpers
             {
                 AppSettings.AddOrUpdateValue(DBVersionSettingsKey, value);
             }
+        }
+
+        public static void GetDB(out int dbVersion, out string dbFile, out bool initialDB)
+        {
+            dbVersion = DBVersionSetting;
+            if (Configurations.INITIAL_DB_VERSION > dbVersion)
+            {
+                SetDB(Configurations.INITIAL_DB_VERSION, Configurations.INITIAL_DB_FILE);
+                dbVersion = Configurations.INITIAL_DB_VERSION;
+            }
+            dbFile = DBFileSetting;
+
+            if (dbVersion == Configurations.INITIAL_DB_VERSION)
+            {
+                initialDB = true;
+            }
+            else
+            {
+                initialDB = false;
+            }
+        }
+
+        public static void SetDB(int dbVersion, string dbFile)
+        {
+            DBVersionSetting = dbVersion;
+            DBFileSetting = dbFile;
         }
 
 
