@@ -40,7 +40,7 @@ namespace easyMedicine.iOS
                 };
                 try
                 {
-                    Control.Subviews[0].TintColor = UIColor.White;
+                    Control.Subviews[0].TintColor = Styles.LETTER_COLOR_HEX.ToUIColor();
                 }
                 catch { }
 

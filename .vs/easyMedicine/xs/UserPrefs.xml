@@ -1,6 +1,6 @@
-﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{EFD4C86B-439D-4EEF-AC7B-E67CF9574F78}|Default">
+﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{21709F14-BE5A-4249-B23C-8280754D829B}|Default">
   <MonoDevelop.Ide.ItemProperties.easymedicine.Droid AndroidDesignerPreferredTheme="MyTheme" AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.android9" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="easyMedicine/Pages/MedicalCalculationPage.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="easyMedicine/Pages/RootPage.cs" Line="20" Column="71" />
       <File FileName="easyMedicine/ViewModels/RootPageModel.cs" Line="48" Column="72" />
@@ -19,19 +19,23 @@
       <File FileName="Droid/SplashActivity.cs" Line="1" Column="1" />
       <File FileName="Droid/MainApplication.cs" Line="1" Column="1" />
       <File FileName="Droid/MainActivity.cs" Line="1" Column="1" />
-      <File FileName="easyMedicine/Pages/MedicalCalculationPage.cs" Line="1" Column="1" />
+      <File FileName="iOS/Renderers/SearchBarRenderer.cs" Line="45" Column="26" />
+      <File FileName="easyMedicine/Core/Styles/Styles.cs" Line="26" Column="74" />
+      <File FileName="iOS/Renderers/PickerRenderer.cs" Line="25" Column="50" />
+      <File FileName="iOS/Renderers/NavigationPageRenderer.cs" Line="1" Column="1" />
+      <File FileName="iOS/Renderers/EntryRenderer.cs" Line="1" Column="1" />
+      <File FileName="iOS/Helpers/ExtensionMethods.cs" Line="10" Column="26" />
+      <File FileName="easyMedicine/ViewModels/MedicalCalculationPageModel.cs" Line="237" Column="41" />
+      <File FileName="iOS/Info.plist" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="easyMedicine" expanded="True">
-            <Node name="easyMedicine" expanded="True">
-              <Node name="Pages" expanded="True">
-                <Node name="MedicalCalculationPage.cs" selected="True" />
-              </Node>
-            </Node>
+            <Node name="easymedicine.Droid" expanded="True" selected="True" />
             <Node name="easyMedicine.iOS" expanded="True">
               <Node name="Data" expanded="True" />
+              <Node name="Helpers" expanded="True" />
               <Node name="Renderers" expanded="True" />
             </Node>
           </Node>
@@ -39,15 +43,13 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.easyMedicine.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.0F2FE250-ECF2-4DB4-9B2C-B9A6500DB555" />
+  <MonoDevelop.Ide.ItemProperties.easyMedicine.iOS automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.0F2FE250-ECF2-4DB4-9B2C-B9A6500DB555" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhoneSimulator" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/pedrorocha/Projects/easyMedicine/easyMedicineApp/easyMedicine/ViewModels/PercentilesPageModel.cs" relfile="easyMedicine/ViewModels/PercentilesPageModel.cs" line="493" column="1" />
       <Breakpoint file="/Users/pedrorocha/Projects/easyMedicine/easyMedicineApp/easyMedicine/ViewModels/RootPageModel.cs" relfile="easyMedicine/ViewModels/RootPageModel.cs" line="65" column="1" />
-      <Breakpoint file="/Users/pedrorocha/Projects/easyMedicine/easyMedicineApp/easyMedicine/ViewModels/MedicalCalculationPageModel.cs" relfile="easyMedicine/ViewModels/MedicalCalculationPageModel.cs" line="44" column="1" />
-      <Breakpoint file="/Users/pedrorocha/Projects/easyMedicine/easyMedicineApp/easyMedicine/ViewModels/MedicalCalculationPageModel.cs" relfile="easyMedicine/ViewModels/MedicalCalculationPageModel.cs" line="54" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
