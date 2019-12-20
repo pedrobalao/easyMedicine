@@ -23,7 +23,9 @@ namespace easyMedicine.ViewModels
         {
             _navigatorService = navigator;
             _databaseService = databaseService;
-            Task.Run(new Action(async () => await InitializeAsync()));
+
+            Task.Factory.StartNew(async () => await InitializeAsync());
+            // Task.Run(new Action(async () => await InitializeAsync()));
 
         }
 

@@ -24,17 +24,6 @@ namespace easyMedicine.iOS
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            //MobileCenter.Start("f4b28f29-a8b8-4197-870e-35aec416753a",
-            //typeof(Analytics), typeof(Crashes));
-
-            /*
-			var appdir = NSBundle.MainBundle.ResourcePath;
-			var seedFile = Path.Combine (appdir, "data.sqlite");
-			if (!File.Exists (Database.DatabaseFilePath))
-				File.Copy (seedFile, Database.DatabaseFilePath);
-				
-				
-*/
 
             AppCenter.Start("f4b28f29-a8b8-4197-870e-35aec416753a", typeof(Analytics), typeof(Crashes), typeof(Push));
             global::Xamarin.Forms.Forms.Init();
@@ -75,35 +64,36 @@ namespace easyMedicine.iOS
             boot.Start();
         }
 
-        public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
-        {
-            // Register your app for remote notifications.
-            if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
-            {
-                // iOS 10 or later
-                var authOptions = UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound;
-                UNUserNotificationCenter.Current.RequestAuthorization(authOptions, (granted, error) =>
-                {
-                    System.Console.WriteLine(granted);
-                });
 
-                // For iOS 10 display notification (sent via APNS)
-                UNUserNotificationCenter.Current.Delegate = this;
+        //public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
+        //{
+        //    // Register your app for remote notifications.
+        //    if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+        //    {
+        //        // iOS 10 or later
+        //        var authOptions = UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound;
+        //        UNUserNotificationCenter.Current.RequestAuthorization(authOptions, (granted, error) =>
+        //        {
+        //            System.Console.WriteLine(granted);
+        //        });
 
-                // For iOS 10 data message (sent via FCM)
-                //Messaging.SharedInstance.RemoteMessageDelegate = this;
-            }
-            else
-            {
-                // iOS 9 or before
-                var allNotificationTypes = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound;
-                var settings = UIUserNotificationSettings.GetSettingsForTypes(allNotificationTypes, null);
-                UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
-            }
+        //        // For iOS 10 display notification (sent via APNS)
+        //        UNUserNotificationCenter.Current.Delegate = this;
 
-            UIApplication.SharedApplication.RegisterForRemoteNotifications();
+        //        // For iOS 10 data message (sent via FCM)
+        //        //Messaging.SharedInstance.RemoteMessageDelegate = this;
+        //    }
+        //    else
+        //    {
+        //        // iOS 9 or before
+        //        var allNotificationTypes = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound;
+        //        var settings = UIUserNotificationSettings.GetSettingsForTypes(allNotificationTypes, null);
+        //        UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
+        //    }
 
-        }
+        //    UIApplication.SharedApplication.RegisterForRemoteNotifications();
+
+        //}
 
         //public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, System.Action<UIBackgroundFetchResult> completionHandler)
         //{

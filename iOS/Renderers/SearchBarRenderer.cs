@@ -38,11 +38,11 @@ namespace easyMedicine.iOS
                 {
                     this.Control.ShowsCancelButton = false;
                 };
-                try
-                {
-                    Control.Subviews[0].TintColor = Styles.LETTER_COLOR_HEX.ToUIColor();
-                }
-                catch { }
+                //try
+                //{
+                //    Control.Subviews[0].TintColor = Styles.BLUE_COLOR_HEX.ToUIColor();
+                //}
+                //catch { }
 
             }
         }

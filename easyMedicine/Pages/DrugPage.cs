@@ -19,6 +19,7 @@ namespace easyMedicine
 
         public DrugPage(DrugPageModel model) : base(model)
         {
+            this.BackgroundColor = Color.White;
             this.BindingContext = Model;
             this.SetBinding(Page.TitleProperty, "Drug.Name");
 
@@ -38,6 +39,7 @@ namespace easyMedicine
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Padding = new Thickness(5),
+                BackgroundColor = Color.White
             };
 
             var lbtname = new LabelValue("Nome", "Drug.Name");

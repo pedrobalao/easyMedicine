@@ -23,6 +23,7 @@ namespace easyMedicine.Core.Views
                     }
                 }
             };
+            this.TextColor = Styles.BLUE_COLOR;
         }
 
     }

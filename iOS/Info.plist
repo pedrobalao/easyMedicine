@@ -7,11 +7,11 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.easymedicine</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.9.5</string>
+	<string>1.9.7</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>9.0</string>
+	<string>11.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -45,6 +45,6 @@
 		<string>remote-notification</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>44</string>
+	<string>55</string>
 </dict>
 </plist>

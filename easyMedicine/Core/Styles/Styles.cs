@@ -117,7 +117,7 @@ namespace easyMedicine
             {
                 Setters = {
                         new Setter {
-                            Property = View.BackgroundColorProperty, Value = Color.Transparent
+                            Property = VisualElement.BackgroundColorProperty, Value = Color.Transparent
                         }
 
                     }
@@ -430,7 +430,7 @@ namespace easyMedicine
                         Property = Button.FontSizeProperty, Value = MediumFontSize
                     },
                     new Setter {
-                        Property = Button.BackgroundColorProperty, Value =  CONTRAST_LETTER_COLOR//Color.White
+                        Property = VisualElement.BackgroundColorProperty, Value =  CONTRAST_LETTER_COLOR//Color.White
                     },
                     //new Setter {
                     //    Property = Button.FontFamilyProperty, Value = "Bebas Neue"
