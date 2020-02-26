@@ -45,7 +45,7 @@ namespace easyMedicine.ViewModels
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        _navigator.RootPage.CurrentPage = _navigator.RootPage.Children[2];
+                        ((TabbedPage)_navigator.RootPage).CurrentPage = ((TabbedPage)_navigator.RootPage).Children[2];
                     });
                 }
             }

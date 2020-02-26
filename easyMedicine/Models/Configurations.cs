@@ -14,6 +14,10 @@ namespace easyMedicine.Models
         public const string DB_NAME_PREFIX = "easyPedDBV";
         public const string DB_NAME_SUFIX = ".db3";
 
+        public const string API_BASE_URL = "https://easypedapi.azurewebsites.net/api/v1";
+        // public const string API_BASE_URL = "http://localhost:3000/api/v1";
+
+
         public static string GetDBFileName(out bool initialDB)
         {
 

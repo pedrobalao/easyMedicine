@@ -12,13 +12,20 @@ namespace easyMedicine.Core.Services
     public interface INavigatorService
     {
 
-        TabbedPage RootPage { get; }
+        Page RootPage { get; }
 
-        Task<IPageModel> PopAsync();
+        Task PopAsync();
 
-        Task<IPageModel> PopModalAsync();
+        Task PopModalAsync();
 
         Task PopToRootAsync();
+
+        Task ReplaceRoot<TPageModel>(string screen, Action<TPageModel> setStateAction = null)
+            where TPageModel : class, IPageModel;
+
+        void InsertPageBefore<TPageModel, TPageModelBefore>()
+            where TPageModel : class, IPageModel
+            where TPageModelBefore : class, IPageModel;
 
         Task<TViewModel> PushAsync<TViewModel>(string screen, Action<TViewModel> setStateAction = null)
             where TViewModel : class, IPageModel;
@@ -33,10 +40,10 @@ namespace easyMedicine.Core.Services
             where TViewModel : class, IPageModel;
 
 
-        TViewModel PushDetail<TViewModel>(string screen, Action<TViewModel> setStateAction = null)
+        Task<TViewModel> PushDetail<TViewModel>(string screen, Action<TViewModel> setStateAction = null)
             where TViewModel : class, IPageModel;
 
-        TViewModel PushDetail<TViewModel>(string screen, TViewModel viewModel)
+        Task<TViewModel> PushDetail<TViewModel>(string screen, TViewModel viewModel)
         where TViewModel : class, IPageModel;
 
         void Start<TViewModel>(string screen, App app = null, Action<TViewModel> setStateAction = null)

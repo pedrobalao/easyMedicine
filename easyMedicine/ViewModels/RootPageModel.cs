@@ -18,6 +18,12 @@ namespace easyMedicine.ViewModels
 
         private readonly IDatabaseService _databaseService;
 
+        public bool CollectUserInfo
+        {
+            get;
+            set;
+        }
+
         public RootPageModel(
             INavigatorService navigator, IDatabaseService databaseService)
         {
@@ -29,15 +35,23 @@ namespace easyMedicine.ViewModels
 
         }
 
-        public override void LoadChildPages()
+        public override async Task LoadChildPages()
         {
+
             var favsModel = _navigatorService.PushTab<FavouritesPageModel>("Favourites");
+            //_navigatorService.PushTab<LoginPageModel>("Login");
             _navigatorService.PushTab<SearchPageModel>("Search");
             _navigatorService.PushTab<ExplorePageModel>("Explore");
             if (Device.RuntimePlatform == Device.Android)
                 _navigatorService.PushTab<CalculatorListPageModel>("Calculator");
             _navigatorService.PushTab<PercentilesPageModel>("Percentiles");
             _navigatorService.PushTab<MenuMorePageModel>("MenuMore");
+
+
+            if (AuthenticationService.IsUserAuthenticated && CollectUserInfo)
+            {
+                await _navigatorService.PushModalAsync<CollectUserInfoPageModel>("CollectUserInfo");
+            }
 
             //_navigatorService.PushTab<MedicalCalculationListPageModel>("Calculator");
             //_navigatorService.PushTab<AboutPageModel>("About");

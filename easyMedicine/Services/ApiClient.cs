@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -23,6 +25,8 @@ namespace easyMedicine.Services
 
         public async Task<T> Get<T>(string url)
         {
+            await SetHeaders();
+
             var response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
@@ -32,6 +36,38 @@ namespace easyMedicine.Services
             {
                 return _serializer.Deserialize<T>(json);
             }
+        }
+
+        public async Task Patch<T>(string url, T item)
+        {
+            await SetHeaders();
+
+            var jsonRequest = JsonConvert.SerializeObject(item);
+            var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PatchAsync(url, content);
+            response.EnsureSuccessStatusCode();
+
+            return;
+        }
+
+        public async Task Post<T>(string url, T item)
+        {
+            await SetHeaders();
+
+            var jsonRequest = JsonConvert.SerializeObject(item);
+            var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync(url, content);
+            response.EnsureSuccessStatusCode();
+
+            return;
+        }
+
+        public async Task SetHeaders()
+        {
+            var token = await AuthenticationService.GetToken();
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
 
         public static ApiClient Instance

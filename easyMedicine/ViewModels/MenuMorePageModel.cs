@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using easyMedicine.Core.Models;
 using easyMedicine.Core.Services;
+using easyMedicine.Services;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace easyMedicine.ViewModels
 {
@@ -46,8 +49,15 @@ namespace easyMedicine.ViewModels
             {
                 new MenuItem("CALCULATIONS", "Cálculos", "ic_poll.png"),
                 new MenuItem("SURGERIES", "Referenciação Cirúrgica", "round_verified_user_black_24pt.png"),
+                new MenuItem("DISEASES", "Doenças", "round_verified_user_black_24pt.png"),
                 new MenuItem("ABOUT", "Sobre", "ic_info.png"),
+
             };
+
+            if (AuthenticationService.IsUserAuthenticated)
+            {
+                MenuItems.Add(new MenuItem("PROFILE", AuthenticationService.User.DisplayName, AuthenticationService.User.PhotoUrl));
+            }
 
             SelectedItemCommand = new Command<MenuItem>(async (item) =>
             {
@@ -63,10 +73,26 @@ namespace easyMedicine.ViewModels
                     case "SURGERIES":
                         await _navigator.PushAsync<SurgeriesReferralPageModel>("Surgeries", (model) => { });
                         break;
+                    case "PROFILE":
+                        await _navigator.PushAsync<ProfilePageModel>("Profile", (model) => { });
+                        break;
+                    case "DISEASES":
+                        await _navigator.PushAsync<DiseasesListPageModel>("Diseases", (model) => { });
+                        break;
+
+
                     default:
                         throw new NotImplementedException("Menu desconhecido: " + SelectedItem.Id);
                 }
             });
+        }
+
+        protected override async Task Activated()
+        {
+            if (AuthenticationService.IsUserAuthenticated && !MenuItems.Any(x => x.Id == "PROFILE"))
+            {
+                MenuItems.Add(new MenuItem("PROFILE", AuthenticationService.User.DisplayName, AuthenticationService.User.PhotoUrl));
+            }
         }
 
         private ICommand _SelectedItemCommand;
@@ -119,5 +145,7 @@ namespace easyMedicine.ViewModels
         }
 
         public const string MenuItemsPropertyName = "MenuItems";
+
+
     }
 }

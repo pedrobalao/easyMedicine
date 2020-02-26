@@ -11,6 +11,8 @@ namespace easyMedicine.Helpers
 
     public static class Settings
     {
+
+        public const string FacebookAppId = "1477670789018415";
         private const string FavouriteSettingsKey = "Favourites";
         private static readonly string FavouriteSettingsDefault = string.Empty;
 
@@ -25,6 +27,11 @@ namespace easyMedicine.Helpers
 
             set => AppSettings.AddOrUpdateValue(nameof(GeneralSettings), value);
 
+        }
+
+        public static bool IsUsingNativeUI
+        {
+            get => true;
         }
 
         public static void AddFavourite(string idDrug)

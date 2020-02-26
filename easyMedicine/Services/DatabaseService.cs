@@ -44,7 +44,8 @@ namespace easyMedicine.Services
     }
     public class DatabaseService : IDatabaseService
     {
-        string apiBaseUrl = "https://easypedapi.azurewebsites.net/api/v1";
+        //string apiBaseUrl = "https://easypedapi.azurewebsites.net/api/v1";
+
 
         public DatabaseService(IDrugsDataService drugsDataService)
         {
@@ -55,7 +56,7 @@ namespace easyMedicine.Services
 
         public async Task<AppDb> GetLastestDBVersion(string appVersion)
         {
-            return await ApiClient.Instance.Get<AppDb>(apiBaseUrl + "/appdb/latest?appversion=" + appVersion);
+            return await ApiClient.Instance.Get<AppDb>(Configurations.API_BASE_URL + "/appdb/latest?appversion=" + appVersion);
         }
 
         public async Task<int> GetLatesDB()
@@ -67,7 +68,7 @@ namespace easyMedicine.Services
                 var data = "{\"id\": " + latestVersion.id.ToString() + ", \"app\": \"easyPed\", \"date\": " + DateTime.UtcNow.ToString("yyyyMMddHHmmss") + "}";
                 var enc = Encryption.Encrypt(data);
 
-                var url = apiBaseUrl + $"/appdb/{latestVersion.id.ToString()}?token={enc.Cypher}&iv={enc.IV}";
+                var url = Configurations.API_BASE_URL + $"/appdb/{latestVersion.id.ToString()}?token={enc.Cypher}&iv={enc.IV}";
                 var newDB = await ApiClient.Instance.Get<DbData>(url);
 
 

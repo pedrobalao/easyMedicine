@@ -14,6 +14,8 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Push;
+using easyMedicine.Models;
+using easyMedicine.iOS.Services;
 
 namespace easyMedicine.iOS
 {
@@ -30,7 +32,8 @@ namespace easyMedicine.iOS
 
             //UserDialogs.Init(() => (Activity)Forms.Context);
 
-            //Firebase.Core.App.Configure();
+
+            Firebase.Core.App.Configure();
             var app1 = new App();
 
 
@@ -38,6 +41,8 @@ namespace easyMedicine.iOS
 
 
             LoadApplication(app1);
+
+
 
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes()
             {
@@ -59,6 +64,7 @@ namespace easyMedicine.iOS
         private void RegisterComponents(Bootstrapper boot)
         {
             boot.RegisterPlatformService<ISQLite>(new IOSSQLite());
+            boot.RegisterPlatformService<IFirebaseAuth>(new IOSFirebaseAuth());
             /*boot.RegisterPlatformService<ILocalizeService> (new IosLocalizeService ());
 			boot.RegisterPlatformService<ISocketIOService> (new IOSSocketIOService ());*/
             boot.Start();
@@ -141,6 +147,17 @@ Action<UNNotificationPresentationOptions> completionHandler)
         //{
         //    Console.WriteLine(remoteMessage.AppData);
         //}
+
+        public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
+        {
+            // Convert NSUrl to Uri
+            var uri = new Uri(url.AbsoluteString);
+
+            // Load redirectUrl page
+            AuthenticationState.Authenticator.OnPageLoading(uri);
+
+            return true;
+        }
     }
 
 

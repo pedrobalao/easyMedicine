@@ -1,52 +1,53 @@
 {
   "project_info": {
-    "project_number": "450764852779",
-    "firebase_url": "https://easymedicine-e3328.firebaseio.com",
-    "project_id": "easymedicine-e3328",
-    "storage_bucket": "easymedicine-e3328.appspot.com"
+    "project_number": "330541011565",
+    "firebase_url": "https://easyped-894ba.firebaseio.com",
+    "project_id": "easyped-894ba",
+    "storage_bucket": "easyped-894ba.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:450764852779:android:6b614ec41991a336",
+        "mobilesdk_app_id": "1:330541011565:android:2314c2d929c31a11e0e564",
         "android_client_info": {
           "package_name": "com.easymedicine.easymedicine"
         }
       },
       "oauth_client": [
         {
-          "client_id": "450764852779-v1ddmt7rg2cg12p4au02c8vpmlvn6lsg.apps.googleusercontent.com",
+          "client_id": "330541011565-0ekek1brvq39m6c34i8en2tl2jtqj99a.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.easymedicine.easymedicine",
-            "certificate_hash": "a64dfb7901e6b9dece9a24e56c1646f18767364f"
+            "certificate_hash": "7e628e252861f4c0bb66c38810097a338c140d15"
           }
         },
         {
-          "client_id": "450764852779-eo4eb60fafvkalfaoq3fbaubnj74dlj9.apps.googleusercontent.com",
+          "client_id": "330541011565-uppv3adt8s17h7u3ulj8lv96673j61n2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDtOvM3C3XfQ4hmZ0hK82pgJ6C0Lpj6_N0"
+          "current_key": "AIzaSyCIlNbQme_B7nNkat2QEDG6pQxoIlByqTY"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "450764852779-eo4eb60fafvkalfaoq3fbaubnj74dlj9.apps.googleusercontent.com",
+              "client_id": "330541011565-uppv3adt8s17h7u3ulj8lv96673j61n2.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "330541011565-p4clgm77d42sbqjrkojro5495pp9kdr4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.easymedicine",
+                "app_store_id": "1158594702"
+              }
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

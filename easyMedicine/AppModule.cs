@@ -90,6 +90,40 @@ namespace easyMedicine
             builder.RegisterType<PercentilesPage>()
                .SingleInstance();
 
+            builder.RegisterType<LoginPageModel>()
+               .SingleInstance();
+            builder.RegisterType<LoginPage>()
+               .SingleInstance();
+
+
+            builder.RegisterType<AuthenticatorPageModel>()
+               .SingleInstance();
+            builder.RegisterType<AuthenticatorPage>()
+               .SingleInstance();
+
+            builder.RegisterType<ProfilePageModel>()
+               .SingleInstance();
+            builder.RegisterType<ProfilePage>()
+               .SingleInstance();
+
+            builder.RegisterType<DiseasesListPageModel>()
+               .SingleInstance();
+            builder.RegisterType<DiseasesListPage>()
+               .SingleInstance();
+            builder.RegisterType<DiseasePageModel>()
+               .SingleInstance();
+            builder.RegisterType<DiseasePage>()
+               .SingleInstance();
+
+            builder.RegisterType<CollectUserInfoPageModel>()
+               .SingleInstance();
+            builder.RegisterType<CollectUserInfoPage>()
+               .SingleInstance();
+
+
+
+
+
         }
     }
 }

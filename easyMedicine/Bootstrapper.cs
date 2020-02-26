@@ -13,8 +13,7 @@ using easyMedicine.Core.Factory;
 using easyMedicine.Core.Services;
 using easyMedicine.Pages;
 using easyMedicine.ViewModels;
-
-
+using easyMedicine.Services;
 
 namespace easyMedicine
 {
@@ -31,6 +30,11 @@ namespace easyMedicine
 
 
             Instance = this;
+
+        }
+        public T Resolve<T>()
+        {
+            return _container.Resolve<T>();
 
         }
 
@@ -59,32 +63,30 @@ namespace easyMedicine
             viewFactory.Register<SurgeriesReferralPageModel, SurgeriesReferralPage>();
             viewFactory.Register<SurgeryReferralPageModel, SurgeryReferralPage>();
             viewFactory.Register<PercentilesPageModel, PercentilesPage>();
+            viewFactory.Register<LoginPageModel, LoginPage>();
+            viewFactory.Register<AuthenticatorPageModel, AuthenticatorPage>();
+            viewFactory.Register<ProfilePageModel, ProfilePage>();
+            viewFactory.Register<DiseasesListPageModel, DiseasesListPage>();
+            viewFactory.Register<DiseasePageModel, DiseasePage>();
+            viewFactory.Register<CollectUserInfoPageModel, CollectUserInfoPage>();
         }
 
 
         public void Start()
         {
-            /*/CrossConnectivity.Current.ConnectivityChanged += (sender, args) => {
-				CheckConnectivity ();
 
-			};
+            AuthenticationService.LoadAuth();
 
-			if (!CheckConnectivity ())
-				return;*/
+            if (AuthenticationService.IsUserAuthenticated)
+            {
+                _container.Resolve<INavigatorService>().Start<RootPageModel>("Root", _application);
+            }
+            else
+            {
+                _container.Resolve<INavigatorService>().Start<LoginPageModel>("Login", _application);
+            }
 
-            /*
-			if (Device.OS != TargetPlatform.WinPhone) {
-				try {
-					AppResources.Culture = new CultureInfo (_container.Resolve<ILocalizeService> ().GetCurrentCultureInfo ());
-				} catch {
-					AppResources.Culture = new CultureInfo ("en-US");
-				}
-			}
-			*/
 
-            //bool authenticated = _container.Resolve<IAuthenticationService> ().IsAuthenticated ();
-
-            _container.Resolve<INavigatorService>().Start<RootPageModel>("Root", _application);
 
         }
 

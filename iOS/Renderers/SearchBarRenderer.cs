@@ -13,7 +13,10 @@ namespace easyMedicine.iOS
         protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
-            Control.SearchBarStyle = UIKit.UISearchBarStyle.Minimal;
+            if (Control != null)
+            {
+                Control.SearchBarStyle = UIKit.UISearchBarStyle.Minimal;
+            }
 
         }
 

@@ -6,21 +6,22 @@ namespace easyMedicine.Core.Models
 {
 
 
-	public interface IPageModel : INotifyPropertyChanged
-	{
-		string Title { get; set; }
+    public interface IPageModel : INotifyPropertyChanged
+    {
+        string Title { get; set; }
 
-		void SetState<T> (Action<T> action) where T : class, IPageModel;
+        void SetState<T>(Action<T> action) where T : class, IPageModel;
 
-		Task LoadAsync ();
+        Task LoadAsync();
 
-		void LoadChildPages ();
+        Task LoadChildPages();
 
-		bool CreationAction {
-			get;
-			set;
-		}
-	}
+        bool CreationAction
+        {
+            get;
+            set;
+        }
+    }
 
 
 }

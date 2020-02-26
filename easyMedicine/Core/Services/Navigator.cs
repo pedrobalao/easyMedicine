@@ -9,6 +9,7 @@ using Xamarin;
 using easyMedicine.Core.Factory;
 using easyMedicine.Core.Models;
 using easyMedicine.Pages;
+using easyMedicine.Services;
 
 namespace easyMedicine.Core.Services
 {
@@ -43,27 +44,61 @@ namespace easyMedicine.Core.Services
         }
 
 
-        public TabbedPage RootPage
+        public Page RootPage
         {
             get
             {
-                return (TabbedPage)_root;
+                return (Page)_root;
             }
         }
 
 
         #endregion
 
-        public async Task<IPageModel> PopAsync()
+        public async Task PopAsync()
         {
-            Page view = await Navigation.PopAsync();
-            return view.BindingContext as IPageModel;
+            await Navigation.PopAsync();
+            return;
         }
 
-        public async Task<IPageModel> PopModalAsync()
+        public async Task PopModalAsync()
         {
-            Page view = await Navigation.PopModalAsync();
-            return view.BindingContext as IPageModel;
+            if (Navigation.ModalStack.Count > 0)
+                Navigation.PopModalAsync();
+        }
+
+        public async Task ReplaceRoot<TPageModel>(string screen, Action<TPageModel> setStateAction = null)
+            where TPageModel : class, IPageModel
+        {
+            TPageModel viewModel;
+            Page view;
+            if (setStateAction != null)
+                view = _viewFactory.Resolve<TPageModel>(out viewModel, setStateAction) as Page;
+            else
+                view = _viewFactory.Resolve<TPageModel>(out viewModel) as Page;
+
+            Navigation.InsertPageBefore(view, _root);
+            _root = view;
+
+            if (_root is CustomTabbedPage)
+            {
+                await viewModel.LoadChildPages();
+            }
+
+            await Navigation.PopToRootAsync();
+        }
+
+        public void InsertPageBefore<TPageModel, TPageModelBefore>()
+            where TPageModel : class, IPageModel
+            where TPageModelBefore : class, IPageModel
+        {
+            TPageModel viewModel;
+            var view = _viewFactory.Resolve<TPageModel>(out viewModel);
+
+            TPageModelBefore viewModelBefore;
+            var viewBefore = _viewFactory.Resolve<TPageModelBefore>(out viewModelBefore);
+
+            Navigation.InsertPageBefore(view, viewBefore);
         }
 
         public async Task PopToRootAsync()
@@ -100,25 +135,21 @@ namespace easyMedicine.Core.Services
             return viewModel;
         }
 
-        public TPageModel PushDetail<TPageModel>(string screen, Action<TPageModel> setStateAction = null)
+        public async Task<TPageModel> PushDetail<TPageModel>(string screen, Action<TPageModel> setStateAction = null)
             where TPageModel : class, IPageModel
         {
             TPageModel viewModel;
             var view = _viewFactory.Resolve<TPageModel>(out viewModel, setStateAction);
             viewModel.CreationAction = true;
-            // viewModel.LoadAsync();
-            /*using (Insights.TrackTime("Loading " + screen, new Dictionary<string, string> { { "Screen", screen } }))
-            {
-                await 
-            }*/
-            RootPage.CurrentPage = new eMNavigationPage(view)
-            {
 
-            };
+
+            //RootPage.CurrentPage.Navigation.PushAsync(view);
+            await Navigation.PushAsync(view);
+
             return viewModel;
         }
 
-        public TPageModel PushDetail<TPageModel>(string screen, TPageModel viewModel)
+        public async Task<TPageModel> PushDetail<TPageModel>(string screen, TPageModel viewModel)
            where TPageModel : class, IPageModel
         {
 
@@ -128,11 +159,13 @@ namespace easyMedicine.Core.Services
             }*/
             viewModel.CreationAction = true;
             var view = _viewFactory.Resolve(viewModel);
-            RootPage.CurrentPage = new eMNavigationPage(view)
-            {
+
+            await Navigation.PushAsync(view);
+            //RootPage.CurrentPage = new eMNavigationPage(view)
+            //{
 
 
-            };
+            //};
             return viewModel;
         }
 
@@ -146,7 +179,9 @@ namespace easyMedicine.Core.Services
             viewModel.CreationAction = true;
             //viewModel.LoadAsync();
             //RootPage.Children.Add (new eMNavigationPage (view));
-            RootPage.Children.Add(view);
+
+
+            ((TabbedPage)RootPage).Children.Add(view);
             //RootPage.CurrentPage = RootPage.Children.Last ();
             //RootPage.Children.Add (view);
             return viewModel;
@@ -168,7 +203,13 @@ namespace easyMedicine.Core.Services
             {
                  await viewModel.LoadAsync();
             }*/
-            await Navigation.PushModalAsync(view);
+            // await Navigation.PushModalAsync(view);
+
+            if (Navigation.ModalStack.Count > 0)
+            {
+                Navigation.PopModalAsync();
+            }
+            Navigation.PushModalAsync(view);
             return viewModel;
         }
 
@@ -181,7 +222,10 @@ namespace easyMedicine.Core.Services
             }*/
             viewModel.CreationAction = true;
             var view = _viewFactory.Resolve(viewModel);
-            await Navigation.PushModalAsync(view);
+            //await Navigation.PushModalAsync(view);
+
+
+            await RootPage.Navigation.PushModalAsync(view);
             return viewModel;
         }
 
@@ -201,14 +245,16 @@ namespace easyMedicine.Core.Services
             model.CreationAction = true;
             if (_root is CustomTabbedPage)
             {
-                model.LoadChildPages();
+                var task = model.LoadChildPages();
+                task.Wait();
             }
-
             _app.MainPage = new eMNavigationPage(_root)
             {
                 //BarBackgroundColor = Styles.BLUE_COLOR,
                 //BarTextColor = Styles.WHITE_COLOR
             };
+
+
 
         }
 

@@ -17,6 +17,8 @@ namespace easyMedicine
         public static string Style_LabelMediumStyle = "LabelMediumStyle";
         public static string Style_LabelMediumNegativeStyle = "LabelMediumNegativeStyle";
         public static string Style_LabelSmallStyleNormal = "LabelSmallStyleNormal";
+        public static string Style_LabelBrandlStyle = "LabelBrandStyle";
+        public static string Style_LabelHashlStyle = "LabelHashStyle";
 
         //Preto esbatido
         public static string BASE_COLOR_HEX = "252628";
@@ -32,7 +34,9 @@ namespace easyMedicine
         public static Color PLACEHOLDER_COLOR = Color.FromHex(PLACEHOLDER_COLOR_HEX);
 
 
-        public static string BLUE_COLOR_HEX = "0078D7";
+        public static string BLUE_COLOR_HEX = "2963C8";
+        //public static string BLUE_COLOR_HEX = "0078D7";
+
         public static Color BLUE_COLOR = Color.FromHex(BLUE_COLOR_HEX);
 
         public static Color LIGHT_BLUE_COLOR = Color.FromHex("3393DE");
@@ -196,6 +200,49 @@ namespace easyMedicine
                     },
                     new Setter {
                         Property = Label.FontSizeProperty, Value = MediumFontSize
+                    },
+                }
+            };
+
+
+            var labelBrandStyle = new Style(typeof(Label))
+            {
+                Setters = {
+                    new Setter {
+                        Property = Label.FontFamilyProperty, Value = FontFamily
+                    },
+                    new Setter {
+                        Property = Label.TextColorProperty, Value = WHITE_COLOR,
+                    },
+                    new Setter {
+                        Property = Label.HorizontalTextAlignmentProperty, Value = TextAlignment.Center
+                    },
+                    new Setter {
+                        Property = Label.VerticalTextAlignmentProperty, Value = TextAlignment.Center
+                    },
+                    new Setter {
+                        Property = Label.FontSizeProperty, Value = 30
+                    },
+                }
+            };
+
+            var labelHashStyle = new Style(typeof(Label))
+            {
+                Setters = {
+                    new Setter {
+                        Property = Label.FontFamilyProperty, Value = FontFamily
+                    },
+                    new Setter {
+                        Property = Label.TextColorProperty, Value = WHITE_COLOR,
+                    },
+                    new Setter {
+                        Property = Label.HorizontalTextAlignmentProperty, Value = TextAlignment.Center
+                    },
+                    new Setter {
+                        Property = Label.VerticalTextAlignmentProperty, Value = TextAlignment.Center
+                    },
+                    new Setter {
+                        Property = Label.FontSizeProperty, Value = 18
                     },
                 }
             };
@@ -542,6 +589,9 @@ namespace easyMedicine
             Application.Current.Resources.Add(labelSmallStyle);
 
             //Specific Styles
+
+            Application.Current.Resources.Add(Style_LabelBrandlStyle, labelBrandStyle);
+            Application.Current.Resources.Add(Style_LabelHashlStyle, labelHashStyle);
 
             Application.Current.Resources.Add(Style_LabelSmallStyle, labelSmallStyle);
             Application.Current.Resources.Add(Style_LabelSmallStyleNormal, labelSmallStyleNormal);
