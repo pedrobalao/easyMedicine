@@ -12,7 +12,7 @@ namespace easyMedicine.Helpers
     public static class Settings
     {
 
-        public const string FacebookAppId = "1477670789018415";
+
         private const string FavouriteSettingsKey = "Favourites";
         private static readonly string FavouriteSettingsDefault = string.Empty;
 
@@ -110,6 +110,7 @@ namespace easyMedicine.Helpers
                 AppSettings.AddOrUpdateValue(DBVersionSettingsKey, value);
             }
         }
+
 
         public static void GetDB(out int dbVersion, out string dbFile, out bool initialDB)
         {

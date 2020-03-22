@@ -54,12 +54,30 @@ namespace easyMedicine.ViewModels
         public const string DiseasePropertyName = "Disease";
 
 
+        private ObservableCollection<Condition> _Conditions;
+
+        public ObservableCollection<Condition> Conditions
+        {
+            get
+            {
+                return _Conditions;
+            }
+            set
+            {
+                _Conditions = value;
+                OnPropertyChanged(ConditionsPropertyName);
+            }
+        }
+
+        public const string ConditionsPropertyName = "Conditions";
+
 
         public DiseasePageModel(INavigatorService navigator, IDrugsDataService drugsDataServ)
         {
             _drugsDataServ = drugsDataServ;
             _navigator = navigator;
             diseaseService = new DiseaseService();
+            Conditions = new ObservableCollection<Condition>();
 
         }
 
@@ -75,6 +93,14 @@ namespace easyMedicine.ViewModels
             try
             {
                 this.Disease = await diseaseService.GetDisease(this.DiseaseId);
+                Conditions.Clear();
+                if (Disease.treatment != null && Disease.treatment.conditions != null)
+                {
+                    foreach (var cond in Disease.treatment.conditions)
+                    {
+                        Conditions.Add(cond);
+                    }
+                }
                 Analytics.TrackEvent("Disease Opened", new Dictionary<string, string> {
                 { "DiseaseId", this.DiseaseId.ToString() },
                 { "DiseaseName", Disease.description}

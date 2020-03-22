@@ -11,7 +11,7 @@
 		android:minHeight="25px"
 		android:orientation="vertical"
 		android:gravity="center"
-		android:background="#FF0078D7">
+		android:background="#ff2963c8">
 		<TextView
 			android:id="@+id/splashTitleText"
 			android:layout_width="fill_parent"
@@ -23,7 +23,7 @@
 			android:textColor="#FFFFFF"
 			android:textColorHighlight="#FFFFFF"
 			android:textIsSelectable="false"
-			android:textSize="40dp" />
+			android:textSize="36dp" />
 		<LinearLayout
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
@@ -36,11 +36,11 @@
 			android:layout_marginBottom="100dp"
 			android:gravity="center_horizontal"
 			android:text="#makinghealthcareeasier"
-			android:textStyle="bold"
+			android:textStyle="normal"
 			android:textColor="#FFFFFF"
 			android:textColorHighlight="#FFFFFF"
 			android:textIsSelectable="false"
-			android:textSize="20dp" />
+			android:textSize="18dp" />
 	</LinearLayout>
     <TextView
         android:id="@+id/splashTitleText"

@@ -49,25 +49,25 @@ namespace easyMedicine
             grid.RowDefinitions.Add(titleRowDefinition);
             grid.RowDefinitions.Add(descriptionRowDefinition);
 
-            var lbtName = new Label()
+            Title = new Label()
             {
                 Text = label,
                 Style = (Style)Application.Current.Resources[Styles.Style_LabelSmallStyle],
             };
 
-            var lbdDrugName = new Label()
+            Description = new Label()
             {
                 Style = (Style)Application.Current.Resources[Styles.Style_LabelIndincValueStyle],
                 LineBreakMode = LineBreakMode.WordWrap
             };
-            lbdDrugName.SetBinding(Label.TextProperty, valueBinding);
+            Description.SetBinding(Label.TextProperty, valueBinding);
 
-            lbdDrugName.SetBinding(Label.IsVisibleProperty, valueBinding, BindingMode.OneWay, new StringToBoolConverter());
-            lbtName.SetBinding(Label.IsVisibleProperty, valueBinding, BindingMode.OneWay, new StringToBoolConverter());
+            Description.SetBinding(Label.IsVisibleProperty, valueBinding, BindingMode.OneWay, new StringToBoolConverter());
+            Title.SetBinding(Label.IsVisibleProperty, valueBinding, BindingMode.OneWay, new StringToBoolConverter());
 
 
-            grid.Children.Add(lbtName, 0, 0);
-            grid.Children.Add(lbdDrugName, 0, 1);
+            grid.Children.Add(Title, 0, 0);
+            grid.Children.Add(Description, 0, 1);
 
             Content = grid;
         }

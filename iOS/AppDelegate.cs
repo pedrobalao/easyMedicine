@@ -27,7 +27,7 @@ namespace easyMedicine.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
 
-            AppCenter.Start("f4b28f29-a8b8-4197-870e-35aec416753a", typeof(Analytics), typeof(Crashes), typeof(Push));
+            AppCenter.Start(Secrets.IOSAppCenterAppID, typeof(Analytics), typeof(Crashes), typeof(Push));
             global::Xamarin.Forms.Forms.Init();
 
             //UserDialogs.Init(() => (Activity)Forms.Context);

@@ -14,6 +14,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Push;
+using easymedicine.Droid.Services;
 
 namespace easymedicine.Droid
 {
@@ -35,7 +36,7 @@ namespace easymedicine.Droid
             Xamarin.Essentials.Platform.Init(this, bundle);
 
 
-            AppCenter.Start("f883dc1d-c988-4a56-b2b8-1c4552c60c30", typeof(Analytics), typeof(Crashes), typeof(Push));
+            AppCenter.Start(Secrets.AndroidAppCenterAppID, typeof(Analytics), typeof(Crashes), typeof(Push));
 
             var app = new App();
             RegisterComponents(app.BootStrapper);
@@ -45,6 +46,7 @@ namespace easymedicine.Droid
         private void RegisterComponents(Bootstrapper boot)
         {
             boot.RegisterPlatformService<ISQLite>(new AndroidSQLite());
+            boot.RegisterPlatformService<IFirebaseAuth>(new AndroidFirebaseAuth());
             /*boot.RegisterPlatformService<ILocalizeService> (new IosLocalizeService ());
             boot.RegisterPlatformService<ISocketIOService> (new IOSSocketIOService ());*/
             boot.Start();

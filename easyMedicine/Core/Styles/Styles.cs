@@ -15,6 +15,7 @@ namespace easyMedicine
 
         public static string Style_LabelSmallStyle = "LabelSmallStyle";
         public static string Style_LabelMediumStyle = "LabelMediumStyle";
+        public static string Style_LabelMediumContrastStyle = "LabelMediumContrastStyle";
         public static string Style_LabelMediumNegativeStyle = "LabelMediumNegativeStyle";
         public static string Style_LabelSmallStyleNormal = "LabelSmallStyleNormal";
         public static string Style_LabelBrandlStyle = "LabelBrandStyle";
@@ -51,7 +52,6 @@ namespace easyMedicine
 
         public static string Style_MenuCellLabelStyle = "MenuCellLabelStyle";
 
-        public static string Style_LabelContrastStyle = "LabelContrastStyle";
 
         public static string Style_LabelMediumBackgroundStyle = "LabelMediumBackgroundStyle";
 
@@ -201,6 +201,16 @@ namespace easyMedicine
                     new Setter {
                         Property = Label.FontSizeProperty, Value = MediumFontSize
                     },
+                }
+            };
+
+            var labelMediumContrastStyle = new Style(typeof(Label))
+            {
+                BasedOn = labelMediumStyle,
+                Setters = {
+                    new Setter {
+                        Property = Label.TextColorProperty, Value = BLUE_COLOR,
+                    }
                 }
             };
 
@@ -596,6 +606,7 @@ namespace easyMedicine
             Application.Current.Resources.Add(Style_LabelSmallStyle, labelSmallStyle);
             Application.Current.Resources.Add(Style_LabelSmallStyleNormal, labelSmallStyleNormal);
             Application.Current.Resources.Add(Style_LabelMediumStyle, labelMediumStyle);
+            Application.Current.Resources.Add(Style_LabelMediumContrastStyle, labelMediumContrastStyle);
             Application.Current.Resources.Add(Style_LabelMediumNegativeStyle, labelMediumNegativeStyle);
 
 

@@ -369,6 +369,15 @@
 		<Reference Include="Xamarin.Auth.XamarinForms">
 		  <HintPath>..\packages\Xamarin.Auth.XamarinForms.1.7.0\lib\MonoAndroid10\Xamarin.Auth.XamarinForms.dll</HintPath>
 		</Reference>
+		<Reference Include="Xamarin.Firebase.Auth.Interop">
+		  <HintPath>..\packages\Xamarin.Firebase.Auth.Interop.71.1601.0\lib\monoandroid90\Xamarin.Firebase.Auth.Interop.dll</HintPath>
+		</Reference>
+		<Reference Include="Xamarin.GooglePlayServices.Flags">
+		  <HintPath>..\packages\Xamarin.GooglePlayServices.Flags.71.1601.0\lib\monoandroid90\Xamarin.GooglePlayServices.Flags.dll</HintPath>
+		</Reference>
+		<Reference Include="Xamarin.Firebase.Auth">
+		  <HintPath>..\packages\Xamarin.Firebase.Auth.71.1605.0\lib\monoandroid90\Xamarin.Firebase.Auth.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="Assets\AboutAssets.txt" />
@@ -392,6 +401,7 @@
 		<Compile Include="Renderers\LabelRenderer.cs" />
 		<Compile Include="CustomUrlSchemeInterceptorActivity.cs" />
 		<Compile Include="Renderers\AuthenticatorPageRenderer.cs" />
+		<Compile Include="Services\FirebaseAuth.cs" />
 	</ItemGroup>
 	<ItemGroup>
 		<AndroidResource Include="Resources\drawable\xamarin_logo.png" />
@@ -482,6 +492,7 @@
 	<ItemGroup>
 		<Folder Include="Data\" />
 		<Folder Include="Renderers\" />
+		<Folder Include="Services\" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="Resources\drawable\ic_explore_white_48px.png" />
@@ -506,6 +517,7 @@
 	  <AndroidAsset Include="..\easyPedDB\easyPedDBV16.db3">
 	    <Link>Assets\easyPedDBV16.db3</Link>
 	  </AndroidAsset>
+	  <AndroidAsset Include="Assets\easyPedDBV30.db3" />
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 	<Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
@@ -567,4 +579,8 @@
 	<Import Project="..\packages\Xamarin.Firebase.Measurement.Connector.Impl.71.1705.0\build\MonoAndroid90\Xamarin.Firebase.Measurement.Connector.Impl.targets" Condition="Exists('..\packages\Xamarin.Firebase.Measurement.Connector.Impl.71.1705.0\build\MonoAndroid90\Xamarin.Firebase.Measurement.Connector.Impl.targets')" />
 	<Import Project="..\packages\Xamarin.Forms.4.4.0.991640\build\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.4.4.0.991640\build\Xamarin.Forms.targets')" />
 	<Import Project="..\packages\Xamarin.Build.Download.0.8.0\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.8.0\build\Xamarin.Build.Download.targets')" />
+	<Import Project="..\packages\Xamarin.Firebase.Auth.Interop.71.1601.0\build\MonoAndroid90\Xamarin.Firebase.Auth.Interop.targets" Condition="Exists('..\packages\Xamarin.Firebase.Auth.Interop.71.1601.0\build\MonoAndroid90\Xamarin.Firebase.Auth.Interop.targets')" />
+	<Import Project="..\packages\Xamarin.GooglePlayServices.Flags.71.1601.0\build\MonoAndroid90\Xamarin.GooglePlayServices.Flags.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Flags.71.1601.0\build\MonoAndroid90\Xamarin.GooglePlayServices.Flags.targets')" />
+	<Import Project="..\packages\Xamarin.Firebase.Auth.71.1605.0\build\MonoAndroid90\Xamarin.Firebase.Auth.targets" Condition="Exists('..\packages\Xamarin.Firebase.Auth.71.1605.0\build\MonoAndroid90\Xamarin.Firebase.Auth.targets')" />
+	<Import Project="..\packages\Xamarin.Android.ManifestMerger.1.0.0-preview03\build\monoandroid\Xamarin.Android.ManifestMerger.targets" Condition="Exists('..\packages\Xamarin.Android.ManifestMerger.1.0.0-preview03\build\monoandroid\Xamarin.Android.ManifestMerger.targets')" />
 </Project>

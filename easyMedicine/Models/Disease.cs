@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace easyMedicine.Models
 {
     public class DiseaseLight
@@ -16,6 +18,50 @@ namespace easyMedicine.Models
         }
 
         public string indication
+        {
+            get;
+            set;
+        }
+    }
+
+    public class Condition
+    {
+        public long id
+        {
+            get;
+            set;
+        }
+        public string condition
+        {
+            get;
+            set;
+        }
+
+        public string firstline
+        {
+            get;
+            set;
+        }
+        public string secondline
+        {
+            get;
+            set;
+        }
+        public string thirdline
+        {
+            get;
+            set;
+        }
+    }
+    public class Treatment
+    {
+        public List<Condition> conditions
+        {
+            get;
+            set;
+        }
+
+        public string initial_evaluation
         {
             get;
             set;
@@ -61,6 +107,17 @@ namespace easyMedicine.Models
         }
 
         public string status
+        {
+            get;
+            set;
+        }
+
+        public Treatment treatment
+        {
+            get;
+            set;
+        }
+        public string general_measures
         {
             get;
             set;

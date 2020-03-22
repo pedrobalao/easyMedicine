@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
 using easyMedicine.Models;
+using easyMedicine;
 
 namespace easymedicine.Droid
 {
@@ -18,21 +19,38 @@ namespace easymedicine.Droid
     [IntentFilter(
      new[] { Intent.ActionView },
      Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
-     DataSchemes = new[] { "androidapp.easyped.eu", "fb1477670789018415" },
+     DataSchemes = new[] { "androidapp.easyped.eu", Secrets.fbFacebookAppId, Secrets.firebaseAppURL, Secrets.AndroidGoogleRedirect },
      DataPath = "/oauth2redirect")]
     public class CustomUrlSchemeInterceptorActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            //base.OnCreate(savedInstanceState);
+
+            //// Convert Android.Net.Url to Uri
+            //var uri = new Uri(Intent.Data.ToString());
+
+            //// Load redirectUrl page
+            //AuthenticationState.Authenticator.OnPageLoading(uri);
+
+            //Finish();
+
             base.OnCreate(savedInstanceState);
 
-            // Convert Android.Net.Url to Uri
-            var uri = new Uri(Intent.Data.ToString());
+            global::Android.Net.Uri uri_android = Intent.Data;
 
-            // Load redirectUrl page
-            AuthenticationState.Authenticator.OnPageLoading(uri);
+            Uri uri_netfx = new Uri(uri_android.ToString());
 
-            Finish();
+            // load redirect_url Page
+            AuthenticationState.Authenticator.OnPageLoading(uri_netfx);
+
+            var intent = new Intent(this, typeof(MainActivity));
+            intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
+            StartActivity(intent);
+
+            this.Finish();
+
+            return;
         }
     }
 }

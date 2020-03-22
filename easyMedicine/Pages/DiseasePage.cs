@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using easyMedicine.Core.Converters;
+using easyMedicine.Core.Views;
 using easyMedicine.ViewModels;
 using Xamarin.Forms;
 
@@ -25,7 +26,7 @@ namespace easyMedicine.Pages
             Model.Error += async (object sender, string e) =>
             {
                 await ShowErrorUI(e);
-            }
+            };
 
             BuildUI();
         }
@@ -37,6 +38,42 @@ namespace easyMedicine.Pages
 
         }
 
+
+        View TreatmentView()
+        {
+            var frame = new Frame()
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                BorderColor = Styles.BLUE_COLOR,
+                HasShadow = false,
+                Padding = new Thickness(5, 3)
+            };
+
+            var stackLayout = new StackLayout() { };
+
+
+            var lbtname = new LabelValue("Medidas Gerais", "Disease.general_measures");
+            stackLayout.Children.Add(lbtname);
+
+            var lstView = new Repeater()
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.FillAndExpand,
+            };
+
+            lstView.SetBinding(Repeater.ItemsSourceProperty, DiseasePageModel.ConditionsPropertyName);
+            lstView.ItemTemplate = new DataTemplate(typeof(DiseaseTreatmentCell));
+            lstView.ItemTemplate.SetBinding(DiseaseTreatmentCell.ConditionProperty, "condition");
+            lstView.ItemTemplate.SetBinding(DiseaseTreatmentCell.FirstLineProperty, "firstline");
+            lstView.ItemTemplate.SetBinding(DiseaseTreatmentCell.SecondLineProperty, "secondline");
+            lstView.ItemTemplate.SetBinding(DiseaseTreatmentCell.ThirdLineProperty, "thirdline");
+
+            stackLayout.Children.Add(lstView);
+            //lstView.Header = layoutHeader;
+            frame.Content = stackLayout;
+            return frame;
+        }
 
         void BuildUI()
         {
@@ -64,14 +101,9 @@ namespace easyMedicine.Pages
             };
 
             layoutHeader.Children.Add(lbttreatment_description);
-            var treatmentWV = new WebView()
-            {
-                BindingContext = Model,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                VerticalOptions = LayoutOptions.FillAndExpand,
-            };
-            treatmentWV.SetBinding(WebView.SourceProperty, "Disease.treatment_description", BindingMode.OneWay, new HtmlSourceConverter());
-            layoutHeader.Children.Add(treatmentWV);
+
+            layoutHeader.Children.Add(TreatmentView());
+
 
             var lbtfollowup = new LabelValue("Follow up", "Disease.followup");
             lbtfollowup.SetBinding(LabelValue.IsVisibleProperty, "Disease.followup", BindingMode.OneWay, new StringToBoolConverter());

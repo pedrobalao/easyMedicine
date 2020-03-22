@@ -65,10 +65,10 @@ namespace easyMedicine.ViewModels
                                     switch (Xamarin.Forms.Device.RuntimePlatform)
                                     {
                                         case "Android":
-                                            retval_client_id = "977558012739-stvf9thc5ermlck4ceckru1359ilm64b.apps.googleusercontent.com";
+                                            retval_client_id = Secrets.AndroidGoogleClientId;
                                             break;
                                         case "iOS":
-                                            retval_client_id = "330541011565-p4clgm77d42sbqjrkojro5495pp9kdr4.apps.googleusercontent.com";
+                                            retval_client_id = Secrets.IOSGoogleClientId;
                                             break;
                                     }
                                     return retval_client_id;
@@ -94,16 +94,10 @@ namespace easyMedicine.ViewModels
                                     switch (Xamarin.Forms.Device.RuntimePlatform)
                                     {
                                         case "Android":
-                                            uri =
-                                                "androidapp.easyped.eu:/oauth2redirect"
-                                                //"com.googleusercontent.apps.1093596514437-d3rpjj7clslhdg3uv365qpodsl5tq4fn:/oauth2redirect"
-                                                ;
+                                            uri = Secrets.AndroidGoogleRedirect + ":/oauth2redirect";
                                             break;
                                         case "iOS":
-                                            uri =
-                                                "com.googleusercontent.apps.330541011565-p4clgm77d42sbqjrkojro5495pp9kdr4:/oauth2redirect"
-                                                //"com.googleusercontent.apps.1093596514437-cajdhnien8cpenof8rrdlphdrboo56jh:/oauth2redirect"
-                                                ;
+                                            uri = Secrets.IOSGoogleRedirect + ":/oauth2redirect";
                                             break;
 
                                     }
@@ -182,13 +176,13 @@ namespace easyMedicine.ViewModels
                                 {
                                     string retval_client_id = "oops something is wrong!";
 
-                                    retval_client_id = Settings.FacebookAppId;
+                                    retval_client_id = Secrets.FacebookAppId;
                                     return retval_client_id;
                                 }
                             ).Invoke(),
                      //clientSecret: null,   // null or ""
                      authorizeUrl: new Uri("https://www.facebook.com/v2.9/dialog/oauth"),
-                     redirectUrl: new Uri($"fb{Settings.FacebookAppId}://authorize"),
+                     redirectUrl: new Uri($"fb{Secrets.FacebookAppId}://authorize"),
                      scope: "email",
                      getUsernameAsync: null,
                      isUsingNativeUI: Settings.IsUsingNativeUI
@@ -250,15 +244,18 @@ namespace easyMedicine.ViewModels
         {
             if (success)
             {
-                MessagingCenter.Send<LoginPageModel, string>(this, "AuthenticationSuccess", "Sucesso");
                 await AuthenticationService.Login(authResult);
                 //pop Authenticator
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    await _navigator.PopModalAsync();
+                }
                 //await _navigator.PopModalAsync();
                 //pop Login Page
                 await _navigator.ReplaceRoot<RootPageModel>("Root", (Model) =>
-                {
-                    Model.CollectUserInfo = !AuthenticationService.HasTypeSetted;
-                });
+            {
+                Model.CollectUserInfo = !AuthenticationService.HasTypeSetted;
+            });
                 Analytics.TrackEvent("Authentication Success", new Dictionary<string, string> {
                         { "Provider", provider },
                         { "User", authResult.User.Uid }
@@ -268,8 +265,6 @@ namespace easyMedicine.ViewModels
             else
             {
                 MessagingCenter.Send<LoginPageModel, string>(this, "AuthenticationError", "Autenticação falhou!");
-
-
 
                 Analytics.TrackEvent("Authentication Error", new Dictionary<string, string> {
                         { "Provider", provider},

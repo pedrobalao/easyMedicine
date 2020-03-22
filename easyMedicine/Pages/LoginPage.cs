@@ -21,20 +21,6 @@ namespace easyMedicine.Pages
         {
             this.BindingContext = Model;
 
-
-            MessagingCenter.Subscribe<LoginPageModel, string>(this, "AuthenticationSuccess", (sender, arg) =>
-            {
-                try
-                {
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
-                    {
-                        //UserDialogs.Instance.
-                        //this.DisplayAlert("easyPed", $"Bem-vindo {AuthenticationService.User.DisplayName}", "OK");
-                    });
-                }
-                catch (Exception e1) { }
-            });
-
             MessagingCenter.Subscribe<LoginPageModel, string>(this, "AuthenticationError", (sender, arg) =>
             {
                 try
@@ -61,54 +47,51 @@ namespace easyMedicine.Pages
                 VerticalOptions = LayoutOptions.FillAndExpand,
             };
 
-
-            var headerLayout = new StackLayout()
+            var grid = new Grid()
             {
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
-                VerticalOptions = LayoutOptions.StartAndExpand
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.FillAndExpand,
             };
+
+            grid.ColumnDefinitions.Add(new ColumnDefinition()
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            });
+
+
+            var oneLineRowDefinition = new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) };
+            //var descriptionRowDefinition = new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) };
+
+            grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0.3, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0.3, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0.3, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0.2, GridUnitType.Star) });
+
             var brandLabel = new Label()
             {
                 Style = (Style)Application.Current.Resources[Styles.Style_LabelBrandlStyle],
                 Text = "easyPed",
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
-                VerticalOptions = LayoutOptions.StartAndExpand,
-                Margin = new Thickness(40, 100)
+                VerticalOptions = LayoutOptions.CenterAndExpand,
             };
-            headerLayout.Children.Add(brandLabel);
+            grid.Children.Add(brandLabel, 0, 0);
+
 
             var hashLabel = new Label()
             {
                 Style = (Style)Application.Current.Resources[Styles.Style_LabelHashlStyle],
                 Text = "#makinghealthcareeasier",
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
-                VerticalOptions = LayoutOptions.EndAndExpand,
-                Margin = new Thickness(40, 100)
+                VerticalOptions = LayoutOptions.CenterAndExpand,
             };
-            headerLayout.Children.Add(hashLabel);
 
-            layout.Children.Add(headerLayout);
+            grid.Children.Add(hashLabel, 0, 1);
 
-            //var email = new Entry()
-            //{
-            //    Placeholder = "E-mail",
-            //    Keyboard = Keyboard.Email
-            //};
-            //layout.Children.Add(email);
-
-            //var password = new Entry()
-            //{
-            //    Placeholder = "Password",
-            //    IsPassword = true
-            //};
-
-            //layout.Children.Add(password);
 
             var loginLayout = new StackLayout()
             {
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
-                VerticalOptions = LayoutOptions.EndAndExpand,
-                Margin = new Thickness(0, 50, 00, 200),
+                VerticalOptions = LayoutOptions.CenterAndExpand,
             };
 
 
@@ -151,11 +134,12 @@ namespace easyMedicine.Pages
 
             loginLayout.Children.Add(google);
 
+            grid.Children.Add(loginLayout, 0, 2);
 
 
             var skip = new Button()
             {
-                Text = "avançar",
+                Text = "Avançar",
                 TextColor = Color.White,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 BackgroundColor = Color.Transparent,
@@ -173,10 +157,9 @@ namespace easyMedicine.Pages
                 }
             };
 
-            // google.SetBinding(Button.CommandProperty, LoginPageModel.GoogleSelectedCommandPropertyName);
-            loginLayout.Children.Add(skip);
-            layout.Children.Add(loginLayout);
-            this.Content = layout;
+            grid.Children.Add(skip, 0, 3);
+
+            this.Content = grid;
         }
 
     }

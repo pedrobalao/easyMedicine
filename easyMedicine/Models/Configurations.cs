@@ -7,9 +7,9 @@ namespace easyMedicine.Models
 {
     public static class Configurations
     {
-        public const int APP_VERSION = 195;
-        public const int INITIAL_DB_VERSION = 15;
-        public const string INITIAL_DB_FILE = "eMedicineDBV15.sqlite";
+        public const int APP_VERSION = 198;
+        public const int INITIAL_DB_VERSION = 30;
+        public const string INITIAL_DB_FILE = "easyPedDBV30.db3";
 
         public const string DB_NAME_PREFIX = "easyPedDBV";
         public const string DB_NAME_SUFIX = ".db3";
