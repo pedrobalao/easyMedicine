@@ -69,6 +69,8 @@ namespace easyMedicine
             viewFactory.Register<DiseasesListPageModel, DiseasesListPage>();
             viewFactory.Register<DiseasePageModel, DiseasePage>();
             viewFactory.Register<CollectUserInfoPageModel, CollectUserInfoPage>();
+            viewFactory.Register<NewRootPageModel, NewRootPage>();
+
         }
 
 
@@ -79,7 +81,7 @@ namespace easyMedicine
 
             if (AuthenticationService.IsUserAuthenticated)
             {
-                _container.Resolve<INavigatorService>().Start<RootPageModel>("Root", _application);
+                _container.Resolve<INavigatorService>().Start<NewRootPageModel>("Root", _application);
             }
             else
             {

@@ -191,3 +191,6 @@ iOS/Resources/eMedicineDBV14.sqlite
 iOS/GoogleService-Info.plist
 easyPedDB/*
 .vs/*
+
+Secrets.cs
+

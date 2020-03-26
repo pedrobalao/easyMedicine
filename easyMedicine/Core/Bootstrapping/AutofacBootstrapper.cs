@@ -8,47 +8,46 @@ using easyMedicine.Core.Factory;
 
 namespace easyMedicine.Core.Bootstrapping
 {
-	public abstract class AutofacBootstrapper
-	{
-		protected IContainer _container;
-
-    
-		public void Setup ()
-		{
-			var builder = new ContainerBuilder ();
-
-			ConfigureContainer (builder);
-			_container = builder.Build ();
-			var viewFactory = _container.Resolve<IViewFactory> ();
-
-			RegisterViews (viewFactory);
-         
-		}
-
-      
-
-		protected virtual void ConfigureContainer (ContainerBuilder builder)
-		{
-			builder.RegisterModule<AutofacModule> ();
-		}
+    public abstract class AutofacBootstrapper
+    {
+        protected IContainer _container;
 
 
-       
-		public void RegisterPlatformService<T> (T accountStore) where T: class
-		{
-			var builder = new ContainerBuilder ();
-			builder.RegisterInstance<T> (accountStore);
-			builder.Update (_container);
-		}
+        public void Setup()
+        {
+            var builder = new ContainerBuilder();
 
-     
-		protected abstract void RegisterViews (IViewFactory viewFactory);
+            ConfigureContainer(builder);
+            _container = builder.Build();
+            var viewFactory = _container.Resolve<IViewFactory>();
 
-		/*public virtual Task<bool> Start()
+            RegisterViews(viewFactory);
+
+        }
+
+
+
+        protected virtual void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule<AutofacModule>();
+        }
+
+
+        public void RegisterPlatformService<T>(T accountStore) where T : class
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterInstance<T>(accountStore);
+            builder.Update(_container);
+        }
+
+
+        protected abstract void RegisterViews(IViewFactory viewFactory);
+
+        /*public virtual Task<bool> Start()
         {
             
         }*/
-    	
 
-	}
+
+    }
 }

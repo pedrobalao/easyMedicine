@@ -10,6 +10,7 @@ using easyMedicine.Core.Factory;
 using easyMedicine.Core.Models;
 using easyMedicine.Pages;
 using easyMedicine.Services;
+using easyMedicine.ViewModels;
 
 namespace easyMedicine.Core.Services
 {
@@ -63,8 +64,14 @@ namespace easyMedicine.Core.Services
 
         public async Task PopModalAsync()
         {
+
             if (Navigation.ModalStack.Count > 0)
-                Navigation.PopModalAsync();
+            {
+                Console.WriteLine("------------->poping modal");
+                var page = await Navigation.PopModalAsync();
+                Console.WriteLine("------------->poped modal");
+            }
+
         }
 
         public async Task ReplaceRoot<TPageModel>(string screen, Action<TPageModel> setStateAction = null)
@@ -164,7 +171,6 @@ namespace easyMedicine.Core.Services
             //RootPage.CurrentPage = new eMNavigationPage(view)
             //{
 
-
             //};
             return viewModel;
         }
@@ -190,27 +196,55 @@ namespace easyMedicine.Core.Services
 
 
 
-
+        static int nn = 0;
 
         public async Task<TPageModel> PushModalAsync<TPageModel>(string screen, Action<TPageModel> setStateAction = null)
             where TPageModel : class, IPageModel
         {
-            TPageModel viewModel;
+            TPageModel viewModel = null;
 
-            var view = _viewFactory.Resolve<TPageModel>(out viewModel, setStateAction);
+            Page view;
+            view = _viewFactory.Resolve<TPageModel>(out viewModel, setStateAction);
             viewModel.CreationAction = true;
+            //}
+
+            //else
+            //    view = _viewFactory.Resolve<AboutPageModel>(out _);
+
+            nn++;
             /* using (Insights.TrackTime("Loading " + screen, new Dictionary<string, string> { { "Screen", screen } }))
             {
                  await viewModel.LoadAsync();
             }*/
             // await Navigation.PushModalAsync(view);
 
-            if (Navigation.ModalStack.Count > 0)
-            {
-                Navigation.PopModalAsync();
-            }
-            Navigation.PushModalAsync(view);
+            //if (Navigation.ModalStack.Count > 0)
+            //{
+            //    Navigation.PopModalAsync();
+            //}
+
+            // view = _viewFactory.Resolve<TPageModel>(out viewModel, setStateAction);
+
+
+
+            Console.WriteLine("------------->pushing modal");
+            await Navigation.PushModalAsync(view);
+            Console.WriteLine("------------->pushed modal");
             return viewModel;
+        }
+
+        public async Task<AuthenticatorPageModel> PushAuthenticatorModal(Action<AuthenticatorPageModel> setStateAction = null)
+        {
+            var model = new AuthenticatorPageModel();
+            if (setStateAction != null)
+                model.SetState(setStateAction);
+            var view = new AuthenticatorPage(model);
+
+
+
+            await Navigation.PushModalAsync(view);
+
+            return model;
         }
 
         public async Task<TPageModel> PushModalAsync<TPageModel>(string screen, TPageModel viewModel)
@@ -243,7 +277,7 @@ namespace easyMedicine.Core.Services
             else
                 _root = _viewFactory.Resolve<TPageModel>(out model) as Page;
             model.CreationAction = true;
-            if (_root is CustomTabbedPage)
+            if (_root is CustomTabbedPage || _root is NewRootPage)
             {
                 var task = model.LoadChildPages();
                 task.Wait();

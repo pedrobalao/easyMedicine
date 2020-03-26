@@ -158,7 +158,7 @@ namespace easyMedicine.ViewModels
 
         internal async Task SkipAuthentication()
         {
-            await _navigator.ReplaceRoot<RootPageModel>("Root", (Model) =>
+            await _navigator.ReplaceRoot<NewRootPageModel>("Root", (Model) =>
             {
                 Model.CollectUserInfo = !AuthenticationService.HasTypeSetted;
             });
@@ -233,11 +233,15 @@ namespace easyMedicine.ViewModels
             // after initialization (creation and event subscribing) exposing local object 
             AuthenticationState.Authenticator = authenticator;
 
-
-            await _navigator.PushModalAsync<AuthenticatorPageModel>("AuthenticatorPage", (model) =>
+            await _navigator.PushAuthenticatorModal((model) =>
             {
                 model.Authenticator = authenticator;
             });
+
+            //await _navigator.PushModalAsync<AuthenticatorPageModel>("AuthenticatorPage", (model) =>
+            //{
+            //    model.Authenticator = authenticator;
+            //});
         }
 
         public async Task AuthenticationResult(bool success, string provider, string errorMessage, AuthResult authResult = null)
@@ -246,13 +250,13 @@ namespace easyMedicine.ViewModels
             {
                 await AuthenticationService.Login(authResult);
                 //pop Authenticator
-                if (Device.RuntimePlatform == Device.Android)
-                {
-                    await _navigator.PopModalAsync();
-                }
+                //if (Device.RuntimePlatform == Device.Android)
+                //{
+                await _navigator.PopModalAsync();
+                //}
                 //await _navigator.PopModalAsync();
                 //pop Login Page
-                await _navigator.ReplaceRoot<RootPageModel>("Root", (Model) =>
+                await _navigator.ReplaceRoot<NewRootPageModel>("Root", (Model) =>
             {
                 Model.CollectUserInfo = !AuthenticationService.HasTypeSetted;
             });
@@ -264,6 +268,7 @@ namespace easyMedicine.ViewModels
             }
             else
             {
+                await _navigator.PopModalAsync();
                 MessagingCenter.Send<LoginPageModel, string>(this, "AuthenticationError", "Autenticação falhou!");
 
                 Analytics.TrackEvent("Authentication Error", new Dictionary<string, string> {

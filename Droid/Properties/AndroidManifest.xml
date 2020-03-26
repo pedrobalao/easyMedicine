@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.9.6" package="com.easymedicine.easymedicine" android:versionCode="22">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.9.8" package="com.easymedicine.easymedicine" android:versionCode="23">
 	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="29" />
 	<application android:label="easyPed" android:icon="@drawable/ic_launcher" android:theme="@style/MyTheme">
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />

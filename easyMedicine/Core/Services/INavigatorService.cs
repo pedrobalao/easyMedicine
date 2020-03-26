@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using easyMedicine.Core.Models;
+using easyMedicine.ViewModels;
 using Xamarin.Forms;
 
 namespace easyMedicine.Core.Services
@@ -51,5 +52,7 @@ namespace easyMedicine.Core.Services
 
         TPageModel PushTab<TPageModel>(string screen, Action<TPageModel> setStateAction = null)
             where TPageModel : class, IPageModel;
+
+        Task<AuthenticatorPageModel> PushAuthenticatorModal(Action<AuthenticatorPageModel> setStateAction = null);
     }
 }

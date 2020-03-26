@@ -96,8 +96,8 @@ namespace easyMedicine
                .SingleInstance();
 
 
-            builder.RegisterType<AuthenticatorPageModel>()
-               .SingleInstance();
+            builder.RegisterType<AuthenticatorPageModel>().SingleInstance();
+
             builder.RegisterType<AuthenticatorPage>()
                .SingleInstance();
 
@@ -120,7 +120,10 @@ namespace easyMedicine
             builder.RegisterType<CollectUserInfoPage>()
                .SingleInstance();
 
-
+            builder.RegisterType<NewRootPageModel>()
+               .SingleInstance();
+            builder.RegisterType<NewRootPage>()
+               .SingleInstance();
 
 
 

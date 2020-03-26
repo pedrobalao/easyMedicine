@@ -39,16 +39,16 @@ namespace easyMedicine.ViewModels
                 Drugs.Add(clicat);
             }
 
-            if (_isFirstRun)
-            {
-                if (Drugs.Count() == 0)
-                {
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        ((TabbedPage)_navigator.RootPage).CurrentPage = ((TabbedPage)_navigator.RootPage).Children[2];
-                    });
-                }
-            }
+            //if (_isFirstRun)
+            //{
+            //    if (Drugs.Count() == 0)
+            //    {
+            //        Device.BeginInvokeOnMainThread(() =>
+            //        {
+            //            ((TabbedPage)_navigator.RootPage).CurrentPage = ((TabbedPage)_navigator.RootPage).Children[2];
+            //        });
+            //    }
+            //}
 
             _isFirstRun = false;
             _isLoadRunning = false;

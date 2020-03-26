@@ -2,8 +2,9 @@
 using System.Threading.Tasks;
 using easyMedicine.Models;
 using easyMedicine.Services;
-using Firebase;
 using Firebase.Auth;
+
+
 
 
 namespace easymedicine.Droid.Services
@@ -15,7 +16,7 @@ namespace easymedicine.Droid.Services
 
         public bool Logout()
         {
-            Firebase.Auth.FirebaseAuth.Instance.SignOut();
+            FirebaseAuth.Instance.SignOut();
             return true;
             // return Auth.DefaultInstance.SignOut(out _);
         }

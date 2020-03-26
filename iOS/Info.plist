@@ -44,8 +44,6 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
-	<key>CFBundleVersion</key>
-	<string>57</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -69,5 +67,11 @@
 			<string>Viewer</string>
 		</dict>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>materialdesignicons-webfont.ttf</string>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>60</string>
 </dict>
 </plist>

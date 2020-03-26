@@ -7,6 +7,7 @@ using easyMedicine.Core.Services;
 using easyMedicine.Services;
 using Xamarin.Forms;
 using System.Linq;
+using easyMedicine.Core;
 
 namespace easyMedicine.ViewModels
 {
@@ -36,6 +37,7 @@ namespace easyMedicine.ViewModels
             set;
         }
 
+
     }
 
     public class MenuMorePageModel : PageModelBase
@@ -47,10 +49,10 @@ namespace easyMedicine.ViewModels
 
             MenuItems = new ObservableCollection<MenuItem>
             {
-                new MenuItem("CALCULATIONS", "Cálculos", "ic_poll.png"),
-                new MenuItem("SURGERIES", "Referenciação Cirúrgica", "round_verified_user_black_24pt.png"),
-                new MenuItem("DISEASES", "Doenças", "round_verified_user_black_24pt.png"),
-                new MenuItem("ABOUT", "Sobre", "ic_info.png"),
+                new MenuItem("CALCULATIONS", "Cálculos", String.Empty),
+                new MenuItem("SURGERIES", "Referenciação Cirúrgica", String.Empty),
+                new MenuItem("DISEASES", "Doenças", String.Empty),
+                new MenuItem("ABOUT", "Sobre", String.Empty),
 
             };
 

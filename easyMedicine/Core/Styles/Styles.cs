@@ -13,6 +13,9 @@ namespace easyMedicine
     public class Styles
     {
 
+        //Font icons
+        //public static string Font_MaterialFontFamily = "MaterialFontFamily";
+
         public static string Style_LabelSmallStyle = "LabelSmallStyle";
         public static string Style_LabelMediumStyle = "LabelMediumStyle";
         public static string Style_LabelMediumContrastStyle = "LabelMediumContrastStyle";
@@ -20,6 +23,9 @@ namespace easyMedicine
         public static string Style_LabelSmallStyleNormal = "LabelSmallStyleNormal";
         public static string Style_LabelBrandlStyle = "LabelBrandStyle";
         public static string Style_LabelHashlStyle = "LabelHashStyle";
+        public static string Style_LabelTilelStyle = "LabelTileStyle";
+
+
 
         //Preto esbatido
         public static string BASE_COLOR_HEX = "252628";
@@ -256,6 +262,31 @@ namespace easyMedicine
                     },
                 }
             };
+
+            var labelTileStyle = new Style(typeof(Label))
+            {
+                Setters = {
+                    new Setter {
+                        Property = Label.FontFamilyProperty, Value = FontFamily
+                    },
+                    new Setter {
+                        Property = Label.FontAttributesProperty, Value = FontAttributes.Bold
+                    },
+                    //new Setter {
+                    //    Property = Label.TextColorProperty, Value = WHITE_COLOR,
+                    //},
+                    new Setter {
+                        Property = Label.HorizontalTextAlignmentProperty, Value = TextAlignment.Center
+                    },
+                    new Setter {
+                        Property = Label.VerticalTextAlignmentProperty, Value = TextAlignment.Center
+                    },
+                    new Setter {
+                        Property = Label.FontSizeProperty, Value = 18
+                    },
+                }
+            };
+
 
             var labelMediumNegativeStyle = new Style(typeof(Label))
             {
@@ -602,6 +633,7 @@ namespace easyMedicine
 
             Application.Current.Resources.Add(Style_LabelBrandlStyle, labelBrandStyle);
             Application.Current.Resources.Add(Style_LabelHashlStyle, labelHashStyle);
+            Application.Current.Resources.Add(Style_LabelTilelStyle, labelTileStyle);
 
             Application.Current.Resources.Add(Style_LabelSmallStyle, labelSmallStyle);
             Application.Current.Resources.Add(Style_LabelSmallStyleNormal, labelSmallStyleNormal);
@@ -619,9 +651,19 @@ namespace easyMedicine
 
 
 
-
-
-
+            //// Font Icons
+            //if (Device.RuntimePlatform == "Android")
+            //{
+            //    Application.Current.Resources.Add(Font_MaterialFontFamily, "materialdesignicons-webfont.ttf#Material Design Icons");
+            //}
+            //else if (Device.RuntimePlatform == "iOS")
+            //{
+            //    Application.Current.Resources.Add(Font_MaterialFontFamily, "Material Design Icons");
+            //}
+            //else
+            //{
+            //    throw new Exception("Invalid Platform");
+            //}
 
         }
     }
